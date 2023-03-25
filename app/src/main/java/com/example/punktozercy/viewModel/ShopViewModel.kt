@@ -7,8 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.punktozercy.model.ShopDatabase
 import com.example.punktozercy.model.User
 import com.example.punktozercy.repository.ShopRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class ShopViewModel(application: Application) : AndroidViewModel(application) {
    private val loadAllUsers : LiveData<List<User>>
@@ -27,4 +26,29 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
             repository.addUser(user)
         }
     }
+
+    //TODO Do przerobienia
+    fun findUserByEmail(email:String){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.findUserByEmail(email)
+        }
+    }
+
+     @OptIn(ExperimentalCoroutinesApi::class)
+     suspend fun isUserLoginExists(_email:String, _password:String):Boolean{
+//         val result = MutableLiveData<Boolean>()
+//         viewModelScope.launch {
+//             val flag = repository.isUserLoginExists(_email, _password)
+//             result.postValue(flag)
+//         }
+//         return result;
+
+         return withContext(Dispatchers.IO) {
+             return@withContext repository.isUserLoginExists(_email, _password)
+         }
+     }
+
+
+
+
 }
