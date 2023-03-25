@@ -1,7 +1,8 @@
 package com.example.punktozercy.model
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
-
+@Dao
 interface ProductDao {
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
@@ -23,5 +24,5 @@ interface ProductDao {
     fun deleteProduct(product: Product)
 
     @Query("SELECT * FROM products")
-    fun loadAllProducts(): Array<Product>
+    fun loadAllProducts(): LiveData<List<Product>>
 }

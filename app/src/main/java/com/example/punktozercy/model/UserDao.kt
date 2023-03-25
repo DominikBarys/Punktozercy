@@ -28,6 +28,10 @@ interface UserDao {
     fun loadAllUsers(): LiveData<List<User>>
 
     //TODO
-    @Query("Select email FROM user WHERE :email = email ")
+    //funkcjonalnosc do przypominania hasla
+    @Query("SELECT email FROM users WHERE :email = email ")
     fun findUserWithEmail(email:String):List<String>
+
+    @Query("SELECT EXISTS(SELECT email,password FROM users WHERE :em = email AND :pass = password)")
+    fun isUserLoginExists(em: String,pass:String):Boolean
 }
