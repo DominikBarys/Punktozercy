@@ -7,7 +7,7 @@
     tools:context=".fragments.login.LoginFragment">
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/loginButton"
         android:layout_width="362dp"
         android:layout_height="60dp"
         android:layout_marginEnd="20dp"
@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/TextEmailAddress"
         android:layout_width="330dp"
         android:layout_height="48dp"
         android:layout_marginTop="296dp"
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/TextPassword"
         android:layout_width="330dp"
         android:layout_height="48dp"
         android:layout_marginTop="364dp"
