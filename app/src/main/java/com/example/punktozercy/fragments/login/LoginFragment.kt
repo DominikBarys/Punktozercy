@@ -1,5 +1,6 @@
 package com.example.punktozercy.fragments.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
@@ -10,11 +11,13 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.punktozercy.MainActivity2
 import com.example.punktozercy.R
 import com.example.punktozercy.databinding.FragmentLoginBinding
+import com.example.punktozercy.model.User
 import com.example.punktozercy.viewModel.ShopViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+
 
 class LoginFragment : Fragment() {
 
@@ -30,6 +33,8 @@ class LoginFragment : Fragment() {
 
         //ShopViewModel provider
         mShopViewModel = ViewModelProvider(this)[ShopViewModel::class.java]
+
+
 
         //TODO
         //binding.button1.setOnClickListener()
@@ -55,8 +60,12 @@ class LoginFragment : Fragment() {
 
             lifecycleScope.launch{
                 if(mShopViewModel.isUserLoginExists(email,password)){
-                    Toast.makeText(requireContext(),"Udalo sie zalogowac",Toast.LENGTH_LONG).show()
 
+                    Toast.makeText(requireContext(),"Udalo sie zalogowac",Toast.LENGTH_LONG).show()
+                    val intent = Intent(activity,MainActivity2::class.java)
+                    val user = User(0,"Konrad","123","6654234",null,"konr509@wp.pl",0);
+//                    intent.putExtra("user",user)
+                    activity?.startActivity(intent)
                 }else{
                     Toast.makeText(requireContext(),"Taki uzytkownik nie istnieje",Toast.LENGTH_LONG).show()
                 }
