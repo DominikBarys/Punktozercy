@@ -54,8 +54,8 @@ class LoginFragment : Fragment() {
 
     private fun checkUserLogin(){
 
-        val email = binding.TextEmailAddress.text.toString();
-        val password = binding.TextPassword.text.toString();
+        val email = binding.TextEmailAddress.text.toString()
+        val password = binding.TextPassword.text.toString()
         if(checkInput(email,password)){
 
             lifecycleScope.launch{
@@ -63,8 +63,8 @@ class LoginFragment : Fragment() {
 
                     Toast.makeText(requireContext(),"Udalo sie zalogowac",Toast.LENGTH_LONG).show()
                     val intent = Intent(activity,MainActivity2::class.java)
-                    val user = User(0,"Konrad","123","6654234",null,"konr509@wp.pl",0);
-//                    intent.putExtra("user",user)
+                    val user = User(0,"Konrad","123","6654234",null,"konr509@wp.pl",0)
+                    intent.putExtra("user",user)
                     activity?.startActivity(intent)
                 }else{
                     Toast.makeText(requireContext(),"Taki uzytkownik nie istnieje",Toast.LENGTH_LONG).show()
