@@ -51,6 +51,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     def room_version = "2.5.1"
 
+    //google auth
+    implementation 'com.google.android.gms:play-services-auth:20.4.1'
+
     //ROOM components
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
