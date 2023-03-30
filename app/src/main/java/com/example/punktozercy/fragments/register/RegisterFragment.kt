@@ -48,7 +48,7 @@ class RegisterFragment : Fragment() {
 
         if(checkInput(userName,email, password, repeatPassword, phone)){
             //create User object
-            val user = User(0,userName,password,phone,null,email,0);
+            val user = User(0,userName,password,phone,null,email,0,null);
             mShopViewModel.addUser(user);
 
             Toast.makeText(requireContext(),"Added User",Toast.LENGTH_LONG).show()
