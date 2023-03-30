@@ -36,17 +36,16 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
 
      @OptIn(ExperimentalCoroutinesApi::class)
      suspend fun isUserLoginExists(_email:String, _password:String):Boolean{
-//         val result = MutableLiveData<Boolean>()
-//         viewModelScope.launch {
-//             val flag = repository.isUserLoginExists(_email, _password)
-//             result.postValue(flag)
-//         }
-//         return result;
-
          return withContext(Dispatchers.IO) {
              return@withContext repository.isUserLoginExists(_email, _password)
          }
      }
+    @OptIn(ExperimentalCoroutinesApi::class)
+    suspend fun findUserByGoogleToken(token:String):User{
+        return withContext(Dispatchers.IO) {
+            return@withContext repository.findUserByGoogleToken(token)
+        }
+    }
 
 
 
