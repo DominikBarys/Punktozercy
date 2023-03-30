@@ -9,7 +9,7 @@ interface ProductDao {
     fun insertProduct(product:Product)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertProducts(vararg products:Product)
+    fun insertProducts(products:List<Product>)
 
     @Update
     fun updateProduct(product:Product)
