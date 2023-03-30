@@ -33,7 +33,9 @@ class DashboardFragment : Fragment() {
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
-        Toast.makeText(requireContext(),userViewModel.getUser().email,Toast.LENGTH_LONG).show()
+        Toast.makeText(requireContext(),userViewModel.getUser().points.toString(),Toast.LENGTH_LONG).show()
+     //   Toast.makeText(requireContext(),userViewModel.getUser().userName,Toast.LENGTH_LONG).show()
+
 
        // val user = bundle!!.get
         val root: View = binding.root
