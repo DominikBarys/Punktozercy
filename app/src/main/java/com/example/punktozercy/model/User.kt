@@ -15,15 +15,18 @@ data class User(
     @ColumnInfo(name = "user_name")
     val userName:String,
     @ColumnInfo(name = "password")
-    val password: String,
+    val password: String?,
     @ColumnInfo(name = "phone_number")
-    val phoneNumber:String,
+    val phoneNumber:String?,
     @ColumnInfo(name = "address")
     val address:String?,
     @ColumnInfo(name = "email")
     val email:String,
     @ColumnInfo(name = "points")
-    val points:Int
+    val points:Int,
+    //TESTING
+    @ColumnInfo(name = "google_token")
+    val googleToken:String?
 
 
 ):Parcelable
