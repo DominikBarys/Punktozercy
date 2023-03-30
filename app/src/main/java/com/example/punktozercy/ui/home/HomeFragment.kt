@@ -16,7 +16,7 @@ import com.example.punktozercy.model.User
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-    private lateinit var user: User
+
 
 
     // This property is only valid between onCreateView and
@@ -37,7 +37,6 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
 
-        // Toast.makeText(requireContext(),user.email,Toast.LENGTH_LONG).show()
 
 
         val textView: TextView = binding.textHome
