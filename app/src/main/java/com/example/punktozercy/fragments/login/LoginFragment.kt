@@ -48,21 +48,35 @@ class LoginFragment : Fragment() {
         mShopViewModel = ViewModelProvider(this)[ShopViewModel::class.java]
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         // Configure sign-in to request the user's ID, email address, and basic
-// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .build()
 
         // Build a GoogleSignInClient with the options specified by gso.
-        googleSignInClient = GoogleSignIn.getClient(activity!!, googleSignInOptions);
-        googleSignInClient.revokeAccess()
-        val account:GoogleSignInAccount? = GoogleSignIn.getLastSignedInAccount(activity!!)
+        googleSignInClient = GoogleSignIn.getClient(activity!!, googleSignInOptions)
+        // logout google account
+        //googleSignInClient.revokeAccess()
 
 
         binding.signInButton.setOnClickListener{
+            val account:GoogleSignInAccount? = GoogleSignIn.getLastSignedInAccount(activity!!)
             if(account !=null){
-                //TODO odczytaj z bazy danych i przekaz do mainactivity2
-                goToHome()
+                /*check if the google user exists in database. if yes then go to mainactivity2.
+                if no then go to sign by google and create new user in database
+                * */
+
+               lifecycleScope.launch {
+                   val user:User = mShopViewModel.findUserByGoogleToken(account.id!!)
+                   userViewModel.setUser(user)
+                   if(account.id!! == user.googleToken){
+                       goToHome()
+                   }
+                   else{
+                       goToSignIn()
+                   }
+
+               }
             }
             //TODO stworz nowego uzytkownika w bazie danych
             goToSignIn()
@@ -112,8 +126,9 @@ class LoginFragment : Fragment() {
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            val user = User(0, account.displayName!!,null,null,null,account.email!!,0,account.idToken)
+            val user = User(0, account.displayName!!,null,null,null,account.email!!,0,account.id)
             userViewModel.setUser(user)
+            mShopViewModel.addUser(user)
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
