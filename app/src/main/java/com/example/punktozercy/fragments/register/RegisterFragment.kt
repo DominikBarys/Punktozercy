@@ -8,18 +8,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.punktozercy.R
 import com.example.punktozercy.databinding.FragmentRegisterBinding
 import com.example.punktozercy.model.User
 import com.example.punktozercy.viewModel.ShopViewModel
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class RegisterFragment : Fragment() {
 
     private lateinit var mShopViewModel: ShopViewModel
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,28 +44,101 @@ class RegisterFragment : Fragment() {
     }
 
     private fun insertDataToDatabase() {
+        lifecycleScope.launch {
+            if(checkUsername() && checkEmail()&& checkPassword() && checkRepeatPassword() && checkPhoneNumber()){
+                val user = User(0,binding.TextUsername.toString(),binding.TextPassword.toString()
+                    ,binding.TextPhone.toString(),null,binding.TextEmailAddress.toString(),0,null);
+                mShopViewModel.addUser(user);
+                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+            }
+        }
+
+
+    }
+
+    private suspend fun checkUsername():Boolean{
         val userName = binding.TextUsername.text.toString()
+        if(userName.isNotEmpty()){
+            val job = lifecycleScope.async {
+                    if(mShopViewModel.isUserNameExists(userName)){
+                        binding.TextUsername.error ="Username is already taken"
+                        return@async false
+                    }
+                    else{
+                        return@async true
+                    }
+                }
+            return job.await();
+        }
+        else{
+            binding.TextUsername.error= "Username cannot be empty"
+            return false
+        }
+
+    }
+
+    private suspend fun checkEmail():Boolean{
         val email = binding.TextEmailAddress.text.toString()
-        val password = binding.TextPassword.text.toString()
-        val repeatPassword = binding.TextRepeatPassword.text.toString();
-        val phone = binding.TextPhone.text.toString();
+        val emailRegex = "^[a-zA-Z\\d._%+-]+@[a-zA-Z\\d.-]+\\.(com|pl)\$"
+        if(email.isNotEmpty()){
+            val job = lifecycleScope.async {
+                if (mShopViewModel.isUserEmailExists(email)) {
+                    binding.TextEmailAddress.error = "Email is already taken"
+                    return@async false
+                } else {
+                        if(email.matches(emailRegex.toRegex())){
 
-        if(checkInput(userName,email, password, repeatPassword, phone)){
-            //create User object
-            val user = User(0,userName,password,phone,null,email,0,null);
-            mShopViewModel.addUser(user);
+                            return@async true
+                        }
+                    else{
+                            binding.TextEmailAddress.error = "Email address is invalid"
+                            return@async false
+                        }
 
-            Toast.makeText(requireContext(),"Added User",Toast.LENGTH_LONG).show()
-            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                }
+
+            }
+            return job.await()
         }else{
-            Toast.makeText(requireContext(),"Please fill out all fields",Toast.LENGTH_LONG).show()
+            binding.TextEmailAddress.error="Email cannot be empty"
+            return false
         }
     }
 
+    private fun checkPassword():Boolean{
+        val password = binding.TextPassword.text.toString()
+        val passwordRegex = "^(?=.*[A-Z])(?=.*\\d).{6,}\$"
+        return if(password.matches(passwordRegex.toRegex())){
+            true
+        } else{
+            binding.TextPassword.error="Password should have minimum of 6 characters and contains minimum of " +
+                    "1 capital letter and one number "
+            false
+        }
 
-    private fun checkInput(username:String,email:String,password:String,repeatPassword:String,phone:String):Boolean{
-            return !(TextUtils.isEmpty(username) && TextUtils.isEmpty(email)&& TextUtils.isEmpty(password)&&
-                    TextUtils.isEmpty(repeatPassword)&& TextUtils.isEmpty(phone))
+    }
+
+    private fun checkRepeatPassword():Boolean{
+        val password = binding.TextPassword.text.toString()
+        val repeatPassword = binding.TextRepeatPassword.text.toString()
+        return if(password != repeatPassword){
+            binding.TextRepeatPassword.error = "Entered password don't match the previous one"
+            false
+        }else{
+            true
+        }
+    }
+
+    private fun checkPhoneNumber():Boolean{
+        val phone = binding.TextPhone.text.toString()
+        val regex = Regex("^(?:\\+48|48)?(?:\\d{9})$")
+        if(regex.matches(phone)){
+            return true
+        }
+        else{
+            binding.TextPhone.error="Number is invalid"
+            return false
+        }
     }
 
 }
