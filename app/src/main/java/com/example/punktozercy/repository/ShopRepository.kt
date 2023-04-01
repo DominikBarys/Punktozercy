@@ -13,8 +13,9 @@ class ShopRepository(private val userDao: UserDao,private val productDao: Produc
         userDao.insertUser(user)
     }
 
-    suspend fun findUserByEmail(email:String){
-        userDao.findUserWithEmail(email)
+    //TODO validacja przez email
+    suspend fun isUserEmailExists(email:String):Boolean{
+       return userDao.isUserEmailExists(email)
     }
      suspend fun isUserLoginExists(_email:String,_password:String):Boolean{
        return  userDao.isUserLoginExists(_email,_password)
@@ -23,4 +24,9 @@ class ShopRepository(private val userDao: UserDao,private val productDao: Produc
     suspend fun findUserByGoogleToken(token:String):User{
         return userDao.findUserByGoogleToken(token)
     }
+
+    suspend fun isUserNameExists(username:String):Boolean{
+        return userDao.isUserNameExists(username)
+    }
+
 }

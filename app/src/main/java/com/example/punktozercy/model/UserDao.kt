@@ -29,12 +29,14 @@ interface UserDao {
 
     //TODO
     //funkcjonalnosc do przypominania hasla
-    @Query("SELECT email FROM users WHERE :email = email ")
-    fun findUserWithEmail(email:String):List<String>
+    @Query("SELECT EXISTS(SELECT email FROM users WHERE :email = email) ")
+    fun isUserEmailExists(email:String):Boolean
 
     @Query("SELECT EXISTS(SELECT email,password FROM users WHERE :em = email AND :pass = password)")
     fun isUserLoginExists(em: String,pass:String):Boolean
 
     @Query("SELECT * FROM users WHERE :token = google_token")
     fun findUserByGoogleToken(token:String):User
+    @Query("SELECT EXISTS(SELECT username FROM users WHERE username = :userName )")
+    fun isUserNameExists(userName:String):Boolean
 }
