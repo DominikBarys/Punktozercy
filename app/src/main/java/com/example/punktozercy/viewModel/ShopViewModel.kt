@@ -27,13 +27,6 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    //TODO Do przerobienia
-    fun findUserByEmail(email:String){
-        viewModelScope.launch(Dispatchers.IO){
-            repository.findUserByEmail(email)
-        }
-    }
-
      @OptIn(ExperimentalCoroutinesApi::class)
      suspend fun isUserLoginExists(_email:String, _password:String):Boolean{
          return withContext(Dispatchers.IO) {
@@ -46,6 +39,21 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
             return@withContext repository.findUserByGoogleToken(token)
         }
     }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    suspend fun isUserNameExists(username:String):Boolean{
+        return withContext(Dispatchers.IO) {
+            return@withContext repository.isUserNameExists(username)
+        }
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    suspend fun isUserEmailExists(_email:String):Boolean{
+        return withContext(Dispatchers.IO) {
+            return@withContext repository.isUserEmailExists(_email)
+        }
+    }
+
 
 
 
