@@ -23,6 +23,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 
@@ -89,7 +90,7 @@ class LoginFragment : Fragment() {
         }
 
         binding.loginButton.setOnClickListener{
-                checkUserLogin()
+                checkUserlogin()
         }
         return binding.root
     }
@@ -142,23 +143,56 @@ class LoginFragment : Fragment() {
         return !(TextUtils.isEmpty(email)&& TextUtils.isEmpty(password))
     }
 
+    private fun checkUserlogin(){
+        val email = binding.TextEmailAddress.text.toString()
+        val password = binding.TextPassword.text.toString()
+
+        lifecycleScope.launch {
+            val job = lifecycleScope.async {
+                val user: List<User>  = mShopViewModel.isUserLoginExists(email,password)
+
+                if(user.isEmpty()){
+                    binding.TextEmailAddress.error="Invalid data. Try again"
+                    binding.TextPassword.error="Invalid data. Try again"
+                }
+                else{
+                    val intent = Intent(activity,MainActivity2::class.java)
+                    intent.putExtra("user", user[0])
+                    activity?.startActivity(intent)
+                }
+            }
+        }
+    }
     private fun checkUserLogin(){
 
         val email = binding.TextEmailAddress.text.toString()
         val password = binding.TextPassword.text.toString()
+        binding.TextEmailAddress.error = "Morenka"
         if(checkInput(email,password)){
 
             lifecycleScope.launch{
-                if(mShopViewModel.isUserLoginExists(email,password)){
 
-                    Toast.makeText(requireContext(),"Udalo sie zalogowac",Toast.LENGTH_LONG).show()
-                    val intent = Intent(activity,MainActivity2::class.java)
-                    val user = User(0,"Konrad","123","6654234",null,"konr509@wp.pl",0,null)
-                    intent.putExtra("user",user)
-                    activity?.startActivity(intent)
-                }else{
-                    Toast.makeText(requireContext(),"Taki uzytkownik nie istnieje",Toast.LENGTH_LONG).show()
-                }
+
+
+
+
+
+
+
+
+
+
+
+//                if(mShopViewModel.isUserLoginExists(email,password)){
+//
+//                    Toast.makeText(requireContext(),"Udalo sie zalogowac",Toast.LENGTH_LONG).show()
+//                    val intent = Intent(activity,MainActivity2::class.java)
+//                    val user = User(0,"Konrad","123","6654234",null,"konr509@wp.pl",0,null)
+//                    intent.putExtra("user",user)
+//                    activity?.startActivity(intent)
+//                }else{
+//                    Toast.makeText(requireContext(),"Taki uzytkownik nie istnieje",Toast.LENGTH_LONG).show()
+//                }
             }
 
         }else
