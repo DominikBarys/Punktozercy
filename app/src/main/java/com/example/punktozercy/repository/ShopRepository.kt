@@ -17,7 +17,7 @@ class ShopRepository(private val userDao: UserDao,private val productDao: Produc
     suspend fun isUserEmailExists(email:String):Boolean{
        return userDao.isUserEmailExists(email)
     }
-     suspend fun isUserLoginExists(_email:String,_password:String):Boolean{
+     suspend fun isUserLoginExists(_email:String,_password:String):List<User>{
        return  userDao.isUserLoginExists(_email,_password)
     }
 
