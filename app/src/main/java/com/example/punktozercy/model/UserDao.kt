@@ -32,8 +32,8 @@ interface UserDao {
     @Query("SELECT EXISTS(SELECT email FROM users WHERE :email = email) ")
     fun isUserEmailExists(email:String):Boolean
 
-    @Query("SELECT EXISTS(SELECT email,password FROM users WHERE :em = email AND :pass = password)")
-    fun isUserLoginExists(em: String,pass:String):Boolean
+    @Query("SELECT * FROM users WHERE :em = email AND :pass = password")
+    fun isUserLoginExists(em: String,pass:String):List<User>
 
     @Query("SELECT * FROM users WHERE :token = google_token")
     fun findUserByGoogleToken(token:String):User
