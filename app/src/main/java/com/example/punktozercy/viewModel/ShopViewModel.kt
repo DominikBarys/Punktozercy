@@ -28,7 +28,7 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
     }
 
      @OptIn(ExperimentalCoroutinesApi::class)
-     suspend fun isUserLoginExists(_email:String, _password:String):Boolean{
+     suspend fun isUserLoginExists(_email:String, _password:String):List<User>{
          return withContext(Dispatchers.IO) {
              return@withContext repository.isUserLoginExists(_email, _password)
          }
