@@ -46,8 +46,8 @@ class RegisterFragment : Fragment() {
     private fun insertDataToDatabase() {
         lifecycleScope.launch {
             if(checkUsername() && checkEmail()&& checkPassword() && checkRepeatPassword() && checkPhoneNumber()){
-                val user = User(0,binding.TextUsername.toString(),binding.TextPassword.toString()
-                    ,binding.TextPhone.toString(),null,binding.TextEmailAddress.toString(),0,null);
+                val user = User(0,binding.TextUsername.text.toString(),binding.TextPassword.text.toString()
+                    ,binding.TextPhone.text.toString(),null,binding.TextEmailAddress.text.toString(),0,null);
                 mShopViewModel.addUser(user);
                 findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
             }
