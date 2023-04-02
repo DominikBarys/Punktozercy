@@ -36,7 +36,7 @@ interface UserDao {
     fun isUserLoginExists(em: String,pass:String):List<User>
 
     @Query("SELECT * FROM users WHERE :token = google_token")
-    fun findUserByGoogleToken(token:String):User
+    fun findUserByGoogleToken(token:String):List<User>
     @Query("SELECT EXISTS(SELECT username FROM users WHERE username = :userName )")
     fun isUserNameExists(userName:String):Boolean
 }

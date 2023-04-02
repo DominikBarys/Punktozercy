@@ -21,7 +21,7 @@ class ShopRepository(private val userDao: UserDao,private val productDao: Produc
        return  userDao.isUserLoginExists(_email,_password)
     }
 
-    suspend fun findUserByGoogleToken(token:String):User{
+    suspend fun findUserByGoogleToken(token:String):List<User>{
         return userDao.findUserByGoogleToken(token)
     }
 

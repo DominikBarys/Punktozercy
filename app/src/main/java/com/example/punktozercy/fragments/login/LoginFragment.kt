@@ -68,14 +68,21 @@ class LoginFragment : Fragment() {
                 * */
 
                lifecycleScope.launch {
-                   val user:User = mShopViewModel.findUserByGoogleToken(account.id!!)
-                   userViewModel.setUser(user)
-                   if(account.id!! == user.googleToken){
-                       goToHome()
-                   }
-                   else{
+                   val users:List<User> = mShopViewModel.findUserByGoogleToken(account.id!!)
+                   if(users.isEmpty()){
                        goToSignIn()
+                   }else
+                   {
+                       userViewModel.setUser(users[0])
+                       if(account.id!! == users[0].googleToken){
+                           goToHome()
+                         }
+                       else{
+                           goToSignIn()
+                       }
+
                    }
+
 
                }
             }
@@ -119,7 +126,7 @@ class LoginFragment : Fragment() {
                 goToHome()
             }
             catch (e:java.lang.Exception){
-                Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+                //Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
             }
         }
     }

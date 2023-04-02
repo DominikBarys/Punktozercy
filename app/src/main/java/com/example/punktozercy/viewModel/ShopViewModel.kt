@@ -34,7 +34,7 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
          }
      }
     @OptIn(ExperimentalCoroutinesApi::class)
-    suspend fun findUserByGoogleToken(token:String):User{
+    suspend fun findUserByGoogleToken(token:String):List<User>{
         return withContext(Dispatchers.IO) {
             return@withContext repository.findUserByGoogleToken(token)
         }
