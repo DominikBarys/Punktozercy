@@ -19,11 +19,11 @@ data class ShoppingHistory(
 )
 
 
-@Entity(primaryKeys = ["userId", "productId"])
-data class UserProductCrossRef(
-    val userId: Long,
-    val productId: Long
-)
+//@Entity(primaryKeys = ["userId", "productId"])
+//data class UserProductCrossRef(
+//    val userId: Long,
+//    val productId: Long
+//)
 
 
 data class UserWithProducts(
@@ -31,7 +31,7 @@ data class UserWithProducts(
     @Relation(
         parentColumn = "userId",
         entityColumn = "productId",
-        associateBy = Junction(UserProductCrossRef::class)
+//        associateBy = Junction(UserProductCrossRef::class)
     )
     val products: List<Product>
 )
