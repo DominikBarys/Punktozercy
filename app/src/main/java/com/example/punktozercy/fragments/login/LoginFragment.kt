@@ -137,7 +137,7 @@ class LoginFragment : Fragment() {
         activity?.startActivity(intent)
 
     }
-
+    //komentarz
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
