@@ -1,4 +1,4 @@
-package com.example.punktozercy.ui.home
+package com.example.punktozercy.fragments.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

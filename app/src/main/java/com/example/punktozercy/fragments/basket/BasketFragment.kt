@@ -1,4 +1,4 @@
-package com.example.punktozercy.ui.basket
+package com.example.punktozercy.fragments.basket
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

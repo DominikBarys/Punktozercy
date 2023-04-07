@@ -11,5 +11,4 @@ class MainScreenViewModel : ViewModel(){
     }
     var amountOfProductsInBasket : MutableLiveData<Int> = _amountOfProductsInBasket
 
-
 }
