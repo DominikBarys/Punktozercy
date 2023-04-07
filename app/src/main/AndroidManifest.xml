@@ -12,7 +12,7 @@
         android:theme="@style/Theme.Punktozercy"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity2"
+            android:name=".mainscreen.MainScreenActivity"
             android:exported="false"
             android:label="@string/title_activity_main2" />
 

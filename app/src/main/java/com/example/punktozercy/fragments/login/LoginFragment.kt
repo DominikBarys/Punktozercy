@@ -2,7 +2,6 @@ package com.example.punktozercy.fragments.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.punktozercy.MainActivity2
+import com.example.punktozercy.mainscreen.MainScreenActivity
 import com.example.punktozercy.R
 import com.example.punktozercy.databinding.FragmentLoginBinding
 import com.example.punktozercy.model.User
@@ -94,7 +93,7 @@ class LoginFragment : Fragment() {
         }
 
         binding.loginButton.setOnClickListener{
-            val intent = Intent(activity,MainActivity2::class.java)
+            val intent = Intent(activity, MainScreenActivity::class.java)
                     activity?.startActivity(intent)
         }
 
@@ -136,7 +135,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun goToHome() {
-        val intent = Intent(activity,MainActivity2::class.java)
+        val intent = Intent(activity, MainScreenActivity::class.java)
         intent.putExtra("user",userViewModel.getUser())
         activity?.startActivity(intent)
 
