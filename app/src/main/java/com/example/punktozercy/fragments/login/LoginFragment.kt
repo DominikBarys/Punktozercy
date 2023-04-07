@@ -80,10 +80,7 @@ class LoginFragment : Fragment() {
                        else{
                            goToSignIn()
                        }
-
                    }
-
-
                }
             }
             //TODO stworz nowego uzytkownika w bazie danych
@@ -97,15 +94,22 @@ class LoginFragment : Fragment() {
         }
 
         binding.loginButton.setOnClickListener{
-              //  checkUserLogin()
-            lifecycleScope.launch {
-                if(checkUserLogin()){
-                    val intent = Intent(activity,MainActivity2::class.java)
-                    intent.putExtra("user", userViewModel.getUser())
+            val intent = Intent(activity,MainActivity2::class.java)
                     activity?.startActivity(intent)
-                }
-            }
         }
+
+//        For easly debugging login button temporary switch to always login
+//        DEBUG
+//        binding.loginButton.setOnClickListener{
+//              //  checkUserLogin()
+//            lifecycleScope.launch {
+//                if(checkUserLogin()){
+//                    val intent = Intent(activity,MainActivity2::class.java)
+//                    intent.putExtra("user", userViewModel.getUser())
+//                    activity?.startActivity(intent)
+//                }
+//            }
+//        }
         return binding.root
     }
 

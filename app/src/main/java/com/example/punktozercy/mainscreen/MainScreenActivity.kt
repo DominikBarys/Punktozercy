@@ -13,7 +13,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.punktozercy.databinding.ActivityMain2Binding
 import com.example.punktozercy.model.User
-import com.example.punktozercy.ui.dashboard.DashboardFragment
 import com.example.punktozercy.ui.home.HomeFragment
 import com.example.punktozercy.viewModel.UserViewModel
 
@@ -24,11 +23,12 @@ class MainActivity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         //przekazanie usera do homeFragment
-        val user: User? = intent.getParcelableExtra("user")
-        userViewModel.setUser(user!!)
+
+        //DEBUG
+       // val user: User? = intent.getParcelableExtra("user")
+       // userViewModel.setUser(user!!)
 
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -39,12 +39,10 @@ class MainActivity2 : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_home, R.id.navigation_basket, R.id.navigation_shopping_history, R.id.navigation_settings
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-
     }
 }
