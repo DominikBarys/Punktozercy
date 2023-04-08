@@ -15,7 +15,7 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
   //  private var mainScreenVm = activity?.let { ViewModelProvider(it)[MainScreenViewModel::class.java] }
-   private lateinit var mainScreenVm2: MainScreenViewModel
+   private lateinit var mainScreenVm: MainScreenViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -29,7 +29,7 @@ class HomeFragment : Fragment() {
         val homeViewModel =
             ViewModelProvider(this)[HomeViewModel::class.java]
 
-        mainScreenVm2 = ViewModelProvider(requireActivity())[MainScreenViewModel::class.java]
+        mainScreenVm = ViewModelProvider(requireActivity())[MainScreenViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -42,16 +42,13 @@ class HomeFragment : Fragment() {
 
 
         binding.debugAddProductButton.setOnClickListener{
-            mainScreenVm2.amountOfProductsInBasket.value = mainScreenVm2.amountOfProductsInBasket.value!! + 1
+            mainScreenVm.amountOfProductsInBasket.value = mainScreenVm.amountOfProductsInBasket.value!! + 1
         }
 
 
         return binding.root
     }
 
-    fun siema(){
-
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
