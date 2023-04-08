@@ -1,8 +1,11 @@
 package com.example.punktozercy.mainscreen
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -11,6 +14,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.punktozercy.R
 import com.example.punktozercy.databinding.ActivityMain2Binding
+import com.example.punktozercy.fragments.settings.SettingsViewModel
+import com.example.punktozercy.model.User
 import com.example.punktozercy.viewModel.UserViewModel
 
 class MainScreenActivity : AppCompatActivity() {
@@ -18,16 +23,22 @@ class MainScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMain2Binding
     private lateinit var userViewModel: UserViewModel
     private lateinit var mainScreenViewModel: MainScreenViewModel
+    private var sharedPreferences:SharedPreferences?=null
+    private  var settingsViewModel: SettingsViewModel? =null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
-        //przekazanie usera do homeFragment
-
-
+        //checking user Theme
+        settingsViewModel = ViewModelProvider(this)[SettingsViewModel::class.java]
+        sharedPreferences = applicationContext.getSharedPreferences("MODE", Context.MODE_PRIVATE)
+        settingsViewModel!!.setThemeFlag(sharedPreferences?.getBoolean("night",false)!!)
+        if(settingsViewModel!!.getThemeFlag()){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
         //DEBUG
-       // val user: User? = intent.getParcelableExtra("user")
-       // userViewModel.setUser(user!!)
+        val user: User? = intent.getParcelableExtra("user")
+        userViewModel.setUser(user!!)
         mainScreenViewModel = ViewModelProvider(this)[MainScreenViewModel::class.java]
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
