@@ -2,6 +2,7 @@ package com.example.punktozercy.fragments.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -92,23 +93,45 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
-        binding.loginButton.setOnClickListener{
-            val intent = Intent(activity, MainScreenActivity::class.java)
-                    activity?.startActivity(intent)
-        }
+//        binding.loginButton.setOnClickListener{
+//            val intent = Intent(activity, MainScreenActivity::class.java)
+//                    activity?.startActivity(intent)
+//        }
 
 //        For easly debugging login button temporary switch to always login
 //        DEBUG
-//        binding.loginButton.setOnClickListener{
-//              //  checkUserLogin()
-//            lifecycleScope.launch {
-//                if(checkUserLogin()){
-//                    val intent = Intent(activity,MainActivity2::class.java)
-//                    intent.putExtra("user", userViewModel.getUser())
-//                    activity?.startActivity(intent)
-//                }
-//            }
-//        }
+        binding.loginButton.setOnClickListener{
+              //  checkUserLogin()
+            lifecycleScope.launch {
+                if(checkUserLogin()){
+                    val intent = Intent(activity,MainScreenActivity::class.java)
+                    intent.putExtra("user", userViewModel.getUser())
+                    activity?.startActivity(intent)
+                }
+            }
+        }
+
+        val logo = binding.applicationLogo
+        logo.rotation = 15f // ustawienie początkowego kąta obrotu
+
+        val handler = Handler()
+
+        val runnable = object : Runnable {
+            override fun run() {
+                logo.animate().apply {
+                    duration = 3000
+                    rotationBy(-30f) // zmiana rotacji na -240 stopni (120 stopni w lewo)
+                }.withEndAction{
+                    logo.animate().apply {
+                        duration = 3000
+                        rotationBy(30f) // zmiana rotacji na 240 stopni (wraca do początkowego kąta)
+                    }
+                }
+                handler.postDelayed(this, 6000) // Uruchamia się co 6 sekund
+            }
+        }
+        handler.postDelayed(runnable, 100)
+
         return binding.root
     }
 

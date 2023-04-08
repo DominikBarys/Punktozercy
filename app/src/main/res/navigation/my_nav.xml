@@ -22,5 +22,29 @@
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_privacyPolicyFragment"
+            app:destination="@id/privacyPolicyFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_termsAndConditionsFragment"
+            app:destination="@id/termsAndConditionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/termsAndConditionsFragment"
+        android:name="com.example.punktozercy.fragments.TermsConditionsPrivacyPolicy.TermsAndConditionsFragment"
+        android:label="fragment_terms_and_conditions"
+        tools:layout="@layout/fragment_terms_and_conditions" >
+        <action
+            android:id="@+id/action_termsAndConditionsFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/privacyPolicyFragment"
+        android:name="com.example.punktozercy.fragments.TermsConditionsPrivacyPolicy.PrivacyPolicyFragment"
+        android:label="fragment_privacy_policy"
+        tools:layout="@layout/fragment_privacy_policy" >
+        <action
+            android:id="@+id/action_privacyPolicyFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
     </fragment>
 </navigation>
