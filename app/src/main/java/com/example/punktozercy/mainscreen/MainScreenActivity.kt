@@ -24,6 +24,8 @@ class MainScreenActivity : AppCompatActivity() {
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         //przekazanie usera do homeFragment
 
+        var kurwatododalem = "dfsadasd"
+
         //DEBUG
        // val user: User? = intent.getParcelableExtra("user")
        // userViewModel.setUser(user!!)
