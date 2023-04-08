@@ -16,4 +16,15 @@ class UserViewModel:ViewModel() {
     fun getUser():User{
         return user;
     }
+
+    fun getEmail():String{
+        return user.email
+    }
+    fun getUsername():String{
+        return user.userName
+    }
+
+    fun getPoints():Int{
+        return user.points
+    }
 }
