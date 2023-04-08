@@ -10,7 +10,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="400sp"
         android:background="#327CB342"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -19,79 +19,79 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="100sp"
+            android:layout_height="100sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="40dp"
-            android:layout_marginBottom="235dp"
+            android:layout_marginStart="40sp"
+            android:layout_marginBottom="235sp"
             android:src="@mipmap/ic_launcher2_settings_round" />
 
         <TextView
             android:id="@+id/email"
-            android:layout_width="174dp"
-            android:layout_height="17dp"
+            android:layout_width="174sp"
+            android:layout_height="17sp"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="115dp"
-            android:layout_marginBottom="268dp"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="115sp"
+            android:layout_marginBottom="268sp"
             android:layout_toEndOf="@id/imageView3"
             android:text="rixis321@gmail.com" />
 
         <TextView
             android:id="@+id/username"
-            android:layout_width="136dp"
-            android:layout_height="25dp"
+            android:layout_width="136sp"
+            android:layout_height="25sp"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="89dp"
-            android:layout_marginBottom="286dp"
+            android:layout_marginStart="13sp"
+            android:layout_marginTop="89sp"
+            android:layout_marginBottom="286sp"
             android:layout_toEndOf="@id/imageView3"
             android:text="Rixis"
             android:textSize="20sp" />
 
         <androidx.cardview.widget.CardView
-            android:layout_width="221dp"
-            android:layout_height="95dp"
+            android:layout_width="221sp"
+            android:layout_height="95sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="91dp"
-            android:layout_marginEnd="98dp"
-            android:layout_marginBottom="121dp">
+            android:layout_marginStart="91sp"
+            android:layout_marginEnd="98sp"
+            android:layout_marginBottom="121sp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="87dp">
+                android:layout_height="87sp">
 
                 <TextView
                     android:id="@+id/pointsLabel"
-                    android:layout_width="43dp"
-                    android:layout_height="23dp"
+                    android:layout_width="43sp"
+                    android:layout_height="23sp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="92dp"
-                    android:layout_marginTop="58dp"
-                    android:layout_marginEnd="86dp"
-                    android:layout_marginBottom="14dp"
+                    android:layout_marginStart="92sp"
+                    android:layout_marginTop="58sp"
+                    android:layout_marginEnd="86sp"
+                    android:layout_marginBottom="14sp"
                     android:text="@string/points" />
 
                 <TextView
                     android:id="@+id/points"
-                    android:layout_width="30dp"
-                    android:layout_height="21dp"
+                    android:layout_width="30sp"
+                    android:layout_height="21sp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="105dp"
-                    android:layout_marginTop="37dp"
-                    android:layout_marginEnd="87dp"
-                    android:layout_marginBottom="29dp"
+                    android:layout_marginStart="105sp"
+                    android:layout_marginTop="37sp"
+                    android:layout_marginEnd="87sp"
+                    android:layout_marginBottom="29sp"
                     android:text="0" />
             </RelativeLayout>
 
@@ -101,34 +101,34 @@
 
         <Button
             android:id="@+id/editProfile"
-            android:layout_width="143dp"
+            android:layout_width="143sp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="244dp"
-            android:layout_marginBottom="25dp"
+            android:layout_marginStart="24sp"
+            android:layout_marginEnd="244sp"
+            android:layout_marginBottom="25sp"
             android:text="@string/edit_profile" />
 
         <Button
             android:id="@+id/sendPoints"
-            android:layout_width="158dp"
+            android:layout_width="158sp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="221dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="23dp"
+            android:layout_marginStart="221sp"
+            android:layout_marginEnd="32sp"
+            android:layout_marginBottom="23sp"
             android:text="@string/send_points" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="329dp"
-        android:layout_marginTop="4dp"
+        android:layout_height="329sp"
+        android:layout_marginTop="4sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -137,41 +137,41 @@
 
         <TextView
             android:id="@+id/settingLabel"
-            android:layout_width="95dp"
-            android:layout_height="31dp"
+            android:layout_width="95sp"
+            android:layout_height="31sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="17dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="299dp"
-            android:layout_marginBottom="283dp"
+            android:layout_marginStart="17sp"
+            android:layout_marginTop="15sp"
+            android:layout_marginEnd="299sp"
+            android:layout_marginBottom="283sp"
             android:text="@string/settings"
             android:textSize="25sp"/>
 
         <Switch
             android:id="@+id/switch_theme"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="70sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="29dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="196dp"
+            android:layout_marginStart="29sp"
+            android:layout_marginEnd="25sp"
+            android:layout_marginBottom="196sp"
             android:text="@string/theme"
             tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         <Switch
             android:id="@+id/switch_sounds"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="70sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="29dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="124dp"
+            android:layout_marginStart="29sp"
+            android:layout_marginTop="70sp"
+            android:layout_marginEnd="25sp"
+            android:layout_marginBottom="124sp"
             android:text="@string/sounds"
             android:checked="true"
             tools:ignore="UseSwitchCompatOrMaterialXml" />
@@ -179,13 +179,13 @@
         <Switch
             android:id="@+id/switch_notifications"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="70sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="29dp"
-            android:layout_marginTop="140dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="55dp"
+            android:layout_marginStart="29sp"
+            android:layout_marginTop="140sp"
+            android:layout_marginEnd="25sp"
+            android:layout_marginBottom="55sp"
             android:text="@string/notifications"
             android:checked="true"
             tools:ignore="UseSwitchCompatOrMaterialXml" />

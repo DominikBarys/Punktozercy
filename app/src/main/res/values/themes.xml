@@ -22,4 +22,12 @@
     <style name="Theme.Punktozercy.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Punktozercy.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
+    <style name="PunktozercyTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+
+    </style>
+
 </resources>

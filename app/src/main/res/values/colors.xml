@@ -8,5 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="granat">#013c84</color>
+    <color name="background_color">#545454</color>
 
 </resources>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.TermsConditionsPrivacyPolicy.TermsAndConditionsFragment"
+    android:background="@drawable/gradient_background">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="190dp"
+        android:layout_height="151dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/termsAndConditionsText"
+        android:layout_width="397dp"
+        android:layout_height="503dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="1dp"
+        android:scrollbars="vertical"
+        android:text="Welcome to the mobile application of Punktożercy grocery store network. By using our mobile application, you agree to the following terms and conditions (Terms).\n
+\n
+Use of the Mobile Application\n
+1.1. You may use the mobile application to browse, locate and purchase products offered by Punktożercy grocery store network.\n
+1.2. You may only use the mobile application for lawful purposes and in accordance with these Terms.\n
+1.3. You must be 18 years of age or older to use the mobile application.\n
+\n
+Account Registration and Security\n
+2.1. In order to access certain features of the mobile application, you may need to register for an account.\n
+2.2. You must provide accurate and complete registration information and keep it up to date.\n
+2.3. You are responsible for maintaining the confidentiality of your account login information and for all activities that occur under your account.\n
+
+Products and Services
+3.1. The mobile application allows you to purchase products offered by Punktożercy grocery store network.\n
+3.2. Punktożercy grocery store network reserves the right to modify or discontinue products and services at any time without notice.\n
+3.3. Punktożercy grocery store network makes no representations or warranties about the quality, safety or legality of the products or services offered through the mobile application.\n
+\n
+Intellectual Property\n
+4.1. The mobile application and its entire contents, features and functionality (including but not limited to all information, software, text, displays, images, video and audio, and the design, selection and arrangement thereof), are owned by Punktożercy grocery store network or its licensors and are protected by copyright, trademark and other intellectual property laws.\n
+4.2. You may not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store or transmit any of the material on our mobile application.\n
+\n
+Disclaimer of Warranties\n
+5.1. Punktożercy grocery store network does not guarantee, represent or warrant that your use of the mobile application will be uninterrupted, timely, secure or error-free.\n
+5.2. Punktożercy grocery store network reserves the right to suspend or terminate your use of the mobile application at any time without notice.\n
+5.3. The mobile application is provided as is and as available without any warranties of any kind.\n
+
+Limitation of Liability\n
+6.1. In no event shall Punktożercy grocery store network be liable for any damages arising out of or related to your use of the mobile application.\n
+6.2. Punktożercy grocery store network shall not be liable for any damages resulting from loss of use, data or profits arising out of or in connection with the use or inability to use the mobile application.\n
+6.3. Punktożercy grocery store network shall not be liable for any indirect, special or consequential damages arising out of or in connection with your use of the mobile application.\n
+\n
+Governing Law\n
+7.1. These Terms and your use of the mobile application shall be governed by and construed in accordance with the laws of Poland.\n
+7.2. Any dispute arising out of or related to these Terms or your use of the mobile application shall be subject to the exclusive jurisdiction of the courts of Poland.\n
+\n
+Termination\n
+8.1. Punktożercy grocery store network may terminate or suspend your access to the mobile application immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach these Terms.\n
+8.2. Upon termination, your right to use the mobile application will immediately cease.\n
+\n
+Entire Agreement\n
+9.1. These Terms constitute the entire agreement between you and Punktożercy grocery store network regarding the use of the mobile application.\n
+9.2. If any provision of these Terms is found to be invalid or unenforceable, the remaining provisions shall remain in full force and effect.\n
+\n
+Contact Us\n
+If you have any questions about these Terms, please contact us at support@punktozercy.com\n"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toTopOf="@+id/acceptButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/acceptButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Accept"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
