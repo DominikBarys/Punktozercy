@@ -76,14 +76,15 @@ class RegisterFragment : Fragment() {
 
     private fun insertDataToDatabase() {
         lifecycleScope.launch {
-            if(checkUsername() || checkEmail() || checkPassword() || checkRepeatPassword() || checkPhoneNumber()){
+            if(checkInputData()){
                 val user = User(0,binding.TextUsername.text.toString(),binding.TextPassword.text.toString()
-                    ,binding.TextPhone.text.toString(),null,binding.TextEmailAddress.text.toString(),0,null);
+                    ,binding.TextPhone.text.toString(),null,binding.TextEmailAddress.text.toString(),200,null);
                 mShopViewModel.addUser(user);
                 findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
             }
         }
     }
+
 
     private suspend fun checkUsername():Boolean{
         val userName = binding.TextUsername.text.toString()
@@ -104,6 +105,22 @@ class RegisterFragment : Fragment() {
             return false
         }
 
+    }
+    private suspend fun checkInputData():Boolean{
+        val job1 = lifecycleScope.async {
+            val job = lifecycleScope.async{
+                checkUsername()
+                checkEmail()
+                checkPassword()
+                checkRepeatPassword()
+                checkPhoneNumber()
+                return@async checkUsername() && checkEmail() && checkPassword() && checkRepeatPassword() && checkPhoneNumber()
+            }
+            return@async job.await()
+
+
+        }
+        return job1.await()
     }
 
     private suspend fun checkEmail():Boolean{
@@ -150,7 +167,7 @@ class RegisterFragment : Fragment() {
     private fun checkRepeatPassword():Boolean{
         val password = binding.TextPassword.text.toString()
         val repeatPassword = binding.TextRepeatPassword.text.toString()
-        return if(password != repeatPassword){
+        return if(password != repeatPassword || password.isEmpty()){
             binding.TextRepeatPassword.error = "Entered password don't match the previous one"
             false
         }else{
@@ -161,12 +178,11 @@ class RegisterFragment : Fragment() {
     private fun checkPhoneNumber():Boolean{
         val phone = binding.TextPhone.text.toString()
         val regex = Regex("^(?:\\+48|48)?(?:\\d{9})$")
-        if(regex.matches(phone)){
-            return true
-        }
-        else{
+        return if(regex.matches(phone)){
+            true
+        } else{
             binding.TextPhone.error="Number is invalid"
-            return false
+            false
         }
     }
 
