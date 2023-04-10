@@ -24,7 +24,25 @@ class UserViewModel:ViewModel() {
         return user.userName
     }
 
+    fun getPassword(): String? {
+        return user.password
+    }
+
+    fun getAddress(): String? {
+        return user.address
+    }
+
     fun getPoints():Int{
         return user.points
     }
+
+    fun getGoogleToken(): String? {
+        return user.googleToken
+    }
+
+    fun getPhoneNumber(): String? {
+        return user.phoneNumber
+    }
+
+
 }
