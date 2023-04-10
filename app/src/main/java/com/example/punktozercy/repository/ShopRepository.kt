@@ -13,6 +13,23 @@ class ShopRepository(private val userDao: UserDao,private val productDao: Produc
         userDao.insertUser(user)
     }
 
+    suspend fun updateUsers(user:User){}
+
+    suspend fun updateReceiverUserPoints(email: String,points: Int){
+        return userDao.updateReceiverUserPoints(email,points)
+    }
+
+    suspend fun updateUserPoints(userid: Long,points:Int){
+        return userDao.updateUserPoints(userid,points)
+    }
+
+    suspend fun getUserById(userid:Long):User{
+       return userDao.getUserById(userid)
+    }
+    suspend fun updateUserData(userid:Long,username:String,Email:String,Password:String?,phone:String?,Address:String?){
+        userDao.updateUserData(userid,username,Email, Password, phone, Address)
+    }
+
     //TODO validacja przez email
     suspend fun isUserEmailExists(email:String):Boolean{
        return userDao.isUserEmailExists(email)

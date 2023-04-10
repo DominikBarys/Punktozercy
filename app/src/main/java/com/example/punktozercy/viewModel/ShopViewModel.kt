@@ -26,6 +26,23 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
             repository.addUser(user)
         }
     }
+   suspend fun updateUserData(userid:Long,username:String,Email:String,Password:String?,phone:String?,Address:String?){
+        viewModelScope.launch (Dispatchers.IO){
+            repository.updateUserData(userid, username, Email, Password, phone, Address)
+        }
+    }
+
+    suspend fun updateUserPoints(userid: Long,points:Int){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.updateUserPoints(userid,points)
+        }
+    }
+
+    suspend fun updateReceiverUserPoints(email: String,points: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateReceiverUserPoints(email,points)
+        }
+    }
 
      @OptIn(ExperimentalCoroutinesApi::class)
      suspend fun isUserLoginExists(_email:String, _password:String):List<User>{
@@ -52,6 +69,19 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
         return withContext(Dispatchers.IO) {
             return@withContext repository.isUserEmailExists(_email)
         }
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    suspend fun getUserById(userid: Long):User{
+        return withContext(Dispatchers.IO) {
+            return@withContext repository.getUserById(userid)
+        }
+    }
+
+     fun updateUsers(user:User){
+         viewModelScope.launch (Dispatchers.IO){
+             repository.updateUsers(user)
+         }
     }
 
 
