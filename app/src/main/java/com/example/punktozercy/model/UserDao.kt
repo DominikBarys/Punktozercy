@@ -12,8 +12,16 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUsers(vararg users:User)
 
-    @Update
-    fun updateUser(user:User)
+    @Query("UPDATE users SET username= :Username, email= :Email, password= :Password, phone_number= :phone, address= :Address WHERE userId= :userid")
+    fun updateUserData(userid:Long,Username:String,Email:String,Password:String?,phone:String?,Address:String?)
+    @Query("UPDATE users SET points = :point WHERE userId = :userid")
+    fun updateUserPoints(userid:Long,point:Int)
+
+    @Query("UPDATE users SET points = points +:point WHERE email = :Email")
+    fun updateReceiverUserPoints(Email: String,point: Int)
+
+    @Query("SELECT * FROM users WHERE userId = :userid")
+    fun getUserById(userid:Long):User
 
     @Update
     fun updateUsers(users:User)
