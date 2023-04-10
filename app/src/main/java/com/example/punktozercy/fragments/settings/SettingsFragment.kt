@@ -7,8 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.punktozercy.R
 import com.example.punktozercy.databinding.FragmentSettingsBinding
 import com.example.punktozercy.model.User
@@ -30,8 +33,10 @@ class SettingsFragment : Fragment() {
         _binding = FragmentSettingsBinding.inflate(inflater,container,false)
         userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
         settingsViewModel = ViewModelProvider(requireActivity())[SettingsViewModel::class.java]
-        //init text values using user attributes
-        init()
+        //init text values using user model attributes
+        setLabelTexts()
+
+
 
         //caching and checking user theme
         sharedPreferences = activity?.getSharedPreferences("MODE", Context.MODE_PRIVATE)
@@ -42,12 +47,28 @@ class SettingsFragment : Fragment() {
         }
         checkTheme()
 
+        //buttons listeners
+        binding.editProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_settings_to_editProfileFragment)
+        }
+
+        binding.sendPoints.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_settings_to_sendPointsFragment)
+        }
+
         return binding.root
     }
-    private fun init(){
+
+
+
+    private fun setLabelTexts(){
+
         binding.username.text = userViewModel.getUsername()
-        binding.email.text = userViewModel.getEmail()
+        binding.email.text =userViewModel.getEmail()
         binding.points.text = userViewModel.getPoints().toString()
+        binding.Address.text = userViewModel.getAddress()
+        binding.TextPhone.text = userViewModel.getPhoneNumber()
+
     }
 
     private fun checkTheme(){
