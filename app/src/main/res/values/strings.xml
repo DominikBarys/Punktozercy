@@ -60,6 +60,13 @@
     <string name="send_points">Send points</string>
     <string name="settings">Settings</string>
     <string name="points">Points</string>
+    <string name="address">Address</string>
+    <string name="save_changes">Save changes</string>
+    <string name="back">Back</string>
+    <string name="available_points">Available Points</string>
+    <string name="amount_of_points_you_want_to_send_him">Amount of points you want to send him</string>
+    <string name="enter_the_email_of_your_friend">Enter the email of your friend</string>
+    <string name="e_mail">E-mail</string>
 
 
 </resources>

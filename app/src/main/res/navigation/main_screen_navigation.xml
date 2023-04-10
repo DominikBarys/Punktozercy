@@ -27,5 +27,30 @@
         android:id="@+id/navigation_settings"
         android:name="com.example.punktozercy.fragments.settings.SettingsFragment"
         android:label="@string/bottom_nav_bar_settings"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_notifications" >
+        <action
+            android:id="@+id/action_navigation_settings_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_navigation_settings_to_sendPointsFragment"
+            app:destination="@id/sendPointsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.punktozercy.fragments.settings.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" >
+        <action
+            android:id="@+id/action_editProfileFragment_to_navigation_settings"
+            app:destination="@id/navigation_settings" />
+    </fragment>
+    <fragment
+        android:id="@+id/sendPointsFragment"
+        android:name="com.example.punktozercy.fragments.settings.SendPointsFragment"
+        android:label="fragment_send_points"
+        tools:layout="@layout/fragment_send_points" >
+        <action
+            android:id="@+id/action_sendPointsFragment_to_navigation_settings"
+            app:destination="@id/navigation_settings" />
+    </fragment>
 </navigation>

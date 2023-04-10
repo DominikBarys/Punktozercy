@@ -28,29 +28,55 @@
             android:src="@mipmap/ic_launcher2_settings_round" />
 
         <TextView
-            android:id="@+id/email"
-            android:layout_width="174sp"
-            android:layout_height="17sp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="10sp"
-            android:layout_marginTop="115sp"
-            android:layout_marginBottom="268sp"
-            android:layout_toEndOf="@id/imageView3"
-            android:text="rixis321@gmail.com" />
-
-        <TextView
             android:id="@+id/username"
             android:layout_width="136sp"
             android:layout_height="25sp"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="13sp"
-            android:layout_marginTop="89sp"
-            android:layout_marginBottom="286sp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginBottom="307dp"
             android:layout_toEndOf="@id/imageView3"
-            android:text="Rixis"
+            android:text=""
             android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="174sp"
+            android:layout_height="17sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="95dp"
+            android:layout_marginBottom="288dp"
+            android:layout_toEndOf="@id/imageView3"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/TextPhone"
+            android:layout_width="136sp"
+            android:layout_height="25sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="119dp"
+            android:layout_marginBottom="256dp"
+            android:layout_toEndOf="@id/imageView3"
+            android:text=""
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/Address"
+            android:layout_width="136sp"
+            android:layout_height="25sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="141dp"
+            android:layout_marginBottom="234dp"
+            android:layout_toEndOf="@id/imageView3"
+            android:text=""
+            android:textSize="14sp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="221sp"
@@ -68,16 +94,17 @@
 
                 <TextView
                     android:id="@+id/pointsLabel"
-                    android:layout_width="43sp"
-                    android:layout_height="23sp"
+                    android:layout_width="43dp"
+                    android:layout_height="18dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="92sp"
                     android:layout_marginTop="58sp"
-                    android:layout_marginEnd="86sp"
-                    android:layout_marginBottom="14sp"
+                    android:layout_marginEnd="87dp"
+                    android:layout_marginBottom="11dp"
+                    android:gravity="center"
                     android:text="@string/points" />
 
                 <TextView
@@ -88,11 +115,12 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="105sp"
-                    android:layout_marginTop="37sp"
-                    android:layout_marginEnd="87sp"
-                    android:layout_marginBottom="29sp"
-                    android:text="0" />
+                    android:layout_marginStart="99dp"
+                    android:layout_marginTop="37dp"
+                    android:layout_marginEnd="93dp"
+                    android:layout_marginBottom="29dp"
+                    android:gravity="center"
+                    android:text="" />
             </RelativeLayout>
 
             />
