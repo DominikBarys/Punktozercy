@@ -112,6 +112,11 @@ class SendPointsFragment : Fragment() {
     }
 
     private suspend fun checkPointsInput():Boolean{
+
+        if(binding.amountPoints.text.toString().isEmpty()){
+            binding.amountPoints.error = "Number of points cannot be empty"
+            return false
+        }
         val points :Int = binding.amountPoints.text.toString().toInt()
 
         return if(points > userViewModel.getPoints()){
