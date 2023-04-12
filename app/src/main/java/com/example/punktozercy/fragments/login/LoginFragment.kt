@@ -107,6 +107,7 @@ class LoginFragment : Fragment() {
                     val intent = Intent(activity,MainScreenActivity::class.java)
                     intent.putExtra("user", userViewModel.getUser())
                     activity?.startActivity(intent)
+                   // userViewModel.setName(userViewModel.getUser().userName)
                 }
             }
         }
@@ -159,9 +160,7 @@ class LoginFragment : Fragment() {
 
     private fun goToHome() {
         val intent = Intent(activity, MainScreenActivity::class.java)
-        intent.putExtra("user",userViewModel.getUser())
         activity?.startActivity(intent)
-
     }
     //komentarz
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {

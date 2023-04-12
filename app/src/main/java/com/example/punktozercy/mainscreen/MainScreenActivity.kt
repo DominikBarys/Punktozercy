@@ -46,11 +46,12 @@ class MainScreenActivity : AppCompatActivity() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
         //DEBUG
-        val user: User? = intent.getParcelableExtra("user")
-        loadUser(user!!)
+//        val user: User? = intent.getParcelableExtra("user")
+//        loadUser(user!!)
 
         mainScreenViewModel = ViewModelProvider(this)[MainScreenViewModel::class.java]
         binding = ActivityMain2Binding.inflate(layoutInflater)
+
         setContentView(binding.root)
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_main2)
@@ -60,6 +61,7 @@ class MainScreenActivity : AppCompatActivity() {
         var basketBadge = navView.getOrCreateBadge(R.id.navigation_basket)
         basketBadge.setVisible(true)
         basketBadge.setNumber(mainScreenViewModel.amountOfProductsInBasket.value!!)
+        //basketBadge.backgroundColor = 23
 
         mainScreenViewModel.amountOfProductsInBasket.observe(this, Observer {
             basketBadge.setNumber(it)
@@ -72,7 +74,8 @@ class MainScreenActivity : AppCompatActivity() {
                 R.id.navigation_settings
             )
         )
-        setupActionBarWithNavController(navController, appBarConfiguration)
+       // setupActionBarWithNavController(navController, appBarConfiguration)
+
         navView.setupWithNavController(navController)
     }
 

@@ -3,13 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.punktozercy.fragments.home.HomeFragment"
         android:label="@string/bottom_nav_bar_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_productsListFragment"
+            app:destination="@id/productsListFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_basket"
@@ -52,5 +56,14 @@
         <action
             android:id="@+id/action_sendPointsFragment_to_navigation_settings"
             app:destination="@id/navigation_settings" />
+    </fragment>
+    <fragment
+        android:id="@+id/productsListFragment"
+        android:name="com.example.punktozercy.fragments.home.productslist.ProductsListFragment"
+        android:label="fragment_products_list"
+        tools:layout="@layout/fragment_products_list" >
+        <action
+            android:id="@+id/action_productsListFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </fragment>
 </navigation>
