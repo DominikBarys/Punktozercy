@@ -51,7 +51,37 @@ class EditProfileFragment : Fragment() {
         binding.save.setOnClickListener {
 
                 lifecycleScope.launch {
-                    if (checkUsername() && checkEmail() && checkPassword() && checkRepeatPassword() && checkPhoneNumber()) {
+                    if(userViewModel.getGoogleToken() != null){
+                            if(checkUserLoggedByGoogle()){
+                                val job = lifecycleScope.async {
+                                    mShopViewModel.updateGoogleUserData(
+                                        user.userId,
+                                        binding.TextUsername.text.toString(),
+                                        binding.TextEmailAddress.text.toString(),
+                                        binding.TextPassword.text.toString(),
+                                        binding.TextPhone.text.toString(),
+                                        binding.Address.text.toString(),
+                                        user.googleToken
+                                    )
+                                }
+                                job.await()
+                                val job2 = lifecycleScope.async {
+
+                                    while(true){
+                                        userViewModel.setUser(mShopViewModel.getUserById(user.userId))
+                                        if(userViewModel.getUsername() == binding.TextUsername.text.toString() && userViewModel.getEmail()
+                                            == binding.TextEmailAddress.text.toString() && userViewModel.getAddress() == binding.Address.text.toString()
+                                            && userViewModel.getPhoneNumber() == binding.TextPhone.text.toString() && userViewModel.getPassword() ==
+                                            binding.TextPassword.text.toString())
+                                            return@async true
+                                    }
+                                }
+                                job2.await()
+
+                                findNavController().navigateUp()
+                            }
+                    }
+                    else if(checkUsername() && checkEmail() && checkPassword() && checkRepeatPassword() && checkPhoneNumber()) {
                         val job = lifecycleScope.async {
                             mShopViewModel.updateUserData(
                                 user.userId,
@@ -94,6 +124,7 @@ class EditProfileFragment : Fragment() {
         binding.TextPassword.setText(user.password)
         binding.TextPhone.setText(user.phoneNumber)
         binding.Address.setText(user.address)
+//        binding.TextEmailAddress.isEnabled = false
 
     }
 
@@ -189,5 +220,24 @@ class EditProfileFragment : Fragment() {
             false
         }
     }
+
+    suspend fun checkUserLoggedByGoogle():Boolean{
+        if(checkUsername() && checkEmail()) {
+            val password = binding.TextPassword.text.toString()
+            val repeatPassword = binding.TextRepeatPassword.text.toString()
+            val phone = binding.TextPhone.text.toString()
+            if (password.isNotEmpty() || repeatPassword.isNotEmpty()){
+                return checkRepeatPassword()
+            }
+            else if(phone.isNotEmpty()){
+                return checkPhoneNumber()
+            }
+            return true
+          }else{
+              return false
+        }
+
+    }
+
 
 }
