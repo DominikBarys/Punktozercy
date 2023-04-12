@@ -185,6 +185,10 @@ class LoginFragment : Fragment() {
                 binding.TextEmailAddress.error="Invalid data. Try again"
                 binding.TextPassword.error="Invalid data. Try again"
                 return@async false
+            }else if(users[0].password?.isEmpty() == true){
+                binding.TextEmailAddress.error="Invalid data. Try again"
+                binding.TextPassword.error="Invalid data. Try again"
+                return@async false
             }else{
                 userViewModel.setUser(users[0])
                 return@async true
