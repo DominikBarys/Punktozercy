@@ -14,6 +14,8 @@ interface UserDao {
 
     @Query("UPDATE users SET username= :Username, email= :Email, password= :Password, phone_number= :phone, address= :Address WHERE userId= :userid")
     fun updateUserData(userid:Long,Username:String,Email:String,Password:String?,phone:String?,Address:String?)
+    @Query("UPDATE users SET username= :Username, email= :Email, password= :Password, phone_number= :phone, address= :Address, google_token = :token WHERE userId= :userid")
+    fun updateGoogleUserData(userid:Long,Username:String,Email:String,Password:String?,phone:String?,Address:String?,token:String?)
     @Query("UPDATE users SET points = :point WHERE userId = :userid")
     fun updateUserPoints(userid:Long,point:Int)
 
