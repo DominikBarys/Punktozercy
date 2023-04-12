@@ -23,6 +23,10 @@ class ShopRepository(private val userDao: UserDao,private val productDao: Produc
         return userDao.updateUserPoints(userid,points)
     }
 
+    suspend fun updateGoogleUserData(userid:Long,Username:String,Email:String,Password:String?,phone:String?,Address:String?,token:String?){
+        return userDao.updateGoogleUserData(userid, Username, Email, Password, phone, Address, token)
+    }
+
     suspend fun getUserById(userid:Long):User{
        return userDao.getUserById(userid)
     }

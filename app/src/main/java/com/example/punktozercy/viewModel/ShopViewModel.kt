@@ -32,6 +32,12 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    suspend fun updateGoogleUserData(userid:Long,Username:String,Email:String,Password:String?,phone:String?,Address:String?,token:String?){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.updateGoogleUserData(userid, Username, Email, Password, phone, Address, token)
+        }
+    }
+
     suspend fun updateUserPoints(userid: Long,points:Int){
         viewModelScope.launch(Dispatchers.IO){
             repository.updateUserPoints(userid,points)
