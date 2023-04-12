@@ -52,61 +52,10 @@ class EditProfileFragment : Fragment() {
 
                 lifecycleScope.launch {
                     if(userViewModel.getGoogleToken() != null){
-                            if(checkUserLoggedByGoogle()){
-                                val job = lifecycleScope.async {
-                                    mShopViewModel.updateGoogleUserData(
-                                        user.userId,
-                                        binding.TextUsername.text.toString(),
-                                        binding.TextEmailAddress.text.toString(),
-                                        binding.TextPassword.text.toString(),
-                                        binding.TextPhone.text.toString(),
-                                        binding.Address.text.toString(),
-                                        user.googleToken
-                                    )
-                                }
-                                job.await()
-                                val job2 = lifecycleScope.async {
-
-                                    while(true){
-                                        userViewModel.setUser(mShopViewModel.getUserById(user.userId))
-                                        if(userViewModel.getUsername() == binding.TextUsername.text.toString() && userViewModel.getEmail()
-                                            == binding.TextEmailAddress.text.toString() && userViewModel.getAddress() == binding.Address.text.toString()
-                                            && userViewModel.getPhoneNumber() == binding.TextPhone.text.toString() && userViewModel.getPassword() ==
-                                            binding.TextPassword.text.toString())
-                                            return@async true
-                                    }
-                                }
-                                job2.await()
-
-                                findNavController().navigateUp()
-                            }
+                        editUserGoogleProfile()
                     }
                     else if(checkUsername() && checkEmail() && checkPassword() && checkRepeatPassword() && checkPhoneNumber()) {
-                        val job = lifecycleScope.async {
-                            mShopViewModel.updateUserData(
-                                user.userId,
-                                binding.TextUsername.text.toString(),
-                                binding.TextEmailAddress.text.toString(),
-                                binding.TextPassword.text.toString(),
-                                binding.TextPhone.text.toString(),
-                                binding.Address.text.toString()
-                            )
-                        }
-                        job.await()
-                        val job2 = lifecycleScope.async {
-
-                            while(true){
-                                userViewModel.setUser(mShopViewModel.getUserById(user.userId))
-                                if(userViewModel.getUsername() == binding.TextUsername.text.toString() && userViewModel.getEmail()
-                                == binding.TextEmailAddress.text.toString() && userViewModel.getAddress() == binding.Address.text.toString()
-                                    && userViewModel.getPhoneNumber() == binding.TextPhone.text.toString() && userViewModel.getPassword() ==
-                                        binding.TextPassword.text.toString())
-                                    return@async true
-                            }
-                        }
-                        job2.await()
-
-                        findNavController().navigateUp()
+                        editUserProfile()
                     }
                 }
         }
@@ -128,7 +77,65 @@ class EditProfileFragment : Fragment() {
 
     }
 
+    private suspend fun editUserProfile(){
+        val job = lifecycleScope.async {
+            mShopViewModel.updateUserData(
+                user.userId,
+                binding.TextUsername.text.toString(),
+                binding.TextEmailAddress.text.toString(),
+                binding.TextPassword.text.toString(),
+                binding.TextPhone.text.toString(),
+                binding.Address.text.toString()
+            )
+        }
+        job.await()
+        val job2 = lifecycleScope.async {
 
+            while(true){
+                userViewModel.setUser(mShopViewModel.getUserById(user.userId))
+                if(userViewModel.getUsername() == binding.TextUsername.text.toString() && userViewModel.getEmail()
+                    == binding.TextEmailAddress.text.toString() && userViewModel.getAddress() == binding.Address.text.toString()
+                    && userViewModel.getPhoneNumber() == binding.TextPhone.text.toString() && userViewModel.getPassword() ==
+                    binding.TextPassword.text.toString())
+                    return@async true
+            }
+        }
+        job2.await()
+
+        findNavController().navigateUp()
+
+    }
+
+    private suspend fun editUserGoogleProfile(){
+        if(checkUserLoggedByGoogle()){
+            val job = lifecycleScope.async {
+                mShopViewModel.updateGoogleUserData(
+                    user.userId,
+                    binding.TextUsername.text.toString(),
+                    binding.TextEmailAddress.text.toString(),
+                    binding.TextPassword.text.toString(),
+                    binding.TextPhone.text.toString(),
+                    binding.Address.text.toString(),
+                    user.googleToken
+                )
+            }
+            job.await()
+            val job2 = lifecycleScope.async {
+
+                while(true){
+                    userViewModel.setUser(mShopViewModel.getUserById(user.userId))
+                    if(userViewModel.getUsername() == binding.TextUsername.text.toString() && userViewModel.getEmail()
+                        == binding.TextEmailAddress.text.toString() && userViewModel.getAddress() == binding.Address.text.toString()
+                        && userViewModel.getPhoneNumber() == binding.TextPhone.text.toString() && userViewModel.getPassword() ==
+                        binding.TextPassword.text.toString())
+                        return@async true
+                }
+            }
+            job2.await()
+
+            findNavController().navigateUp()
+        }
+    }
     //checks username of user
     private suspend fun checkUsername():Boolean{
         val userName = binding.TextUsername.text.toString()
@@ -221,7 +228,7 @@ class EditProfileFragment : Fragment() {
         }
     }
 
-    suspend fun checkUserLoggedByGoogle():Boolean{
+    private suspend fun checkUserLoggedByGoogle():Boolean{
         if(checkUsername() && checkEmail()) {
             val password = binding.TextPassword.text.toString()
             val repeatPassword = binding.TextRepeatPassword.text.toString()
