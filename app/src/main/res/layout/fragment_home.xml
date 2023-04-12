@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/pointsText"
         android:layout_width="366dp"
         android:layout_height="39dp"
         android:gravity="center"
@@ -51,12 +51,13 @@
         android:id="@+id/linearLayout"
         android:gravity="center"
         android:layout_width="410dp"
+        android:layout_marginTop="20dp"
         android:layout_height="107dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/recyclerViewHorizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5">
+        app:layout_constraintTop_toBottomOf="@+id/pointsText">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewNone"

@@ -44,6 +44,7 @@ class HomeFragment : Fragment() {
         userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
 
 
+
         val root: View = binding.root
 
 
@@ -117,6 +118,13 @@ class HomeFragment : Fragment() {
             productViewModel.setCategory(it.category)
             findNavController().navigate(R.id.action_navigation_home_to_productsListFragment)
         }
+
+        var tmp = homeViewModel.HELLO_USER + userViewModel.getUsername()
+        binding.helloUser.text = tmp
+
+        tmp = homeViewModel.POINTS_STRING + userViewModel.getPoints().toString() + homeViewModel.POINTS_STRING2
+        binding.pointsText.text = tmp
+
 
         return binding.root
     }

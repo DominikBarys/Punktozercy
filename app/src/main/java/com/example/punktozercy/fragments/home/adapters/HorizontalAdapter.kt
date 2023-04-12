@@ -40,7 +40,6 @@ class HorizontalAdapter(private var offers: List<Offer>): RecyclerView.Adapter<H
         }
 
     }
-
     override fun getItemCount(): Int {
         return offers.size
     }

@@ -22,5 +22,10 @@ class HomeViewModel : ViewModel() {
 
     var selectedCategory: MutableLiveData<String> = _selectedCategory
 
+    val HELLO_USER = "Hello, "
+
+    val POINTS_STRING = "You have "
+    val POINTS_STRING2 = " points!"
+
 
 }
