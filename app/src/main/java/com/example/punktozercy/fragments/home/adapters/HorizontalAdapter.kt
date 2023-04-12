@@ -1,16 +1,25 @@
 package com.example.punktozercy.fragments.home.adapters
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.punktozercy.databinding.ViewHorizontalBinding
 
-class HorizontalAdapter(private val contacts: List<Contact>): RecyclerView.Adapter<HorizontalAdapter.HorizontalViewHolder>() {
+class HorizontalAdapter(private var offers: List<Offer>): RecyclerView.Adapter<HorizontalAdapter.HorizontalViewHolder>() {
+
+    var onItemClick: ((Offer) -> Unit)? = null
 
     inner class HorizontalViewHolder(binding: ViewHorizontalBinding): ViewHolder(binding.root){
-        val nameTv = binding.nameTv
-        val numberTv = binding.numberTv
+        val offerImage = binding.offerImage
+        val offerDescription = binding.offerDescription
+        lateinit var offerCategory: String
+    }
+
+    fun setFilteredList(offers: List<Offer>){
+        this.offers = offers
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HorizontalViewHolder {
@@ -20,11 +29,19 @@ class HorizontalAdapter(private val contacts: List<Contact>): RecyclerView.Adapt
     }
 
     override fun onBindViewHolder(holder: HorizontalViewHolder, position: Int) {
-        holder.nameTv.text = contacts[position].name
-        holder.numberTv.text = contacts[position].number
+        val pozycja = offers[position]
+
+        holder.offerImage.setImageResource(offers[position].drawableId)
+        holder.offerDescription.text = offers[position].description
+        holder.offerCategory = offers[position].category
+
+        holder.offerImage.setOnClickListener{
+            onItemClick?.invoke(pozycja)
+        }
+
     }
 
     override fun getItemCount(): Int {
-        return contacts.size
+        return offers.size
     }
 }

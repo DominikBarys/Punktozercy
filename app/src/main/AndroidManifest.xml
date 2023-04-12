@@ -14,7 +14,9 @@
         <activity
             android:name=".mainscreen.MainScreenActivity"
             android:exported="false"
-            android:label="@string/title_activity_main2" />
+            android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.Punktozercy.NoActionBar"
+            />
 
         <activity
             android:name=".MainActivity"

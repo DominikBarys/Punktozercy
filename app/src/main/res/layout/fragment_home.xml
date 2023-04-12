@@ -1,30 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.home.HomeFragment">
+    android:background="@drawable/gradient_background"
+    tools:context=".fragments.home.HomeFragment"
+    >
+
+
+    <TextView
+        android:id="@+id/helloUser"
+        android:layout_width="366dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="Hello user"
+        android:textColor="#648ade"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:shadowColor="#2b59b8"
+        android:shadowDx="1.5"
+        android:shadowDy="1.5"
+        android:shadowRadius="4"
+        android:textAllCaps="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="366dp"
+        android:layout_height="39dp"
+        android:gravity="center"
+        android:shadowColor="#7634bc"
+        android:shadowDx="1.5"
+        android:shadowDy="1.5"
+        android:shadowRadius="4"
+        android:text="You have 0 points"
+        android:textAllCaps="true"
+        android:textColor="#bc83f2"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/helloUser" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:gravity="center"
+        android:layout_width="410dp"
+        android:layout_height="107dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewHorizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewNone"
+            android:layout_width="60dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_height="60dp"
+            app:cardCornerRadius="50dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/category_none"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewFood"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="20dp"
+            app:cardCornerRadius="50dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleY="1.5"
+                android:src="@drawable/category_food"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewDrinks"
+            android:layout_width="60dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_height="60dp"
+            app:cardCornerRadius="50dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/category_drinks"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewOther"
+            android:layout_width="60dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_height="60dp"
+            app:cardCornerRadius="50dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/category_other"/>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
 
 
     <Button
         android:id="@+id/debugAddProductButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="92dp"
+        android:backgroundTint="#648ade"
         android:text="Add Product"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewHorizontal"
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewHorizontal"
-        android:layout_width="407dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="56dp"
+        android:layout_width="409dp"
+        android:layout_height="471dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.773" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

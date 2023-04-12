@@ -50,6 +50,7 @@ class MainScreenActivity : AppCompatActivity() {
         var basketBadge = navView.getOrCreateBadge(R.id.navigation_basket)
         basketBadge.setVisible(true)
         basketBadge.setNumber(mainScreenViewModel.amountOfProductsInBasket.value!!)
+        //basketBadge.backgroundColor = 23
 
         mainScreenViewModel.amountOfProductsInBasket.observe(this, Observer {
             basketBadge.setNumber(it)
@@ -62,7 +63,7 @@ class MainScreenActivity : AppCompatActivity() {
                 R.id.navigation_settings
             )
         )
-        setupActionBarWithNavController(navController, appBarConfiguration)
+       // setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
 }
