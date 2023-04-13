@@ -17,7 +17,9 @@ data class Product(
     @ColumnInfo(name = "type")
     val type:String,
     @ColumnInfo(name = "points_price")
-    val pointsPrice:Int?
+    val pointsPrice:Int?,
+    @ColumnInfo(name = "image_path")
+    val imagePath: String?
 
 )
 
