@@ -7,12 +7,17 @@ import com.example.punktozercy.fragments.home.adapters.Offer
 
 class HomeViewModel : ViewModel() {
 
-    val offerArray = arrayOf(   Triple(R.drawable.offer_burger, "Hot burgers in your neighbourhood!", "Food"),
-                                Triple(R.drawable.offer_chips, "CHIPS, YE YE", "Food"),
-                                Triple(R.drawable.offer_choclate, "Sweet and delicious", "Food"),
-                                Triple(R.drawable.offer_drink, "Don't drink while driving", "Drink"),
-                                Triple(R.drawable.offer_ketchup, "Raw sauce", "Other"),
-                                Triple(R.drawable.offer_drinks, "Maaany drinks", "Drink")
+    val offerArray = arrayOf(   Triple(R.drawable.offer_burger, "dairy", "dairy"),
+                                Triple(R.drawable.offer_chips, "meat", "meat"),
+                                Triple(R.drawable.offer_choclate, "vegetables", "vegetables"),
+                                Triple(R.drawable.offer_drink, "bakery", "bakery"),
+                                Triple(R.drawable.offer_ketchup, "beverages", "beverages"),
+                                Triple(R.drawable.offer_drinks, "sweets", "sweets"),
+                                Triple(R.drawable.offer_drinks, "ready meals", "ready meals"),
+                                Triple(R.drawable.offer_drinks, "fizzy drink", "fizzy drink"),
+                                Triple(R.drawable.offer_drinks, "drink", "drink"),
+                                Triple(R.drawable.offer_drinks, "fruits", "fruits"),
+                                Triple(R.drawable.offer_drinks, "spices", "spices")
     )
 
 
