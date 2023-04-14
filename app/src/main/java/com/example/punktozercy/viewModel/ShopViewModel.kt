@@ -4,13 +4,14 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.example.punktozercy.model.Product
 import com.example.punktozercy.model.ShopDatabase
 import com.example.punktozercy.model.User
 import com.example.punktozercy.repository.ShopRepository
 import kotlinx.coroutines.*
 
 class ShopViewModel(application: Application) : AndroidViewModel(application) {
-   private val loadAllUsers : LiveData<List<User>>
+  // private val loadAllUsers : LiveData<List<User>>
    private val repository: ShopRepository
 
    init {
@@ -18,9 +19,21 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
        val productDao = ShopDatabase.getDatabase(application).productDao()
        val shoppingHistoryDao = ShopDatabase.getDatabase(application).shoppingHistoryDao()
        repository = ShopRepository(userDao, productDao, shoppingHistoryDao)
-       loadAllUsers = repository.loadAllUsers
+       //loadAllUsers = repository.loadAllUsers
+
    }
 
+
+    //--------------------------------------PRODUCT FUNCTIONS---------------------------------------------------------
+
+
+    suspend fun getProductsByCategory(category: String):List<Product>{
+        return withContext(Dispatchers.IO) {
+            return@withContext repository.getProductsByCategory(category)
+        }
+    }
+
+    //---------------------------------------USER FUNCTIONS-----------------------------------------------------------
     fun addUser(user:User){
         viewModelScope.launch (Dispatchers.IO){
             repository.addUser(user)

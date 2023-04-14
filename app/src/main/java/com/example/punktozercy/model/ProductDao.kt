@@ -11,6 +11,10 @@ interface ProductDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertProducts(products:List<Product>)
 
+
+    @Query("SELECT * FROM products WHERE type = :category")
+    fun getProductsByCategory(category:String):List<Product>
+
     @Update
     fun updateProduct(product:Product)
 

@@ -5,10 +5,23 @@ import com.example.punktozercy.model.*
 
 class ShopRepository(private val userDao: UserDao,private val productDao: ProductDao,private val shoppingHistoryDao: ShoppingHistoryDao) {
 
-    val loadAllUsers : LiveData<List<User>> = userDao.loadAllUsers();
-    val loadAllProducts: LiveData<List<Product>> = productDao.loadAllProducts();
+   // val loadAllUsers : LiveData<List<User>> = userDao.loadAllUsers();
+    //val loadAllProducts: LiveData<List<Product>> = productDao.loadAllProducts();
+
     //TODO
     //val loadUsersWithProducts
+
+
+//-------------------------------------PRODUCT QUERY------------------------------------------------------
+
+    suspend fun getProductsByCategory(category:String):List<Product>{
+      return  productDao.getProductsByCategory(category)
+    }
+
+
+
+
+    //----------------------------USER QUERY----------------------------------------------------------
     suspend fun addUser(user: User){
         userDao.insertUser(user)
     }
