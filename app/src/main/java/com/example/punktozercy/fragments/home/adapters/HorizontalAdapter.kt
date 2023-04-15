@@ -11,6 +11,7 @@ class HorizontalAdapter(private var offers: List<Offer>): RecyclerView.Adapter<H
 
     var onItemClick: ((Offer) -> Unit)? = null
 
+
     inner class HorizontalViewHolder(binding: ViewHorizontalBinding): ViewHolder(binding.root){
         val offerImage = binding.offerImage
         val offerDescription = binding.offerDescription

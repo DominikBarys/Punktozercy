@@ -6,8 +6,6 @@ import com.example.punktozercy.model.Product
 
 class ProductViewModel: ViewModel() {
 
-
-
     companion object{
         var selectedCategory: String = "None"
         lateinit var productList : List<Product>
