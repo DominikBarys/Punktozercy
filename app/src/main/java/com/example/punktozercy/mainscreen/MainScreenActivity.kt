@@ -15,6 +15,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.punktozercy.R
 import com.example.punktozercy.databinding.ActivityMain2Binding
+import com.example.punktozercy.fragments.basket.BasketViewModel
 import com.example.punktozercy.fragments.settings.SettingsViewModel
 import com.example.punktozercy.model.User
 import com.example.punktozercy.viewModel.ShopViewModel
@@ -31,6 +32,7 @@ class MainScreenActivity : AppCompatActivity() {
     private  var settingsViewModel: SettingsViewModel? =null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         //user model provider
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]

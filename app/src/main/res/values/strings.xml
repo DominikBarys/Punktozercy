@@ -67,6 +67,7 @@
     <string name="amount_of_points_you_want_to_send_him">Amount of points you want to send him</string>
     <string name="enter_the_email_of_your_friend">Enter the email of your friend</string>
     <string name="e_mail">E-mail</string>
+    <string name="buy">BUY</string>
 
 
 </resources>

@@ -113,6 +113,7 @@ class HomeFragment : Fragment() {
             //findNavController().navigate(R.id.action_navigation_home_to_productsListFragment)
         }
 
+
         adapter.onItemClick = {
          //   homeViewModel.selectedCategory.value = it.category
             productViewModel.setCategory(it.category)
