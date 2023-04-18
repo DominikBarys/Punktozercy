@@ -18,5 +18,9 @@ class BasketViewModel : ViewModel(){
         return test;
     }
 
+    fun getProducts():List<Product>{
+        return productList
+    }
+
 
 }
