@@ -1,6 +1,5 @@
 package com.example.punktozercy.fragments.home.productslist
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.punktozercy.model.Product
 
@@ -21,14 +20,8 @@ class ProductViewModel: ViewModel() {
         selectedCategory = cat
     }
 
-
     fun getCategory(): String{
         return selectedCategory
     }
 
-//    var _amountOfProductsInBas
-//   ket = MutableLiveData<Int>().apply{
-//        value = 5
-//    }
-//    var amountOfProductsInBasket : MutableLiveData<Int> = _amountOfProductsInBasket
 }

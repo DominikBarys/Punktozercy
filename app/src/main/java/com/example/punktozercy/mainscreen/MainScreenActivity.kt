@@ -14,6 +14,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.punktozercy.R
+import com.example.punktozercy.SelectedProducts
 import com.example.punktozercy.databinding.ActivityMain2Binding
 import com.example.punktozercy.fragments.basket.BasketViewModel
 import com.example.punktozercy.fragments.settings.SettingsViewModel
@@ -33,6 +34,7 @@ class MainScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val selectedProducts: SelectedProducts = SelectedProducts()
 
         //user model provider
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
@@ -47,9 +49,6 @@ class MainScreenActivity : AppCompatActivity() {
         if(settingsViewModel!!.getThemeFlag()){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
-        //DEBUG
-//        val user: User? = intent.getParcelableExtra("user")
-//        loadUser(user!!)
 
         mainScreenViewModel = ViewModelProvider(this)[MainScreenViewModel::class.java]
         binding = ActivityMain2Binding.inflate(layoutInflater)
@@ -62,10 +61,10 @@ class MainScreenActivity : AppCompatActivity() {
 
         var basketBadge = navView.getOrCreateBadge(R.id.navigation_basket)
         basketBadge.setVisible(true)
-        basketBadge.setNumber(mainScreenViewModel.amountOfProductsInBasket.value!!)
+        basketBadge.setNumber(SelectedProducts.amountOfProductsInBasket.value!!)
         //basketBadge.backgroundColor = 23
 
-        mainScreenViewModel.amountOfProductsInBasket.observe(this, Observer {
+        SelectedProducts.amountOfProductsInBasket.observe(this, Observer {
             basketBadge.setNumber(it)
         })
         val appBarConfiguration = AppBarConfiguration(

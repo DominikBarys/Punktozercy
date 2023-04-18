@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -38,18 +39,40 @@ class BasketFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentBasketBinding.inflate(inflater, container, false)
 
-        // Inflate the layout for this fragment
         basketViewModel = ViewModelProvider(this)[BasketViewModel::class.java]
         mShopViewModel = ViewModelProvider(requireActivity())[ShopViewModel::class.java]
         userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
 
+        if(SelectedProducts.productList.size > 0 && !SelectedProducts.firstProduct)
+        {
+            SelectedProducts.textMoneyPrice.value = 0.0
+            for(item in SelectedProducts.productList){
+                SelectedProducts.textMoneyPrice.value = SelectedProducts.textMoneyPrice.value?.plus(item.price)
+            }
+        }else{
+            SelectedProducts.textMoneyPrice.value = 0.0
+        }
+
+        SelectedProducts.textMoneyPrice.observe(this,{
+            binding.moneyPriceTextView.text = "Price in zł: " + SelectedProducts.textMoneyPrice.value.toString() + "zł"
+        })
+
+        SelectedProducts.basketText.observe(this, {
+            binding.emptyBasketText.text = SelectedProducts.basketText.value
+        })
 
         val adapter = BasketAdapter(selectedProducts.getProductList(), requireContext())
         binding.basketRecycler.layoutManager = LinearLayoutManager(requireContext().applicationContext)
         binding.basketRecycler.adapter = adapter
+
+
+        if(SelectedProducts.firstProduct){
+            binding.basketRecycler.isVisible = false
+        }else{
+            binding.basketRecycler.isVisible = true
+        }
 
         binding.checkOut.setOnClickListener {
             //TODO aktualizacja danych uzytkownika (punkty itp)
@@ -72,6 +95,7 @@ class BasketFragment : Fragment() {
 //        binding.testButton.setOnClickListener {
 //            Toast.makeText(requireContext(), selectedProducts.getTest(), Toast.LENGTH_SHORT).show()
 //        }
+
 
 
         return binding.root

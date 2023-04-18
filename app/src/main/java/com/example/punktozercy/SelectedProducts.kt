@@ -1,24 +1,35 @@
 package com.example.punktozercy
 
+import androidx.lifecycle.MutableLiveData
 import com.example.punktozercy.model.Product
 
 class SelectedProducts {
+    companion object {
 
+        var _textMoneyPrice = MutableLiveData<Double>().apply {
+            value = 0.0
+        }
 
+        var textMoneyPrice: MutableLiveData<Double> = _textMoneyPrice
 
-    companion object{
+        var _basketText = MutableLiveData<String>().apply {
+            value = "YOU HAVE EMPTY BASKET"
+        }
 
-        var productList : MutableList<Product> = mutableListOf(Product(1,"test",1.0,"test","test",1,"test"))
-        var test: String = "NONE"
+        var basketText: MutableLiveData<String> = _basketText
+
+        var firstProduct = true;
+
+        var productList: MutableList<Product> =
+            mutableListOf(Product(1, "test", 1.0, "test", "test", 1, "test"))
+
         var firstAdd = true
-    }
 
-    fun setTest(str: String){
-        test = str;
-    }
 
-    fun getTest(): String{
-        return test;
+        var _amountOfProductsInBasket = MutableLiveData<Int>().apply {
+            value = 0
+        }
+        var amountOfProductsInBasket: MutableLiveData<Int> = _amountOfProductsInBasket
     }
 
     fun clearProductList(){
@@ -26,16 +37,21 @@ class SelectedProducts {
     }
 
     fun addProduct(product: Product){
+        firstProduct = false
         if(firstAdd) {
             productList.clear()
             firstAdd = false
         }
 
+        basketText.value = ""
         productList.add(product)
     }
 
     fun removeProduct(position: Int){
         productList.removeAt(position)
+        if(productList.size == 0){
+            basketText.value = "YOU HAVE EMPTY BASKET"
+        }
     }
 
     fun getProductList(): List<Product>{
