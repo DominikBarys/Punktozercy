@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.punktozercy.model.Product
 import com.example.punktozercy.model.ShopDatabase
+import com.example.punktozercy.model.ShoppingHistory
 import com.example.punktozercy.model.User
 import com.example.punktozercy.repository.ShopRepository
 import kotlinx.coroutines.*
@@ -23,6 +24,13 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
 
    }
 
+    //-------------------------------------USER WITH PRODUCTS QUERY---------------------------------------------------
+
+    suspend fun addUserShoppingHistory(shoppingHistory: ShoppingHistory){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addUserShoppingHistory(shoppingHistory)
+        }
+    }
 
     //--------------------------------------PRODUCT FUNCTIONS---------------------------------------------------------
 

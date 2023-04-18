@@ -10,7 +10,11 @@ class ShopRepository(private val userDao: UserDao,private val productDao: Produc
 
     //TODO
     //val loadUsersWithProducts
+//---------------------------------------USER WITH PRODUCTS QUERY-------------------------------------------------
 
+    suspend fun addUserShoppingHistory(shoppingHistory: ShoppingHistory){
+        shoppingHistoryDao.addUserShoppingHistory(shoppingHistory)
+    }
 
 //-------------------------------------PRODUCT QUERY------------------------------------------------------
 

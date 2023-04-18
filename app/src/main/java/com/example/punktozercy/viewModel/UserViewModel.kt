@@ -57,6 +57,9 @@ class UserViewModel:ViewModel() {
     fun getPhoneNumber(): String? {
         return user.phoneNumber
     }
+    fun getUserId():Long{
+        return user.userId
+    }
 
 
 }
