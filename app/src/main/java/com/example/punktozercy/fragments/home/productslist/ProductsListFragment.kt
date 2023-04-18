@@ -1,6 +1,5 @@
 package com.example.punktozercy.fragments.home.productslist
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,12 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.punktozercy.R
 import com.example.punktozercy.databinding.FragmentProductsListBinding
 import com.example.punktozercy.fragments.home.HomeViewModel
 import com.example.punktozercy.fragments.home.adapters.ProductsAdapter
@@ -70,10 +67,6 @@ class ProductsListFragment : Fragment() {
             Toast.makeText(requireContext(), productViewModel.getCategory(), Toast.LENGTH_SHORT).show()
         }
 
-
-
-
-        // Inflate the layout for this fragment
         return binding.root
     }
 

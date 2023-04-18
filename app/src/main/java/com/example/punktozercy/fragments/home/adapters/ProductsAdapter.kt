@@ -68,12 +68,12 @@ class ProductsAdapter(private var products:List<Product>,private val context: Co
         holder.buyButton.setOnClickListener {
             Toast.makeText(context, holder.productName.text.toString() + " x" +
                 holder.productAmount.text.toString() + " added to basket", Toast.LENGTH_SHORT).show()
-            selectedProducts.setTest(holder.productName.text.toString())
-            for(i in 1..holder.productAmount.text.toString().toInt())
-                selectedProducts.addProduct(products[position])
-            holder.productAmount.text = "1"
-          //  basketViewModel.setTest(holder.productName.text.toString())
 
+            for(i in 1..holder.productAmount.text.toString().toInt()) {
+                selectedProducts.addProduct(products[position])
+                SelectedProducts.amountOfProductsInBasket.value = SelectedProducts.amountOfProductsInBasket.value!! + 1
+            }
+            holder.productAmount.text = "1"
         }
     }
 

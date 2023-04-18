@@ -93,13 +93,6 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
-//        binding.loginButton.setOnClickListener{
-//            val intent = Intent(activity, MainScreenActivity::class.java)
-//                    activity?.startActivity(intent)
-//        }
-
-//        For easly debugging login button temporary switch to always login
-//        DEBUG
         binding.loginButton.setOnClickListener{
               //  checkUserLogin()
             lifecycleScope.launch {
