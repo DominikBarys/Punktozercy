@@ -1,5 +1,6 @@
 package com.example.punktozercy.fragments.basket
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -34,6 +35,7 @@ class BasketFragment : Fragment() {
 
     private val binding get() = _binding!!
 
+    @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,24 +57,21 @@ class BasketFragment : Fragment() {
             SelectedProducts.textMoneyPrice.value = 0.0
         }
 
-        SelectedProducts.textMoneyPrice.observe(this,{
-            binding.moneyPriceTextView.text = "Price in zł: " + SelectedProducts.textMoneyPrice.value.toString() + "zł"
-        })
+        SelectedProducts.textMoneyPrice.observe(this) {
+            binding.moneyPriceTextView.text =
+                "Price in zł: " + SelectedProducts.textMoneyPrice.value.toString() + "zł"
+        }
 
-        SelectedProducts.basketText.observe(this, {
+        SelectedProducts.basketText.observe(this) {
             binding.emptyBasketText.text = SelectedProducts.basketText.value
-        })
+        }
 
         val adapter = BasketAdapter(selectedProducts.getProductList(), requireContext())
         binding.basketRecycler.layoutManager = LinearLayoutManager(requireContext().applicationContext)
         binding.basketRecycler.adapter = adapter
 
 
-        if(SelectedProducts.firstProduct){
-            binding.basketRecycler.isVisible = false
-        }else{
-            binding.basketRecycler.isVisible = true
-        }
+        binding.basketRecycler.isVisible = !SelectedProducts.firstProduct
 
         binding.checkOut.setOnClickListener {
             //TODO aktualizacja danych uzytkownika (punkty itp)

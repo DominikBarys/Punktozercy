@@ -1,21 +1,14 @@
-package com.example.punktozercy.fragments.home.adapters
+package com.example.punktozercy.fragments.home.productslist.adapters
 
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.punktozercy.SelectedProducts
 import com.example.punktozercy.databinding.ViewProductsBinding
-import com.example.punktozercy.fragments.basket.BasketFragment
-import com.example.punktozercy.fragments.basket.BasketViewModel
-import com.example.punktozercy.mainscreen.MainScreenViewModel
 import com.example.punktozercy.model.Product
 
 
@@ -36,7 +29,7 @@ class ProductsAdapter(private var products:List<Product>,private val context: Co
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsAdapter.ProductsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val viewProductsBinding = ViewProductsBinding.inflate(inflater, parent, false)
         return ProductsViewHolder(viewProductsBinding)
@@ -66,8 +59,8 @@ class ProductsAdapter(private var products:List<Product>,private val context: Co
         }
 
         holder.buyButton.setOnClickListener {
-            Toast.makeText(context, holder.productName.text.toString() + " x" +
-                holder.productAmount.text.toString() + " added to basket", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, holder.productName.text.toString() + " x" +
+//                holder.productAmount.text.toString() + " added to basket", Toast.LENGTH_SHORT).show()
 
             for(i in 1..holder.productAmount.text.toString().toInt()) {
                 selectedProducts.addProduct(products[position])
