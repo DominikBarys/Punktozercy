@@ -1,15 +1,19 @@
 package com.example.punktozercy.model
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
+
 @Dao
 interface ShoppingHistoryDao {
 
 
-//    @Query("SELECT * FROM  shopping-histories")
-//    fun getUserShoppingHistory(): List<ShoppingHistory>
+    @MapInfo(keyColumn = "date")
+   @Query("SELECT shopping_histories.date,products.* FROM shopping_histories INNER JOIN products ON shopping_histories.productid = products.productId  WHERE shopping_histories.userid = :userId")
+    fun getUserShoppingHistory(userId:Long): Map<String,List<Product>>
+
+
+
+
+
 
     @Insert
     fun addUserShoppingHistory(shoppingHistory: ShoppingHistory)

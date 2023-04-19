@@ -6,10 +6,14 @@ import com.example.punktozercy.model.User
 import java.util.Date
 
 
-@Entity(tableName = "shopping-histories",
+
+
+@Entity(tableName = "shopping_histories",
     foreignKeys = [
         ForeignKey(entity = User::class, parentColumns = ["userId"], childColumns = ["userid"]),
-    ForeignKey(entity = Product::class, parentColumns = ["productId"], childColumns = ["productid"])])
+    ForeignKey(entity = Product::class, parentColumns = ["productId"], childColumns = ["productid"])
+    ]
+)
 data class ShoppingHistory(
     @PrimaryKey(autoGenerate = true)
     val id:Long,
@@ -18,7 +22,7 @@ data class ShoppingHistory(
     @ColumnInfo(name = "userid")
     val userid:Long,
     @ColumnInfo(name = "productid")
-    val productid:Long
+    val productId:Long
 
 )
 
