@@ -16,6 +16,10 @@ class ShopRepository(private val userDao: UserDao,private val productDao: Produc
         shoppingHistoryDao.addUserShoppingHistory(shoppingHistory)
     }
 
+    suspend fun getUserShoppingHistory(userId:Long): Map<String,List<Product>>{
+        return shoppingHistoryDao.getUserShoppingHistory(userId)
+    }
+
 //-------------------------------------PRODUCT QUERY------------------------------------------------------
 
     suspend fun getProductsByCategory(category:String):List<Product>{
