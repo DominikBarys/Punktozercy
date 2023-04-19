@@ -7,26 +7,52 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.example.punktozercy.R
-import com.example.punktozercy.SelectedProducts
-import com.example.punktozercy.databinding.FragmentBasketBinding
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.punktozercy.databinding.FragmentHistoryBinding
+import com.example.punktozercy.fragments.history.adapters.HistoryAdapter
+import com.example.punktozercy.fragments.home.productslist.adapters.ProductsAdapter
+import com.example.punktozercy.model.Product
+import com.example.punktozercy.model.ShoppingHistory
 import com.example.punktozercy.viewModel.ShopViewModel
+import com.example.punktozercy.viewModel.UserViewModel
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class HistoryFragment : Fragment() {
-    val selectedProducts: SelectedProducts = SelectedProducts()
+    private lateinit var mShopViewModel: ShopViewModel
+    private lateinit var userViewModel: UserViewModel
+    private lateinit var userShoppingHistoryViewModel: HistoryViewModel
     private var _binding : FragmentHistoryBinding? = null
     private val binding get() = _binding!!
+    private lateinit var lista:List<ShoppingHistory>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-
-
+        mShopViewModel = ViewModelProvider(requireActivity())[ShopViewModel::class.java]
+        userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
+        userShoppingHistoryViewModel = ViewModelProvider(requireActivity())[HistoryViewModel::class.java]
         _binding = FragmentHistoryBinding.inflate(inflater, container, false)
-        for(product in selectedProducts.getProductList()){
-            Toast.makeText(requireContext(), product.name, Toast.LENGTH_SHORT).show()
+
+        lifecycleScope.launch {
+            val job = async {
+                 return@async userShoppingHistoryViewModel.setUserShoppingHistory(
+                     mShopViewModel.getUserShoppingHistory(userViewModel.getUserId())
+                 )
+            }
+            job.await()
+            for((key,products) in userShoppingHistoryViewModel.getUserShoppingHistory()) {
+                println(key)
+                for (product in products) {
+                    println(product)
+                }
+            }
+            val adapter = HistoryAdapter(userShoppingHistoryViewModel.getUserShoppingHistory(),requireContext())
+            binding.productsList.layoutManager = LinearLayoutManager(requireContext())
+            binding.productsList.adapter = adapter
+
         }
 
         return binding.root
