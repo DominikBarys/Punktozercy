@@ -13,7 +13,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.punktozercy.databinding.FragmentProductsListBinding
 import com.example.punktozercy.fragments.home.HomeViewModel
-import com.example.punktozercy.fragments.home.adapters.ProductsAdapter
+import com.example.punktozercy.fragments.home.productslist.adapters.ProductsAdapter
 import com.example.punktozercy.mainscreen.MainScreenViewModel
 import com.example.punktozercy.model.Product
 import com.example.punktozercy.viewModel.ShopViewModel
@@ -48,12 +48,8 @@ class ProductsListFragment : Fragment() {
            }
             job.await()
 
-            val produkty:List<Product> = productViewModel.getProductList()
-            Toast.makeText(requireContext(), productViewModel.getProductList().size.toString(), Toast.LENGTH_SHORT).show()
             val adapter = ProductsAdapter(productViewModel.getProductList(),requireContext())
-            for(products in produkty){
-                Log.d("MORENKA",products.name)
-            }
+
             binding.productsView.layoutManager = LinearLayoutManager(requireContext())
             binding.productsView.adapter = adapter
         }
