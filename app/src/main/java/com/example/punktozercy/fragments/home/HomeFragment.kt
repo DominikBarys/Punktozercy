@@ -40,11 +40,11 @@ class HomeFragment : Fragment() {
         mainScreenVm = ViewModelProvider(requireActivity())[MainScreenViewModel::class.java]
         userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
 
-        val root: View = binding.root
-
-        binding.debugAddProductButton.setOnClickListener{
-
-        }
+//        val root: View = binding.root
+//
+//        binding.debugAddProductButton.setOnClickListener{
+//
+//        }
 
        val adapter = HorizontalAdapter(createOffers())
 

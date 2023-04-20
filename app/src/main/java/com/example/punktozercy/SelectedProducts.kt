@@ -12,6 +12,12 @@ class SelectedProducts {
 
         var textMoneyPrice: MutableLiveData<Double> = _textMoneyPrice
 
+        var _textPointsPrice = MutableLiveData<Double>().apply {
+            value = 0.0
+        }
+
+        var textPointsPrice: MutableLiveData<Double> = _textPointsPrice
+
         var _basketText = MutableLiveData<String>().apply {
             value = "YOU HAVE EMPTY BASKET"
         }
@@ -57,4 +63,5 @@ class SelectedProducts {
     fun getProductList(): List<Product>{
         return productList
     }
+
 }

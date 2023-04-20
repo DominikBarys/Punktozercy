@@ -7,13 +7,9 @@ import com.example.punktozercy.model.User
 class UserViewModel:ViewModel() {
 
 
-
-
     companion object{
         private lateinit var user: User
     }
-
-
 
 //    fun getName() :String{
 //        return name
