@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,6 +28,7 @@ import java.time.LocalDate
 import java.util.Calendar
 
 class BasketFragment : Fragment() {
+
     private lateinit var mShopViewModel: ShopViewModel
     val selectedProducts: SelectedProducts = SelectedProducts()
     private var _binding: FragmentBasketBinding? = null
@@ -47,19 +49,73 @@ class BasketFragment : Fragment() {
         mShopViewModel = ViewModelProvider(requireActivity())[ShopViewModel::class.java]
         userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
 
+        if(BasketViewModel.buyUsingMoney.value == true){
+            binding.buyMoneyButton.isVisible = false
+            binding.buyPointsButton.isVisible = true
+        }else{
+            binding.buyMoneyButton.isVisible = true
+            binding.buyPointsButton.isVisible = false
+        }
+
+        BasketViewModel.buyUsingMoney.observe(this, {
+            binding.buyMoneyButton.isVisible = !binding.buyMoneyButton.isVisible
+            binding.buyPointsButton.isVisible = !binding.buyPointsButton.isVisible
+
+            var moneyPriceNotRounded = SelectedProducts.textMoneyPrice.value
+            var pointsPriceNotRounded = SelectedProducts.textPointsPrice.value
+
+            if(SelectedProducts.textMoneyPrice.value!! < 0.01) {
+                moneyPriceNotRounded = 0.0
+            }
+
+            if(SelectedProducts.textPointsPrice.value!! < 0.01){
+                pointsPriceNotRounded = 0.0
+            }
+
+            if(BasketViewModel.buyUsingMoney.value == true){
+                val formattedPrice = String.format("%.2f", moneyPriceNotRounded)
+                binding.moneyPriceTextView.text = "Price in zł: $formattedPrice zł"
+            }else{
+                val formattedPrice = String.format("%.2f", pointsPriceNotRounded)
+                binding.moneyPriceTextView.text = "Price in points: $formattedPrice zł"
+            }
+        })
+
+
         if(SelectedProducts.productList.size > 0 && !SelectedProducts.firstProduct)
         {
             SelectedProducts.textMoneyPrice.value = 0.0
+            SelectedProducts.textPointsPrice.value = 0.0
             for(item in SelectedProducts.productList){
                 SelectedProducts.textMoneyPrice.value = SelectedProducts.textMoneyPrice.value?.plus(item.price)
+                SelectedProducts.textPointsPrice.value = SelectedProducts.textPointsPrice.value?.plus(item.price)
             }
         }else{
             SelectedProducts.textMoneyPrice.value = 0.0
+            SelectedProducts.textPointsPrice.value = 0.0
         }
 
+
+        //TODO
         SelectedProducts.textMoneyPrice.observe(this) {
-            binding.moneyPriceTextView.text =
-                "Price in zł: " + SelectedProducts.textMoneyPrice.value.toString() + "zł"
+            var moneyPriceNotRounded = SelectedProducts.textMoneyPrice.value
+            var pointsPriceNotRounded = SelectedProducts.textPointsPrice.value
+
+            if(SelectedProducts.textMoneyPrice.value!! < 0.01) {
+                moneyPriceNotRounded = 0.0
+            }
+
+            if(SelectedProducts.textPointsPrice.value!! < 0.01){
+                pointsPriceNotRounded = 0.0
+            }
+
+            if(BasketViewModel.buyUsingMoney.value == true){
+                val formattedPrice = String.format("%.2f", moneyPriceNotRounded)
+                binding.moneyPriceTextView.text = "Price in zł: $formattedPrice zł"
+            }else{
+                val formattedPrice = String.format("%.2f", pointsPriceNotRounded)
+                binding.moneyPriceTextView.text = "Price in points: $formattedPrice zł"
+            }
         }
 
         SelectedProducts.basketText.observe(this) {
@@ -72,6 +128,14 @@ class BasketFragment : Fragment() {
 
 
         binding.basketRecycler.isVisible = !SelectedProducts.firstProduct
+
+        binding.buyMoneyButton.setOnClickListener {
+            BasketViewModel.buyUsingMoney.value = true
+        }
+
+        binding.buyPointsButton.setOnClickListener {
+            BasketViewModel.buyUsingMoney.value = false
+        }
 
         binding.checkOut.setOnClickListener {
             //TODO aktualizacja danych uzytkownika (punkty itp)
@@ -90,6 +154,13 @@ class BasketFragment : Fragment() {
                job.await()
 
            }
+            selectedProducts.clearProductList()
+            adapter.notifyDataSetChanged()
+            SelectedProducts.basketText.value = "YOU HAVE EMPTY BASKET"
+            SelectedProducts.textMoneyPrice.value = 0.0
+            SelectedProducts.textPointsPrice.value = 0.0
+            SelectedProducts.amountOfProductsInBasket.value = 0
+
         }
 //        binding.testButton.setOnClickListener {
 //            Toast.makeText(requireContext(), selectedProducts.getTest(), Toast.LENGTH_SHORT).show()
