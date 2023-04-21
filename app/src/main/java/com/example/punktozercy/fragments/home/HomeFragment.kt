@@ -54,6 +54,10 @@ class HomeFragment : Fragment() {
         createOffers()
 
         binding.cardViewFood.setOnClickListener {
+            binding.allImageView.setImageResource(R.drawable.filter_all)
+            binding.foodImageView.setImageResource(R.drawable.filter_food_selected)
+            binding.drinkImageView.setImageResource(R.drawable.filter_drink)
+            binding.otherImageView.setImageResource(R.drawable.filter_other)
             val filteredList = ArrayList<Offer>()
             for(i in homeViewModel.offerArray){
                 if(i.third.contains("Food"))
@@ -63,6 +67,10 @@ class HomeFragment : Fragment() {
         }
 
         binding.cardViewDrinks.setOnClickListener {
+            binding.allImageView.setImageResource(R.drawable.filter_all)
+            binding.foodImageView.setImageResource(R.drawable.filter_food)
+            binding.drinkImageView.setImageResource(R.drawable.filter_drink_selected)
+            binding.otherImageView.setImageResource(R.drawable.filter_other)
             val filteredList = ArrayList<Offer>()
             for(i in homeViewModel.offerArray){
                 if(i.third.contains("Drink"))
@@ -72,6 +80,10 @@ class HomeFragment : Fragment() {
         }
 
         binding.cardViewOther.setOnClickListener {
+            binding.allImageView.setImageResource(R.drawable.filter_all)
+            binding.foodImageView.setImageResource(R.drawable.filter_food)
+            binding.drinkImageView.setImageResource(R.drawable.filter_drink)
+            binding.otherImageView.setImageResource(R.drawable.filter_other_selected)
             val filteredList = ArrayList<Offer>()
             for(i in homeViewModel.offerArray){
                 if(i.third.contains("Other"))
@@ -81,6 +93,10 @@ class HomeFragment : Fragment() {
         }
 
         binding.cardViewNone.setOnClickListener {
+            binding.allImageView.setImageResource(R.drawable.filter_all_selected)
+            binding.foodImageView.setImageResource(R.drawable.filter_food)
+            binding.drinkImageView.setImageResource(R.drawable.filter_drink)
+            binding.otherImageView.setImageResource(R.drawable.filter_other)
             val filteredList = ArrayList<Offer>()
             for(i in homeViewModel.offerArray){
                 if(i.third.contains(""))

@@ -15,7 +15,7 @@
     <string name="phone">Phone</string>
     <string name="rules">By signing up, you\'re agree to our</string>
     <string name="terms_cond">Terms &amp; Conditions</string>
-    <string name="privacy">Privacy Policy</string>
+    <string name="privacy"> Privacy Policy</string>
     <string name="and">and</string>
     <string name="password_repeat">Repeat password</string>
     <string name="password_f">Forget Password?</string>

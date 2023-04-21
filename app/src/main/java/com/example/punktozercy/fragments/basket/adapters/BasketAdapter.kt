@@ -36,7 +36,8 @@ class BasketAdapter(private val products: List<Product>, private val context: Co
         showImage(holder.productPicture, products[position].imagePath!!)
         holder.removeButton.setOnClickListener {
             val tmpMoney = SelectedProducts.textMoneyPrice.value?.minus(products[position].price)
-            val tmpPoints = SelectedProducts.textPointsPrice.value?.minus(products[position].price)
+            //Pointsy dodane
+            val tmpPoints = SelectedProducts.textPointsPrice.value?.minus(products[position].pointsPrice!!)
             selectedProducts.removeProduct(position)
             notifyItemRemoved(position)
             notifyDataSetChanged()

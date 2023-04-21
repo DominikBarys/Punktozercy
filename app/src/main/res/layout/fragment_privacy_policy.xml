@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,9 +8,71 @@
     android:background="@drawable/gradient_background">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="190dp"
+        android:layout_height="151dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/privacyPolicyText"
+        android:layout_width="397dp"
+        android:layout_height="646dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="1dp"
+        android:scrollbars="vertical"
+        android:text="This Privacy Policy describes how the Punktożercy mobile application (App) collects, uses, and discloses personal information when you use the App. It also explains the rights and choices you have with respect to your personal information.\n\n
+
+1. Information We Collect\n
+The App may collect the following types of personal information:\n\n
+Information you provide voluntarily, such as your name, email address, and other contact details when you register an account or contact us for support.\n\n
+Information collected automatically, such as your device information (e.g., device type, operating system, and version), log information (e.g., IP address, access dates and times), and usage information (e.g., interactions with the App features).\n\n
+2. Use of Information\n
+We may use the personal information we collect for the following purposes:\n\n
+To provide and maintain the App's functionality, features, and services.\n
+To personalize your experience with the App and improve its performance.\n
+To communicate with you, respond to your inquiries, and provide customer support.\n
+To send you updates, promotions, and other relevant information about the App, unless you opt out.\n
+To comply with legal obligations, enforce our terms and conditions, and protect our rights and interests.\n\n
+3. Data Sharing and Disclosure\n\n
+We may share your personal information with the following parties:\n\n
+Service providers who help us with App hosting, data storage, analytics, and other functions.\n
+Law enforcement agencies, government authorities, or legal advisors, if required by law or to protect our legal rights.\n
+Business partners or acquirers, in case of a merger, acquisition, or sale of our assets.\n\n
+4. Data Retention\n
+We retain your personal information as long as necessary to fulfill the purposes for which it was collected, or as required by law. We take reasonable measures to protect your personal information from unauthorized access, loss, misuse, and destruction.\n\n
+
+5. Your Rights and Choices\n
+You have certain rights and choices regarding your personal information, including the right to access, update, and delete your information. You may also choose to opt out of receiving promotional communications from us. Please contact us using the information provided below to exercise your rights or make choices.\n\n
+
+6. Children's Privacy\n
+The App is not intended for use by children under the age of 13. We do not knowingly collect personal information from children without parental consent. If you believe your child has provided us with personal information, please contact us immediately.\n\n
+
+7. Changes to this Privacy Policy\n
+We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. We will notify you of any material changes by posting the updated Privacy Policy in the App or by other means. Your continued use of the App after such changes constitutes your acceptance of the updated Privacy Policy.\n\n
+
+8. Contact Us\n
+If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at support@punktozercy.com."
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toTopOf="@+id/acceptButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/acceptButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Accept"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

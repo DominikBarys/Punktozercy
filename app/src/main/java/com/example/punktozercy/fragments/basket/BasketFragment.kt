@@ -80,7 +80,7 @@ class BasketFragment : Fragment() {
             SelectedProducts.textPointsPrice.value = 0.0
             for(item in SelectedProducts.productList){
                 SelectedProducts.textMoneyPrice.value = SelectedProducts.textMoneyPrice.value?.plus(item.price)
-                SelectedProducts.textPointsPrice.value = SelectedProducts.textPointsPrice.value?.plus(item.price)
+                SelectedProducts.textPointsPrice.value = SelectedProducts.textPointsPrice.value?.plus(item.pointsPrice!!)
             }
         }else{
             SelectedProducts.textMoneyPrice.value = 0.0
@@ -91,24 +91,32 @@ class BasketFragment : Fragment() {
         //TODO
         SelectedProducts.textMoneyPrice.observe(this) {
             var moneyPriceNotRounded = SelectedProducts.textMoneyPrice.value
-            var pointsPriceNotRounded = SelectedProducts.textPointsPrice.value
 
             if(SelectedProducts.textMoneyPrice.value!! < 0.01) {
                 moneyPriceNotRounded = 0.0
             }
 
+            if(BasketViewModel.buyUsingMoney.value == true){
+                val formattedPrice = String.format("%.2f", moneyPriceNotRounded)
+                binding.moneyPriceTextView.text = "Price in zł: $formattedPrice zł"
+            }
+        }
+
+        SelectedProducts.textPointsPrice.observe(this) {
+            var pointsPriceNotRounded = SelectedProducts.textPointsPrice.value
+
+
             if(SelectedProducts.textPointsPrice.value!! < 0.01){
                 pointsPriceNotRounded = 0.0
             }
 
-            if(BasketViewModel.buyUsingMoney.value == true){
-                val formattedPrice = String.format("%.2f", moneyPriceNotRounded)
-                binding.moneyPriceTextView.text = "Price in zł: $formattedPrice zł"
-            }else{
+            if(BasketViewModel.buyUsingMoney.value == false){
                 val formattedPrice = String.format("%.2f", pointsPriceNotRounded)
                 binding.moneyPriceTextView.text = "Price in points: $formattedPrice zł"
             }
         }
+
+
 
         SelectedProducts.basketText.observe(this) {
             binding.emptyBasketText.text = SelectedProducts.basketText.value
