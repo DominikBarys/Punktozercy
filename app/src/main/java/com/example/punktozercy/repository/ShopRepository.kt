@@ -5,18 +5,13 @@ import com.example.punktozercy.model.*
 
 class ShopRepository(private val userDao: UserDao,private val productDao: ProductDao,private val shoppingHistoryDao: ShoppingHistoryDao) {
 
-   // val loadAllUsers : LiveData<List<User>> = userDao.loadAllUsers();
-    //val loadAllProducts: LiveData<List<Product>> = productDao.loadAllProducts();
-
-    //TODO
-    //val loadUsersWithProducts
 //---------------------------------------USER WITH PRODUCTS QUERY-------------------------------------------------
 
     suspend fun addUserShoppingHistory(shoppingHistory: ShoppingHistory){
         shoppingHistoryDao.addUserShoppingHistory(shoppingHistory)
     }
 
-    suspend fun getUserShoppingHistory(userId:Long): Map<String,List<Product>>{
+    suspend fun getUserShoppingHistory(userId:Long): List<UserShoppingHistoryWithProduct>{
         return shoppingHistoryDao.getUserShoppingHistory(userId)
     }
 

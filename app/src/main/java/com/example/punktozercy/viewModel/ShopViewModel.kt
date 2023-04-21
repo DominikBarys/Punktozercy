@@ -29,7 +29,7 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    suspend fun getUserShoppingHistory(userId:Long): Map<String,List<Product>>{
+    suspend fun getUserShoppingHistory(userId:Long): List<UserShoppingHistoryWithProduct>{
         return withContext(Dispatchers.IO) {
             return@withContext repository.getUserShoppingHistory(userId)
         }

@@ -22,8 +22,17 @@ data class ShoppingHistory(
     @ColumnInfo(name = "userid")
     val userid:Long,
     @ColumnInfo(name = "productid")
-    val productId:Long
+    val productId:Long,
+    @ColumnInfo(name = "buy_type")
+    val isBoughtByMoney: Boolean
 
+)
+
+data class UserShoppingHistoryWithProduct(
+    @Embedded
+    val userShoppingHistory: ShoppingHistory,
+    @Embedded
+    val product: Product
 )
 
 
