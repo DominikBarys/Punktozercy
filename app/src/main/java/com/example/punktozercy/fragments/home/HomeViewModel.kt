@@ -7,17 +7,17 @@ import com.example.punktozercy.fragments.home.adapters.Offer
 
 class HomeViewModel : ViewModel() {
 
-    val offerArray = arrayOf(   Triple(R.drawable.offer_burger, "dairy", "dairy"),
-                                Triple(R.drawable.offer_chips, "meat", "meat"),
-                                Triple(R.drawable.offer_choclate, "vegetables", "vegetables"),
-                                Triple(R.drawable.offer_drink, "bakery", "bakery"),
-                                Triple(R.drawable.offer_ketchup, "beverages", "beverages"),
-                                Triple(R.drawable.offer_drinks, "sweets", "sweets"),
-                                Triple(R.drawable.offer_drinks, "ready meals", "ready meals"),
-                                Triple(R.drawable.offer_drinks, "fizzy drink", "fizzy drink"),
-                                Triple(R.drawable.offer_drinks, "drink", "drink"),
-                                Triple(R.drawable.offer_drinks, "fruits", "fruits"),
-                                Triple(R.drawable.offer_drinks, "spices", "spices")
+    val offerArray = arrayOf(   Triple(R.drawable.offer_readymeals, "ready meals", "Food"),
+                                Triple(R.drawable.offer_drink, "drink", "Drink"),
+                                Triple(R.drawable.offer_spices, "spices", "Other"),
+                                Triple(R.drawable.offer_fruits, "fruits", "Food"),
+                                Triple(R.drawable.offer_bakery, "bakery", "Food"),
+                                Triple(R.drawable.offer_dairy, "dairy", "Food"),
+                                Triple(R.drawable.offer_meat, "meat", "Food"),
+                                Triple(R.drawable.offer_vegetables, "vegetables", "Food"),
+                                Triple(R.drawable.offer_beverages, "beverages", "Drink"),
+                                Triple(R.drawable.offer_sweets, "sweets", "Other"),
+                                Triple(R.drawable.offer_fizzydrink, "fizzy drink", "Drink")
     )
 
 
