@@ -90,12 +90,8 @@
         android:background="@drawable/gradient_background_new"
         app:cardBackgroundColor="#555555"
         app:cardCornerRadius="25dp"
-        android:layout_marginLeft="370dp"
+        android:layout_marginLeft="375dp"
         android:layout_marginTop="115dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
     </androidx.cardview.widget.CardView>
 
@@ -109,17 +105,8 @@
         android:background="@drawable/gradient_background_new"
         app:cardBackgroundColor="#555555"
         app:cardCornerRadius="25dp"
-        android:layout_marginLeft="260dp"
+        android:layout_marginLeft="245dp"
         android:layout_marginTop="115dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="14dp"
-            android:gravity="center"
-            android:text="+"
-            android:textColor="#ffffff"
-            android:textSize="32dp"
-            android:textStyle="bold" />
 
     </androidx.cardview.widget.CardView>
 
@@ -132,7 +119,7 @@
         android:textColor="#ffffff"
         android:text="1"
         android:textAlignment="center"
-        android:layout_marginLeft="25dp"
+        android:layout_marginLeft="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintEnd_toEndOf="parent"

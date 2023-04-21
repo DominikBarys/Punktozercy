@@ -51,9 +51,9 @@ RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>(){
 
 
         if(history.userShoppingHistory.isBoughtByMoney){
-            holder.productPrice.text = history.product.price.toString()
+            holder.productPrice.text = history.product.price.toString() + " zł"
         }else{
-            holder.productPrice.text = history.product.pointsPrice.toString()
+            holder.productPrice.text = history.product.pointsPrice.toString() + " points"
         }
 
 
