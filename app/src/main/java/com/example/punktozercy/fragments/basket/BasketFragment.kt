@@ -37,29 +37,21 @@ class BasketFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    @SuppressLint("SimpleDateFormat")
+    @SuppressLint("SimpleDateFormat", "SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentBasketBinding.inflate(inflater, container, false)
 
         basketViewModel = ViewModelProvider(this)[BasketViewModel::class.java]
         mShopViewModel = ViewModelProvider(requireActivity())[ShopViewModel::class.java]
         userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
 
-        if(BasketViewModel.buyUsingMoney.value == true){
-            binding.buyMoneyButton.isVisible = false
-            binding.buyPointsButton.isVisible = true
-        }else{
-            binding.buyMoneyButton.isVisible = true
-            binding.buyPointsButton.isVisible = false
-        }
+
 
         BasketViewModel.buyUsingMoney.observe(this, {
-            binding.buyMoneyButton.isVisible = !binding.buyMoneyButton.isVisible
-            binding.buyPointsButton.isVisible = !binding.buyPointsButton.isVisible
 
             var moneyPriceNotRounded = SelectedProducts.textMoneyPrice.value
             var pointsPriceNotRounded = SelectedProducts.textPointsPrice.value
@@ -129,31 +121,24 @@ class BasketFragment : Fragment() {
 
         binding.basketRecycler.isVisible = !SelectedProducts.firstProduct
 
-        binding.buyMoneyButton.setOnClickListener {
-            BasketViewModel.buyUsingMoney.value = true
-        }
-
-        binding.buyPointsButton.setOnClickListener {
-            BasketViewModel.buyUsingMoney.value = false
+        binding.typeOfCurrency.setOnCheckedChangeListener { compoundButton, b ->
+            BasketViewModel.buyUsingMoney.value = binding.typeOfCurrency.isChecked
+            if(BasketViewModel.buyUsingMoney.value == false){
+                binding.typeOfCurrency.text = "Buy with points"
+                println(binding.typeOfCurrency.isChecked)
+            }else{
+                binding.typeOfCurrency.text = "Buy with money"
+            }
         }
 
         binding.checkOut.setOnClickListener {
             //TODO aktualizacja danych uzytkownika (punkty itp)
-           lifecycleScope.launch {
-             val job = async{
-                 for(products in selectedProducts.getProductList()){
-                     val time = Calendar.getInstance().time
-                     val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm")
-                     val current = formatter.format(time).toString()
-                     val history = ShoppingHistory(0,current.toString(),
-                         userViewModel.getUserId(),products.productId)
-                     mShopViewModel.addUserShoppingHistory(history)
-             }
+            if(BasketViewModel.buyUsingMoney.value!!){
+              buyProducts(true)
+            }else{
+                buyProducts(false)
+            }
 
-               }
-               job.await()
-
-           }
             selectedProducts.clearProductList()
             adapter.notifyDataSetChanged()
             SelectedProducts.basketText.value = "YOU HAVE EMPTY BASKET"
@@ -169,5 +154,24 @@ class BasketFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private fun buyProducts(typeOfCurrency:Boolean){
+        lifecycleScope.launch {
+            val job = async{
+                for(products in selectedProducts.getProductList()){
+                    val time = Calendar.getInstance().time
+                    val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm")
+                    val current = formatter.format(time).toString()
+                    val history = ShoppingHistory(0,current.toString(),
+                        userViewModel.getUserId(),products.productId,typeOfCurrency)
+                    mShopViewModel.addUserShoppingHistory(history)
+                }
+
+            }
+            job.await()
+
+        }
     }
 }

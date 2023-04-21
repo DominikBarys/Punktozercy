@@ -18,7 +18,6 @@ class BasketAdapter(private val products: List<Product>, private val context: Co
     inner class BasketViewHolder(binding: ViewBasketBinding) :ViewHolder(binding.root){
         val productPicture = binding.basketProductPicture
         val productName = binding.basketProduktName
-        val productDescription = binding.basketProductDescription
         val productMoneyValue = binding.basketProductMoneyValue
         val productPointsValue = binding.basketProductPointsValue
         val removeButton = binding.removeButton
@@ -32,7 +31,6 @@ class BasketAdapter(private val products: List<Product>, private val context: Co
 
     override fun onBindViewHolder(holder: BasketViewHolder, position: Int) {
         holder.productName.text = products[position].name
-        holder.productDescription.text = products[position].description
         holder.productMoneyValue.text = products[position].price.toString()
         holder.productPointsValue.text = products[position].pointsPrice.toString()
         showImage(holder.productPicture, products[position].imagePath!!)
