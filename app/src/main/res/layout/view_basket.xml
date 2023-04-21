@@ -30,18 +30,6 @@
         app:layout_constraintVertical_bias="0.19" />
 
     <TextView
-        android:id="@+id/basketProductDescription"
-        android:layout_width="116dp"
-        android:layout_height="62dp"
-        android:text="OPIS"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toEndOf="@+id/basketProductPicture"
-        app:layout_constraintTop_toBottomOf="@+id/basketProduktName"
-        app:layout_constraintVertical_bias="0.448" />
-
-    <TextView
         android:id="@+id/basketProductMoneyValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,19 +48,16 @@
         android:text="Price in points: "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.126"
-        app:layout_constraintStart_toEndOf="@+id/basketProductDescription"
         app:layout_constraintTop_toBottomOf="@+id/basketProductMoneyValue"
         app:layout_constraintVertical_bias="0.149" />
 
     <Button
         android:id="@+id/removeButton"
-        android:text="REMOVE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="REMOVE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/basketProductDescription"
         app:layout_constraintTop_toBottomOf="@+id/basketProductPointsValue"
         app:layout_constraintVertical_bias="0.384" />
 
