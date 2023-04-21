@@ -1,6 +1,7 @@
 package com.example.punktozercy.fragments.settings
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,10 +13,15 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.punktozercy.MainActivity
 import com.example.punktozercy.R
 import com.example.punktozercy.databinding.FragmentSettingsBinding
+import com.example.punktozercy.mainscreen.MainScreenActivity
 import com.example.punktozercy.model.User
 import com.example.punktozercy.viewModel.UserViewModel
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
 class SettingsFragment : Fragment() {
     private var _binding: FragmentSettingsBinding? = null
@@ -25,6 +31,7 @@ class SettingsFragment : Fragment() {
     private var editor:SharedPreferences.Editor?=null
     private var sharedPreferences:SharedPreferences?=null
     private  var settingsViewModel: SettingsViewModel? =null
+    private lateinit var googleSignInClient: GoogleSignInClient
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,6 +61,23 @@ class SettingsFragment : Fragment() {
 
         binding.sendPoints.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_settings_to_sendPointsFragment)
+        }
+
+        binding.logoutButton.setOnClickListener {
+            if(userViewModel.getGoogleToken() == null){
+                val intent = Intent(activity, MainActivity::class.java)
+                activity?.startActivity(intent)
+            }else{
+                val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(userViewModel.getGoogleToken()!!)
+                    .requestEmail()
+                    .build()
+
+                val mGoogleSignInClient = GoogleSignIn.getClient(activity!!, gso)
+                mGoogleSignInClient.revokeAccess()
+                val intent = Intent(activity, MainActivity::class.java)
+                activity?.startActivity(intent)
+            }
         }
 
         return binding.root
