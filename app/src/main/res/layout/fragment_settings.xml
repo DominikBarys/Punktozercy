@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background_new"
     tools:context=".fragments.settings.SettingsFragment"
     tools:ignore="ExtraText">
 
@@ -11,11 +12,20 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="400sp"
-        android:background="#327CB342"
+        android:background="#888888"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="115dp"
+            android:layout_height="127dp"
+            android:layout_alignBottom="@+id/imageView3"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="265dp"
+            android:layout_marginBottom="-22dp"
+            android:src="@drawable/circle" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -25,7 +35,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="40sp"
             android:layout_marginBottom="235sp"
-            android:src="@mipmap/ic_launcher2_settings_round" />
+            android:src="@drawable/user_profile" />
 
         <TextView
             android:id="@+id/username"
@@ -79,35 +89,43 @@
             android:textSize="14sp" />
 
         <androidx.cardview.widget.CardView
-            android:layout_width="221sp"
-            android:layout_height="95sp"
+            android:layout_width="wrap_content"
+            android:layout_height="84dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="91sp"
+            android:layout_marginStart="91dp"
             android:layout_marginEnd="98sp"
-            android:layout_marginBottom="121sp">
+            android:layout_marginBottom="132dp"
+            android:background="#888888"
+            app:cardCornerRadius="50dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="87sp">
+                android:layout_height="87sp"
+                android:background="#666666">
 
                 <TextView
+                    android:textSize="24dp"
                     android:id="@+id/pointsLabel"
-                    android:layout_width="43dp"
-                    android:layout_height="18dp"
+                    android:layout_width="83dp"
+                    android:layout_height="39dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="92sp"
-                    android:layout_marginTop="58sp"
-                    android:layout_marginEnd="87dp"
-                    android:layout_marginBottom="11dp"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="42dp"
+                    android:layout_marginEnd="69dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="#666666"
                     android:gravity="center"
-                    android:text="@string/points" />
+                    android:text="@string/points"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:textSize="20dp"
                     android:id="@+id/points"
                     android:layout_width="30sp"
                     android:layout_height="21sp"
@@ -115,12 +133,15 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="99dp"
-                    android:layout_marginTop="37dp"
-                    android:layout_marginEnd="93dp"
-                    android:layout_marginBottom="29dp"
+                    android:layout_marginStart="96dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="96dp"
+                    android:layout_marginBottom="51dp"
+                    android:background="#666666"
                     android:gravity="center"
-                    android:text="" />
+                    android:text=""
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
             </RelativeLayout>
 
             />
@@ -146,16 +167,33 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="221sp"
-            android:layout_marginEnd="32sp"
-            android:layout_marginBottom="23sp"
+            android:layout_marginStart="229dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="25dp"
             android:text="@string/send_points" />
 
         <Button
             android:id="@+id/logoutButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/imageView3"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="313dp"
+            android:layout_marginBottom="13dp"
             android:text="Logout" />
+
+        <ImageView
+            android:layout_width="168dp"
+            android:layout_height="145dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="-37dp"
+            android:layout_marginEnd="-10dp"
+            android:src="@drawable/logo" />
 
     </RelativeLayout>
 
@@ -170,6 +208,8 @@
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout" >
 
         <TextView
+            android:textStyle="bold"
+            android:textColor="#ffffff"
             android:id="@+id/settingLabel"
             android:layout_width="95sp"
             android:layout_height="31sp"
@@ -185,6 +225,8 @@
             android:textSize="25sp"/>
 
         <Switch
+            android:textStyle="bold"
+            android:textColor="#ffffff"
             android:id="@+id/switch_theme"
             android:layout_width="match_parent"
             android:layout_height="70sp"
@@ -197,6 +239,8 @@
             tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         <Switch
+            android:textStyle="bold"
+            android:textColor="#ffffff"
             android:id="@+id/switch_sounds"
             android:layout_width="match_parent"
             android:layout_height="70sp"
@@ -211,6 +255,8 @@
             tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         <Switch
+            android:textStyle="bold"
+            android:textColor="#ffffff"
             android:id="@+id/switch_notifications"
             android:layout_width="match_parent"
             android:layout_height="70sp"
