@@ -43,12 +43,7 @@ class HistoryFragment : Fragment() {
                  )
             }
             job.await()
-            for((key,products) in userShoppingHistoryViewModel.getUserShoppingHistory()) {
-                println(key)
-                for (product in products) {
-                    println(product)
-                }
-            }
+
             val adapter = HistoryAdapter(userShoppingHistoryViewModel.getUserShoppingHistory(),requireContext())
             binding.productsList.layoutManager = LinearLayoutManager(requireContext())
             binding.productsList.adapter = adapter

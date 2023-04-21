@@ -6,23 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.punktozercy.databinding.ViewHistoryBinding
-import com.example.punktozercy.databinding.ViewPogchampBinding
-import com.example.punktozercy.databinding.ViewProductsBinding
-import com.example.punktozercy.model.Product
+import com.example.punktozercy.model.UserShoppingHistoryWithProduct
 
-class HistoryAdapter(private var history: Map<String, List<Product>>,private val context: Context ):
+class HistoryAdapter(private var historyList: List<UserShoppingHistoryWithProduct>, private val context: Context ):
 RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>(){
 
 
 
     inner class HistoryViewHolder(binding: ViewHistoryBinding):RecyclerView.ViewHolder(binding.root){
-        //val productName = binding.productName
-       // val productPicture = binding.productPicture
+        val productName = binding.productName
+        val productPicture = binding.productPicture
+        val productPrice = binding.productPrice
         val date = binding.dateTextView
-        val productRecyclerView = binding.productRecyclerView
+
     }
 
 
@@ -33,67 +31,36 @@ RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>(){
     }
 
     override fun getItemCount(): Int {
-        return history.values.sumOf { it.size } //history.size
+        return historyList.size
 
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
 
-//        for((key,products) in history){
-//            holder.date.text = key.toString()
-//            for(product in products){
-//                showImage(holder.productPicture,product.imagePath!!)
-//                holder.productName.text = product.name
-//            }
-//        }
+        val history = historyList[position]
+        // Ustawienie daty
+        if (position == 0 || history.userShoppingHistory.date != historyList[position - 1].userShoppingHistory.date) {
+            holder.date.visibility = View.VISIBLE
+            holder.date.text = history.userShoppingHistory.date
+        } else {
+            holder.date.visibility = View.GONE
+        }
+        holder.date.text = history.userShoppingHistory.date
+        showImage(holder.productPicture,history.product.imagePath!!)
+        holder.productName.text = history.product.name
 
-        val keyList = history.keys.toList()
-        if(position < keyList.size){
-            val key = keyList[position]
-            val productList = history[key]
-            holder.date.text = key
-            holder.productRecyclerView.adapter = ProductAdapter(productList!!,context)
-            holder.productRecyclerView.layoutManager = LinearLayoutManager(context)
+
+        if(history.userShoppingHistory.isBoughtByMoney){
+            holder.productPrice.text = history.product.price.toString()
+        }else{
+            holder.productPrice.text = history.product.pointsPrice.toString()
         }
 
 
 
 
-
     }
 
-//    private fun showImage(img: ImageView, path: String) {
-//        val picturesDir = context.getDir("Pictures", Context.MODE_PRIVATE)
-//        val picturesDirPath = picturesDir?.absolutePath +"/"+ path
-//
-//        val options = BitmapFactory.Options()
-//        options.inSampleSize = 8
-//        val bitmapPicture = BitmapFactory.decodeFile(picturesDirPath)
-//        img.setImageBitmap(bitmapPicture)
-//    }
-
-}
-
-class ProductAdapter(private val productList: List<Product>,private val context: Context):RecyclerView.Adapter<ProductAdapter.ViewHolder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val viewHistoryBinding = ViewPogchampBinding.inflate(inflater, parent, false)
-        return ViewHolder(viewHistoryBinding)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.productName.text = productList[position].name
-        showImage(holder.productPicture,productList[position].imagePath!!)
-    }
-
-    override fun getItemCount(): Int {
-        return productList.size
-    }
-
-    inner class ViewHolder(binding: ViewPogchampBinding) : RecyclerView.ViewHolder(binding.root){
-        val productName = binding.nameTextView
-        val productPicture = binding.productPicture
-    }
     private fun showImage(img: ImageView, path: String) {
         val picturesDir = context.getDir("Pictures", Context.MODE_PRIVATE)
         val picturesDirPath = picturesDir?.absolutePath +"/"+ path
