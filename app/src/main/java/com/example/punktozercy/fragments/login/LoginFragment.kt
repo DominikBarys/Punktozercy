@@ -66,41 +66,27 @@ class LoginFragment : Fragment() {
                 /*check if the google user exists in database. if yes then go to mainactivity2.
                 if no then go to sign by google and create new user in database
                 * */
-
-               lifecycleScope.launch {
-                   val users:List<User> = mShopViewModel.findUserByGoogleToken(account.id!!)
-                   if(users.isEmpty()){
-                       goToSignIn()
-                   }else
-                   {
-                       userViewModel.setUser(users[0])
-                       if(account.id!! == users[0].googleToken){
-                           goToHome()
-                         }
-                       else{
-                           goToSignIn()
-                       }
-                   }
-               }
+                checkGoogleUser(account)
             }
-            //TODO stworz nowego uzytkownika w bazie danych
-            goToSignIn()
+            else
+            {
+                goToSignIn()
+            }
+
+
         }
 
-        //TODO
-        //binding.button1.setOnClickListener()
+
         binding.registerButton.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
         binding.loginButton.setOnClickListener{
-              //  checkUserLogin()
             lifecycleScope.launch {
                 if(checkUserLogin()){
                     val intent = Intent(activity,MainScreenActivity::class.java)
                     intent.putExtra("user", userViewModel.getUser())
                     activity?.startActivity(intent)
-                   // userViewModel.setName(userViewModel.getUser().userName)
                 }
             }
         }
@@ -146,7 +132,7 @@ class LoginFragment : Fragment() {
                 goToHome()
             }
             catch (e:java.lang.Exception){
-                //Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+
             }
         }
     }
@@ -155,13 +141,15 @@ class LoginFragment : Fragment() {
         val intent = Intent(activity, MainScreenActivity::class.java)
         activity?.startActivity(intent)
     }
-    //komentarz
+
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
             val user = User(0, account.displayName!!,null,null,null,account.email!!,0,account.id)
-            userViewModel.setUser(user)
-            mShopViewModel.addUser(user)
+
+            setGoogleUser(account,user)
+
+
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
@@ -188,6 +176,45 @@ class LoginFragment : Fragment() {
             }
         }
         return job.await()
+    }
+
+    private fun setGoogleUser(account: GoogleSignInAccount, user:User){
+        lifecycleScope.launch {
+            val users:List<User>
+            val job = lifecycleScope.async{
+                return@async  mShopViewModel.findUserByGoogleToken(account.id!!)
+            }
+            users =  job.await()
+            if(users.isEmpty()){
+                userViewModel.setUser(user)
+                mShopViewModel.addUser(user)
+            }else{
+                userViewModel.setUser(users[0])
+            }
+
+        }
+    }
+
+    private fun checkGoogleUser(account:GoogleSignInAccount){
+        lifecycleScope.launch {
+            val users:List<User>
+            val job = lifecycleScope.async{
+                return@async  mShopViewModel.findUserByGoogleToken(account.id!!)
+            }
+            users =  job.await()
+            if(users.isEmpty()){
+                goToSignIn()
+            }else
+            {
+                userViewModel.setUser(users[0])
+                if(account.id!! == users[0].googleToken){
+                    goToHome()
+                }
+                else{
+                    goToSignIn()
+                }
+            }
+        }
     }
 
 
