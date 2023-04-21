@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/offerImage"
-        android:layout_width="406dp"
-        android:layout_height="198dp"
+        android:layout_width="411dp"
+        android:layout_height="196dp"
         android:layout_marginTop="5dp"
         android:adjustViewBounds="true"
         android:scaleType="center"
