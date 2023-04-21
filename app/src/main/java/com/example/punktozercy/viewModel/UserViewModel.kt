@@ -9,15 +9,8 @@ class UserViewModel:ViewModel() {
 
     companion object{
         private lateinit var user: User
-    }
 
-//    fun getName() :String{
-//        return name
-//    }
-//
-//    fun setName(_name: String){
-//        name = _name
-//    }
+    }
 
     fun setUser(_user:User){
         user = _user
