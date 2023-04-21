@@ -7,17 +7,17 @@ import com.example.punktozercy.fragments.home.adapters.Offer
 
 class HomeViewModel : ViewModel() {
 
-    val offerArray = arrayOf(   Triple(R.drawable.offer_readymeals, "ready meals", "Food"),
-                                Triple(R.drawable.offer_drink, "drink", "Drink"),
-                                Triple(R.drawable.offer_spices, "spices", "Other"),
-                                Triple(R.drawable.offer_fruits, "fruits", "Food"),
-                                Triple(R.drawable.offer_bakery, "bakery", "Food"),
-                                Triple(R.drawable.offer_dairy, "dairy", "Food"),
-                                Triple(R.drawable.offer_meat, "meat", "Food"),
-                                Triple(R.drawable.offer_vegetables, "vegetables", "Food"),
-                                Triple(R.drawable.offer_beverages, "beverages", "Drink"),
-                                Triple(R.drawable.offer_sweets, "sweets", "Other"),
-                                Triple(R.drawable.offer_fizzydrink, "fizzy drink", "Drink")
+    val offerArray = arrayOf(   Triple(R.drawable.offer_readymeals, "ready meals", "ready meals"),
+                                Triple(R.drawable.offer_drink, "drink", "drink"),
+                                Triple(R.drawable.offer_spices, "spices", "spices"),
+                                Triple(R.drawable.offer_fruits, "fruits", "fruits"),
+                                Triple(R.drawable.offer_bakery, "bakery", "bakery"),
+                                Triple(R.drawable.offer_dairy, "dairy", "dairy"),
+                                Triple(R.drawable.offer_meat, "meat", "meat"),
+                                Triple(R.drawable.offer_vegetables, "vegetables", "vegetables"),
+                                Triple(R.drawable.offer_beverages, "beverages", "beverages"),
+                                Triple(R.drawable.offer_sweets, "sweets", "sweets"),
+                                Triple(R.drawable.offer_fizzydrink, "fizzy drink", "fizzy drink")
     )
 
 

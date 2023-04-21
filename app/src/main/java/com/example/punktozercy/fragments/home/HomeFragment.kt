@@ -60,7 +60,8 @@ class HomeFragment : Fragment() {
             binding.otherImageView.setImageResource(R.drawable.filter_other)
             val filteredList = ArrayList<Offer>()
             for(i in homeViewModel.offerArray){
-                if(i.third.contains("Food"))
+                if(i.third.contains("ready meals") || i.third.contains("fruits") || i.third.contains("bakery") ||
+                    i.third.contains("dairy") || i.third.contains("meat") || i.third.contains("vegetables"))
                     filteredList.add(Offer(i.first, i.second, i.third))
             }
             adapter.setFilteredList(filteredList)
@@ -73,7 +74,7 @@ class HomeFragment : Fragment() {
             binding.otherImageView.setImageResource(R.drawable.filter_other)
             val filteredList = ArrayList<Offer>()
             for(i in homeViewModel.offerArray){
-                if(i.third.contains("Drink"))
+                if(i.third.contains("fizzy drink") || i.third.contains("drink") || i.third.contains("beverages"))
                     filteredList.add(Offer(i.first, i.second, i.third))
             }
             adapter.setFilteredList(filteredList)
@@ -86,7 +87,7 @@ class HomeFragment : Fragment() {
             binding.otherImageView.setImageResource(R.drawable.filter_other_selected)
             val filteredList = ArrayList<Offer>()
             for(i in homeViewModel.offerArray){
-                if(i.third.contains("Other"))
+                if(i.third.contains("sweets") || i.third.contains("spices"))
                     filteredList.add(Offer(i.first, i.second, i.third))
             }
             adapter.setFilteredList(filteredList)
@@ -103,7 +104,6 @@ class HomeFragment : Fragment() {
                     filteredList.add(Offer(i.first, i.second, i.third))
             }
             adapter.setFilteredList(filteredList)
-            SelectedProducts.amountOfProductsInBasket.value = SelectedProducts.amountOfProductsInBasket.value!! + 1
         }
 
         adapter.onItemClick = {
