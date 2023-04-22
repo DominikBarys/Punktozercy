@@ -44,7 +44,7 @@ class HistoryFragment : Fragment() {
             }
             job.await()
 
-            val adapter = HistoryAdapter(userShoppingHistoryViewModel.getUserShoppingHistory(),requireContext())
+            val adapter = HistoryAdapter(userShoppingHistoryViewModel.getUserShoppingHistory().reversed(),requireContext())
             binding.productsList.layoutManager = LinearLayoutManager(requireContext())
             binding.productsList.adapter = adapter
 
