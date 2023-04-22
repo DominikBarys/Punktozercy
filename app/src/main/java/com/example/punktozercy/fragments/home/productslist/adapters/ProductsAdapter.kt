@@ -20,7 +20,7 @@ class ProductsAdapter(private var products:List<Product>,private val context: Co
         val productName = binding.productName
         val productPrice = binding.moneyPrice
         val productPriceInPoints = binding.pointsPrice
-        val productDescription = binding.productDescription
+        //val productDescription = binding.productDescription
         val productPicture = binding.productPicture
         val buyButton = binding.buyButton
         val plusButton = binding.plusButton
@@ -38,10 +38,12 @@ class ProductsAdapter(private var products:List<Product>,private val context: Co
 
     override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
 
-        holder.productDescription.text = products[position].description
+        //holder.productDescription.text = products[position].description
         holder.productName.text = products[position].name
-        holder.productPrice.text = products[position].price.toString()
-        holder.productPriceInPoints.text = products[position].pointsPrice.toString()
+       // holder.productPrice.text = products[position].price.toString()
+        holder.productPrice.text = "Price in zł: ${products[position].price.toString()}"
+        //holder.productPriceInPoints.text = products[position].pointsPrice.toString()
+        holder.productPriceInPoints.text = "Price in points: ${products[position].pointsPrice.toString()}"
         showImage(holder.productPicture,products[position].imagePath!!)
         holder.productAmount.text = "1"
 
