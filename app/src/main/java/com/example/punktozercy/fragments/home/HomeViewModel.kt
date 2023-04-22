@@ -8,16 +8,16 @@ import com.example.punktozercy.fragments.home.adapters.Offer
 class HomeViewModel : ViewModel() {
 
     val offerArray = arrayOf(   Triple(R.drawable.offer_readymeals, "ready meals", "ready meals"),
-                                Triple(R.drawable.offer_drink, "drink", "drink"),
-                                Triple(R.drawable.offer_spices, "spices", "spices"),
-                                Triple(R.drawable.offer_fruits, "fruits", "fruits"),
-                                Triple(R.drawable.offer_bakery, "bakery", "bakery"),
-                                Triple(R.drawable.offer_dairy, "dairy", "dairy"),
-                                Triple(R.drawable.offer_meat, "meat", "meat"),
-                                Triple(R.drawable.offer_vegetables, "vegetables", "vegetables"),
-                                Triple(R.drawable.offer_beverages, "beverages", "beverages"),
-                                Triple(R.drawable.offer_sweets, "sweets", "sweets"),
-                                Triple(R.drawable.offer_fizzydrink, "fizzy drink", "fizzy drink")
+        Triple(R.drawable.offer_drink, "drink", "drink"),
+        Triple(R.drawable.offer_spices, "spices", "spices"),
+        Triple(R.drawable.offer_fruits, "fruits", "fruits"),
+        Triple(R.drawable.offer_bakery, "bakery", "bakery"),
+        Triple(R.drawable.offer_dairy, "dairy", "dairy"),
+        Triple(R.drawable.offer_meat, "meat", "meat"),
+        Triple(R.drawable.offer_vegetables, "vegetables", "vegetables"),
+        Triple(R.drawable.offer_beverages, "beverages", "beverages"),
+        Triple(R.drawable.offer_sweets, "sweets", "sweets"),
+        Triple(R.drawable.offer_fizzydrink, "fizzy drink", "fizzy drink")
     )
 
 

@@ -34,7 +34,7 @@ class BasketFragment : Fragment() {
     private var _binding: FragmentBasketBinding? = null
     lateinit var basketViewModel: BasketViewModel
     private lateinit var userViewModel: UserViewModel
-
+    private var cashBack: Int = 0
     private val binding get() = _binding!!
 
     @SuppressLint("SimpleDateFormat", "SetTextI18n")
@@ -51,39 +51,41 @@ class BasketFragment : Fragment() {
 
 
 
-        BasketViewModel.buyUsingMoney.observe(this, {
+        BasketViewModel.buyUsingMoney.observe(this) {
 
             var moneyPriceNotRounded = SelectedProducts.textMoneyPrice.value
             var pointsPriceNotRounded = SelectedProducts.textPointsPrice.value
-            if(SelectedProducts.textMoneyPrice.value!! < 0.01) {
+
+            if (SelectedProducts.textMoneyPrice.value!! < 0.01) {
                 moneyPriceNotRounded = 0.0
             }
 
-            if(SelectedProducts.textPointsPrice.value!! < 0.01){
-                pointsPriceNotRounded = 0.0
+            if (SelectedProducts.textPointsPrice.value!! < 0) {
+                pointsPriceNotRounded = 0
             }
 
-            if(BasketViewModel.buyUsingMoney.value == true){
+            if (BasketViewModel.buyUsingMoney.value == true) {
                 val formattedPrice = String.format("%.2f", moneyPriceNotRounded)
-                binding.moneyPriceTextView.text = "Price: $formattedPrice zł"
-            }else{
-                val formattedPrice = String.format("%.0f", pointsPriceNotRounded)
-                binding.moneyPriceTextView.text = "Price: $formattedPrice points"
+                binding.moneyPriceTextView.text = "Price in cash: $formattedPrice zł"
             }
-        })
+            else {
+              //  val formattedPrice = String.format("%.2f", pointsPriceNotRounded)
+                binding.moneyPriceTextView.text = "Price in points: $pointsPriceNotRounded "
+            }
+        }
 
 
         if(SelectedProducts.productList.size > 0 && !SelectedProducts.firstProduct)
         {
             SelectedProducts.textMoneyPrice.value = 0.0
-            SelectedProducts.textPointsPrice.value = 0.0
+            SelectedProducts.textPointsPrice.value = 0
             for(item in SelectedProducts.productList){
                 SelectedProducts.textMoneyPrice.value = SelectedProducts.textMoneyPrice.value?.plus(item.price)
                 SelectedProducts.textPointsPrice.value = SelectedProducts.textPointsPrice.value?.plus(item.pointsPrice!!)
             }
         }else{
             SelectedProducts.textMoneyPrice.value = 0.0
-            SelectedProducts.textPointsPrice.value = 0.0
+            SelectedProducts.textPointsPrice.value = 0
         }
 
 
@@ -97,7 +99,7 @@ class BasketFragment : Fragment() {
 
             if(BasketViewModel.buyUsingMoney.value == true){
                 val formattedPrice = String.format("%.2f", moneyPriceNotRounded)
-                binding.moneyPriceTextView.text = "Price in zł: $formattedPrice zł"
+                binding.moneyPriceTextView.text = "Price in cash: $formattedPrice zł"
             }
         }
 
@@ -106,12 +108,11 @@ class BasketFragment : Fragment() {
 
 
             if(SelectedProducts.textPointsPrice.value!! < 0.01){
-                pointsPriceNotRounded = 0.0
+                pointsPriceNotRounded = 0
             }
 
             if(BasketViewModel.buyUsingMoney.value == false){
-                val formattedPrice = String.format("%.0f", pointsPriceNotRounded)
-                binding.moneyPriceTextView.text = "Price in points: $formattedPrice zł"
+                binding.moneyPriceTextView.text = "Price in points: $pointsPriceNotRounded"
             }
         }
 
@@ -126,6 +127,7 @@ class BasketFragment : Fragment() {
         binding.basketRecycler.adapter = adapter
 
 
+        binding.cashback.text = "Cashback : $cashBack"
         binding.basketRecycler.isVisible = !SelectedProducts.firstProduct
 
         binding.typeOfCurrency.setOnCheckedChangeListener { compoundButton, b ->
@@ -133,33 +135,42 @@ class BasketFragment : Fragment() {
             if(BasketViewModel.buyUsingMoney.value == false){
                 binding.typeOfCurrency.text = "Buy with points"
                 println(binding.typeOfCurrency.isChecked)
+                cashBack = (SelectedProducts.textPointsPrice.value!! * 0.1).toInt()
+                binding.cashback.text = "Cashback : $cashBack"
             }else{
                 binding.typeOfCurrency.text = "Buy with money"
+                cashBack = (SelectedProducts.textMoneyPrice.value!! * 0.3).toInt()
+                println(SelectedProducts.textMoneyPrice.value!!)
+                println(cashBack)
+                binding.cashback.text = "Cashback : $cashBack"
             }
         }
 
         binding.checkOut.setOnClickListener {
             //TODO aktualizacja danych uzytkownika (punkty itp)
             if(BasketViewModel.buyUsingMoney.value!!){
-              buyProducts(true)
-            }else{
-                buyProducts(false)
+
+                updateUserPoints(cashBack,userViewModel.getPoints())
+                buyProducts(true)
+                clearBucket(adapter)
+            }
+            else
+            {
+                if(userViewModel.getPoints() > SelectedProducts.textPointsPrice.value!!){
+
+                    //TODO CASHABCK PO ZAKUPIE
+                    cashBack = (SelectedProducts.textPointsPrice.value!! * 0.1).toInt()
+                    val pointsAfterShopping = userViewModel.getPoints() - SelectedProducts.textPointsPrice.value!!
+                    updateUserPoints(cashBack,pointsAfterShopping)
+                    buyProducts(false)
+                    clearBucket(adapter)
+
+                }else{
+                    Toast.makeText(requireContext(), "You do not have enough points", Toast.LENGTH_SHORT).show()
+                }
             }
 
-            selectedProducts.clearProductList()
-            adapter.notifyDataSetChanged()
-            SelectedProducts.basketText.value = "YOU HAVE EMPTY BASKET"
-            SelectedProducts.textMoneyPrice.value = 0.0
-            SelectedProducts.textPointsPrice.value = 0.0
-            SelectedProducts.amountOfProductsInBasket.value = 0
-
         }
-//        binding.testButton.setOnClickListener {
-//            Toast.makeText(requireContext(), selectedProducts.getTest(), Toast.LENGTH_SHORT).show()
-//        }
-
-
-
         return binding.root
     }
 
@@ -179,6 +190,35 @@ class BasketFragment : Fragment() {
             }
             job.await()
 
+        }
+    }
+
+    private fun clearBucket(adapter: BasketAdapter){
+        selectedProducts.clearProductList()
+        adapter.notifyDataSetChanged()
+        SelectedProducts.basketText.value = "YOU HAVE EMPTY BASKET"
+        SelectedProducts.textMoneyPrice.value = 0.0
+        SelectedProducts.textPointsPrice.value = 0
+        SelectedProducts.amountOfProductsInBasket.value = 0
+    }
+
+    private fun updateUserPoints(cashBack:Int,pointsAfterShopping:Int ){
+        lifecycleScope.launch {
+            val job = lifecycleScope.async {
+                mShopViewModel.updateUserPoints(userViewModel.getUserId(),pointsAfterShopping + cashBack)
+
+            }
+            job.await()
+            val job2 = lifecycleScope.async {
+                while(true){
+                    userViewModel.setUser(mShopViewModel.getUserById(userViewModel.getUserId()))
+                    if(pointsAfterShopping + cashBack == userViewModel.getPoints()){
+                        return@async true
+                    }
+                }
+
+            }
+            job2.await()
         }
     }
 }

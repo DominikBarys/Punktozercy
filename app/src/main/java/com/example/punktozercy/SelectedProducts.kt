@@ -12,11 +12,11 @@ class SelectedProducts {
 
         var textMoneyPrice: MutableLiveData<Double> = _textMoneyPrice
 
-        var _textPointsPrice = MutableLiveData<Double>().apply {
-            value = 0.0
+        var _textPointsPrice = MutableLiveData<Int>().apply {
+            value = 0
         }
 
-        var textPointsPrice: MutableLiveData<Double> = _textPointsPrice
+        var textPointsPrice: MutableLiveData<Int> = _textPointsPrice
 
         var _basketText = MutableLiveData<String>().apply {
             value = "YOU HAVE EMPTY BASKET"
