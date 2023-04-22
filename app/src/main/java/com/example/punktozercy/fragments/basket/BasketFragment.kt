@@ -54,21 +54,20 @@ class BasketFragment : Fragment() {
         BasketViewModel.buyUsingMoney.observe(this, {
 
             var moneyPriceNotRounded = SelectedProducts.textMoneyPrice.value
-            var pointsPriceNotRounded = SelectedProducts.textPointsPrice.value?.toInt()
-
+            var pointsPriceNotRounded = SelectedProducts.textPointsPrice.value
             if(SelectedProducts.textMoneyPrice.value!! < 0.01) {
                 moneyPriceNotRounded = 0.0
             }
 
             if(SelectedProducts.textPointsPrice.value!! < 0.01){
-                pointsPriceNotRounded = 0
+                pointsPriceNotRounded = 0.0
             }
 
             if(BasketViewModel.buyUsingMoney.value == true){
                 val formattedPrice = String.format("%.2f", moneyPriceNotRounded)
                 binding.moneyPriceTextView.text = "Price: $formattedPrice zł"
             }else{
-                val formattedPrice = String.format("%.2f", pointsPriceNotRounded)
+                val formattedPrice = String.format("%.0f", pointsPriceNotRounded)
                 binding.moneyPriceTextView.text = "Price: $formattedPrice points"
             }
         })
@@ -111,7 +110,7 @@ class BasketFragment : Fragment() {
             }
 
             if(BasketViewModel.buyUsingMoney.value == false){
-                val formattedPrice = String.format("%.2f", pointsPriceNotRounded)
+                val formattedPrice = String.format("%.0f", pointsPriceNotRounded)
                 binding.moneyPriceTextView.text = "Price in points: $formattedPrice zł"
             }
         }
