@@ -31,8 +31,8 @@ class BasketAdapter(private val products: List<Product>, private val context: Co
 
     override fun onBindViewHolder(holder: BasketViewHolder, position: Int) {
         holder.productName.text = products[position].name
-        holder.productMoneyValue.text = products[position].price.toString()
-        holder.productPointsValue.text = products[position].pointsPrice.toString()
+        holder.productMoneyValue.text = "Price in zł: " + products[position].price.toString() + " zł"
+        holder.productPointsValue.text = "Price in points: " + products[position].pointsPrice.toString() + " points"
         showImage(holder.productPicture, products[position].imagePath!!)
         holder.removeButton.setOnClickListener {
             val tmpMoney = SelectedProducts.textMoneyPrice.value?.minus(products[position].price)
