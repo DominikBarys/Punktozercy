@@ -59,9 +59,9 @@ class ProductsListFragment : Fragment() {
             Navigation.findNavController(requireView()).navigateUp()
         }
 
-        binding.showButton.setOnClickListener {
-            Toast.makeText(requireContext(), productViewModel.getCategory(), Toast.LENGTH_SHORT).show()
-        }
+//        binding.showButton.setOnClickListener {
+//            Toast.makeText(requireContext(), productViewModel.getCategory(), Toast.LENGTH_SHORT).show()
+//        }
 
         return binding.root
     }

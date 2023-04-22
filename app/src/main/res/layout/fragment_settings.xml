@@ -48,7 +48,7 @@
             android:layout_marginBottom="307dp"
             android:layout_toEndOf="@id/imageView3"
             android:text=""
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/email"
