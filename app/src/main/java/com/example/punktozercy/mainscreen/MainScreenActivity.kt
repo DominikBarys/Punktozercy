@@ -8,20 +8,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.punktozercy.R
 import com.example.punktozercy.SelectedProducts
 import com.example.punktozercy.databinding.ActivityMain2Binding
-import com.example.punktozercy.fragments.basket.BasketViewModel
 import com.example.punktozercy.fragments.settings.SettingsViewModel
-import com.example.punktozercy.model.User
 import com.example.punktozercy.viewModel.ShopViewModel
 import com.example.punktozercy.viewModel.UserViewModel
-import kotlinx.coroutines.launch
 
 class MainScreenActivity : AppCompatActivity() {
 
@@ -59,7 +54,7 @@ class MainScreenActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 
-        var basketBadge = navView.getOrCreateBadge(R.id.navigation_basket)
+        val basketBadge = navView.getOrCreateBadge(R.id.navigation_basket)
         basketBadge.setVisible(true)
         basketBadge.setNumber(SelectedProducts.amountOfProductsInBasket.value!!)
         //basketBadge.backgroundColor = 23
@@ -75,14 +70,8 @@ class MainScreenActivity : AppCompatActivity() {
                 R.id.navigation_settings
             )
         )
-       // setupActionBarWithNavController(navController, appBarConfiguration)
 
         navView.setupWithNavController(navController)
     }
 
-    private fun loadUser(user:User){
-        lifecycleScope.launch{
-          userViewModel.setUser(mShopViewModel.getUserById(user.userId))
-        }
-    }
 }

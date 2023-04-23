@@ -24,7 +24,7 @@ class SelectedProducts {
 
         var basketText: MutableLiveData<String> = _basketText
 
-        var firstProduct = true;
+        var firstProduct = true
 
         var productList: MutableList<Product> =
             mutableListOf(Product(1, "test", 1.0, "test", "test", 1, "test"))

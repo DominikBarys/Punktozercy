@@ -14,7 +14,6 @@ import com.example.punktozercy.fragments.home.adapters.HorizontalAdapter
 import com.example.punktozercy.mainscreen.MainScreenViewModel
 import com.example.punktozercy.viewModel.UserViewModel
 import com.example.punktozercy.R
-import com.example.punktozercy.SelectedProducts
 import com.example.punktozercy.fragments.home.productslist.ProductViewModel
 
 class HomeFragment : Fragment() {

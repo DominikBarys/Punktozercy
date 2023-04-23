@@ -3,7 +3,7 @@ package com.example.punktozercy.fragments.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.punktozercy.R
-import com.example.punktozercy.fragments.home.adapters.Offer
+
 
 class HomeViewModel : ViewModel() {
 

@@ -56,7 +56,7 @@ abstract class ShopDatabase: RoomDatabase() {
         )
 
         @Volatile
-        private var INSTANCE: ShopDatabase? = null;
+        private var INSTANCE: ShopDatabase? = null
 
         // Klasa Callback do zainicjalizowania tabeli danymi przed jej stworzeniem
         private class DatabaseCallback(private val context: Context, private val products: List<Product>) : RoomDatabase.Callback() {

@@ -2,12 +2,10 @@ package com.example.punktozercy.fragments.register
 
 import android.os.Bundle
 import android.os.Handler
-import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
@@ -71,15 +69,15 @@ class RegisterFragment : Fragment() {
             findNavController().navigate(R.id.action_registerFragment_to_privacyPolicyFragment)
         }
 
-        return binding.root;
+        return binding.root
     }
 
     private fun insertDataToDatabase() {
         lifecycleScope.launch {
             if(checkInputData()){
                 val user = User(0,binding.TextUsername.text.toString(),binding.TextPassword.text.toString()
-                    ,binding.TextPhone.text.toString(),null,binding.TextEmailAddress.text.toString(),200,null);
-                mShopViewModel.addUser(user);
+                    ,binding.TextPhone.text.toString(),null,binding.TextEmailAddress.text.toString(),200,null)
+                mShopViewModel.addUser(user)
                 findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
             }
         }

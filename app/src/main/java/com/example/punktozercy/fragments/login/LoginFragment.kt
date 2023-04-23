@@ -132,7 +132,7 @@ class LoginFragment : Fragment() {
                 goToHome()
             }
             catch (e:java.lang.Exception){
-
+                print(e.message)
             }
         }
     }

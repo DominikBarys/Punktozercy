@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import com.example.punktozercy.R
 import com.example.punktozercy.databinding.FragmentTermsAndConditionsBinding
 
 
@@ -19,7 +18,7 @@ class TermsAndConditionsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentTermsAndConditionsBinding.inflate(inflater, container, false)
 
         binding.termsAndConditionsText.movementMethod = ScrollingMovementMethod()

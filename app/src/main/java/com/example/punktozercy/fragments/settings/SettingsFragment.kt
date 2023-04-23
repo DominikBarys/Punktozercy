@@ -8,30 +8,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.punktozercy.MainActivity
 import com.example.punktozercy.R
 import com.example.punktozercy.databinding.FragmentSettingsBinding
-import com.example.punktozercy.mainscreen.MainScreenActivity
-import com.example.punktozercy.model.User
 import com.example.punktozercy.viewModel.UserViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
 class SettingsFragment : Fragment() {
     private var _binding: FragmentSettingsBinding? = null
     private lateinit var userViewModel: UserViewModel
     private val binding get() = _binding!!
-    private var nightMode:Boolean = false
     private var editor:SharedPreferences.Editor?=null
     private var sharedPreferences:SharedPreferences?=null
     private  var settingsViewModel: SettingsViewModel? =null
-    private lateinit var googleSignInClient: GoogleSignInClient
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -96,7 +89,7 @@ class SettingsFragment : Fragment() {
     }
 
     private fun checkTheme(){
-        binding.switchTheme.setOnCheckedChangeListener { compoundButton, b ->
+        binding.switchTheme.setOnCheckedChangeListener { _, _ ->
             if(settingsViewModel!!.getThemeFlag()){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 editor=sharedPreferences?.edit()

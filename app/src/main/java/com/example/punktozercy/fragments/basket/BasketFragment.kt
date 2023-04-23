@@ -10,11 +10,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.punktozercy.R
 import com.example.punktozercy.SelectedProducts
 import com.example.punktozercy.databinding.FragmentBasketBinding
 import com.example.punktozercy.fragments.basket.adapters.BasketAdapter
@@ -24,7 +22,6 @@ import com.example.punktozercy.viewModel.UserViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.Calendar
 
 class BasketFragment : Fragment() {
@@ -69,7 +66,6 @@ class BasketFragment : Fragment() {
                 binding.moneyPriceTextView.text = "Price in cash: $formattedPrice zł"
             }
             else {
-              //  val formattedPrice = String.format("%.2f", pointsPriceNotRounded)
                 binding.moneyPriceTextView.text = "Price in points: $pointsPriceNotRounded "
             }
         }
@@ -182,7 +178,7 @@ class BasketFragment : Fragment() {
                     val time = Calendar.getInstance().time
                     val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm")
                     val current = formatter.format(time).toString()
-                    val history = ShoppingHistory(0,current.toString(),
+                    val history = ShoppingHistory(0,current,
                         userViewModel.getUserId(),products.productId,typeOfCurrency)
                     mShopViewModel.addUserShoppingHistory(history)
                 }

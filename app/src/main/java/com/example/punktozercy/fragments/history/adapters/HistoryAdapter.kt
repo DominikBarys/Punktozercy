@@ -1,5 +1,6 @@
 package com.example.punktozercy.fragments.history.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
@@ -35,6 +36,7 @@ RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>(){
 
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
 
         val history = historyList[position]

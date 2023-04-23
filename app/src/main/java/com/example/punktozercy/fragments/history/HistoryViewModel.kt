@@ -1,9 +1,6 @@
 package com.example.punktozercy.fragments.history
 
 import androidx.lifecycle.ViewModel
-import com.example.punktozercy.model.Product
-import com.example.punktozercy.model.ShoppingHistory
-import com.example.punktozercy.model.User
 import com.example.punktozercy.model.UserShoppingHistoryWithProduct
 
 class HistoryViewModel:ViewModel() {

@@ -9,9 +9,6 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.punktozercy.R
-import com.example.punktozercy.databinding.FragmentEditProfileBinding
-import com.example.punktozercy.databinding.FragmentRegisterBinding
 import com.example.punktozercy.databinding.FragmentSendPointsBinding
 import com.example.punktozercy.viewModel.ShopViewModel
 import com.example.punktozercy.viewModel.UserViewModel
@@ -111,7 +108,7 @@ class SendPointsFragment : Fragment() {
         }
     }
 
-    private suspend fun checkPointsInput():Boolean{
+    private  fun checkPointsInput():Boolean{
 
         if(binding.amountPoints.text.toString().isEmpty()){
             binding.amountPoints.error = "Number of points cannot be empty"

@@ -2,14 +2,12 @@ package com.example.punktozercy.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.punktozercy.model.*
 import com.example.punktozercy.repository.ShopRepository
 import kotlinx.coroutines.*
 
 class ShopViewModel(application: Application) : AndroidViewModel(application) {
-  // private val loadAllUsers : LiveData<List<User>>
    private val repository: ShopRepository
 
    init {
@@ -17,13 +15,13 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
        val productDao = ShopDatabase.getDatabase(application).productDao()
        val shoppingHistoryDao = ShopDatabase.getDatabase(application).shoppingHistoryDao()
        repository = ShopRepository(userDao, productDao, shoppingHistoryDao)
-       //loadAllUsers = repository.loadAllUsers
+
 
    }
 
     //-------------------------------------USER WITH PRODUCTS QUERY---------------------------------------------------
 
-    suspend fun addUserShoppingHistory(shoppingHistory: ShoppingHistory){
+     fun addUserShoppingHistory(shoppingHistory: ShoppingHistory){
         viewModelScope.launch(Dispatchers.IO) {
             repository.addUserShoppingHistory(shoppingHistory)
         }
@@ -50,25 +48,25 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
             repository.addUser(user)
         }
     }
-   suspend fun updateUserData(userid:Long,username:String,Email:String,Password:String?,phone:String?,Address:String?){
+    fun updateUserData(userid:Long,username:String,Email:String,Password:String?,phone:String?,Address:String?){
         viewModelScope.launch (Dispatchers.IO){
             repository.updateUserData(userid, username, Email, Password, phone, Address)
         }
     }
 
-    suspend fun updateGoogleUserData(userid:Long,Username:String,Email:String,Password:String?,phone:String?,Address:String?,token:String?){
+     fun updateGoogleUserData(userid:Long,Username:String,Email:String,Password:String?,phone:String?,Address:String?,token:String?){
         viewModelScope.launch(Dispatchers.IO){
             repository.updateGoogleUserData(userid, Username, Email, Password, phone, Address, token)
         }
     }
 
-    suspend fun updateUserPoints(userid: Long,points:Int){
+     fun updateUserPoints(userid: Long,points:Int){
         viewModelScope.launch(Dispatchers.IO){
             repository.updateUserPoints(userid,points)
         }
     }
 
-    suspend fun updateReceiverUserPoints(email: String,points: Int){
+     fun updateReceiverUserPoints(email: String,points: Int){
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateReceiverUserPoints(email,points)
         }

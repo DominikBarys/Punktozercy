@@ -1,9 +1,7 @@
 package com.example.punktozercy.model
 
 import androidx.room.*
-import com.example.punktozercy.model.Product
-import com.example.punktozercy.model.User
-import java.util.Date
+
 
 
 
