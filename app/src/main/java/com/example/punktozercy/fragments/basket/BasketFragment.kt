@@ -87,29 +87,11 @@ class BasketFragment : Fragment() {
 
         //TODO
         SelectedProducts.textMoneyPrice.observe(this) {
-            var moneyPriceNotRounded = SelectedProducts.textMoneyPrice.value
-
-            if(SelectedProducts.textMoneyPrice.value!! < 0.01) {
-                moneyPriceNotRounded = 0.0
-            }
-
-            if(BasketViewModel.buyUsingMoney.value == true){
-                val formattedPrice = String.format("%.2f", moneyPriceNotRounded)
-                binding.moneyPriceTextView.text = "Price in cash: $formattedPrice zł"
-            }
+            showMoney()
         }
 
         SelectedProducts.textPointsPrice.observe(this) {
-            var pointsPriceNotRounded = SelectedProducts.textPointsPrice.value
-
-
-            if(SelectedProducts.textPointsPrice.value!! < 0.01){
-                pointsPriceNotRounded = 0
-            }
-
-            if(BasketViewModel.buyUsingMoney.value == false){
-                binding.moneyPriceTextView.text = "Price in points: $pointsPriceNotRounded"
-            }
+           showPoints()
         }
 
 
@@ -123,7 +105,6 @@ class BasketFragment : Fragment() {
         binding.basketRecycler.adapter = adapter
 
 
-        binding.cashback.text = "Cashback : $cashBack"
         binding.basketRecycler.isVisible = !SelectedProducts.firstProduct
 
         binding.typeOfCurrency.setOnCheckedChangeListener { compoundButton, b ->
@@ -132,13 +113,15 @@ class BasketFragment : Fragment() {
                 binding.typeOfCurrency.text = "Buy with points"
                 println(binding.typeOfCurrency.isChecked)
                 cashBack = (SelectedProducts.textPointsPrice.value!! * 0.1).toInt()
-                binding.cashback.text = "Cashback : $cashBack"
+                binding.deliveryPrice.text = "Delivery with points: 100"
+                showPoints()
             }else{
                 binding.typeOfCurrency.text = "Buy with money"
                 cashBack = (SelectedProducts.textMoneyPrice.value!! * 0.3).toInt()
                 println(SelectedProducts.textMoneyPrice.value!!)
                 println(cashBack)
-                binding.cashback.text = "Cashback : $cashBack"
+                binding.deliveryPrice.text = "Delivery with money: 10zł"
+                showMoney()
             }
         }
 
@@ -146,8 +129,10 @@ class BasketFragment : Fragment() {
             //TODO aktualizacja danych uzytkownika (punkty itp)
             if(BasketViewModel.buyUsingMoney.value!!){
 
+                cashBack = (SelectedProducts.textMoneyPrice.value!! * 0.3).toInt()
                 updateUserPoints(cashBack,userViewModel.getPoints())
                 buyProducts(true)
+                Toast.makeText(requireContext(), "You earned $cashBack points as reward", Toast.LENGTH_SHORT).show()
                 clearBucket(adapter)
             }
             else
@@ -159,6 +144,7 @@ class BasketFragment : Fragment() {
                     val pointsAfterShopping = userViewModel.getPoints() - SelectedProducts.textPointsPrice.value!!
                     updateUserPoints(cashBack,pointsAfterShopping)
                     buyProducts(false)
+                    Toast.makeText(requireContext(), "You earned $cashBack points as reward", Toast.LENGTH_SHORT).show()
                     clearBucket(adapter)
 
                 }else{
@@ -168,6 +154,47 @@ class BasketFragment : Fragment() {
 
         }
         return binding.root
+
+    }
+
+    private fun showMoney(){
+        var moneyPriceNotRounded = SelectedProducts.textMoneyPrice.value
+
+        if(SelectedProducts.textMoneyPrice.value!! < 0.01) {
+            moneyPriceNotRounded = 0.0
+        }
+
+        if(BasketViewModel.buyUsingMoney.value == true){
+            var formattedPrice = String.format("%.2f", moneyPriceNotRounded)
+            binding.moneyPriceTextView.text = "Price in cash: $formattedPrice zł"
+            if(moneyPriceNotRounded!! > 0){
+                val deliveryPrice = moneyPriceNotRounded!! + 10
+                formattedPrice = String.format("%.2f", deliveryPrice)
+                binding.deliveryText.text = "With delivery: $formattedPrice zł"
+            }else{
+                binding.deliveryText.text = "With delivery: 0 zł"
+            }
+
+        }
+    }
+
+    private fun showPoints(){
+        var pointsPriceNotRounded = SelectedProducts.textPointsPrice.value
+
+
+        if(SelectedProducts.textPointsPrice.value!! < 0.01){
+            pointsPriceNotRounded = 0
+        }
+
+        if(BasketViewModel.buyUsingMoney.value == false){
+            binding.moneyPriceTextView.text = "Price in points: $pointsPriceNotRounded"
+            if(pointsPriceNotRounded!! > 0){
+                val pointsWithDelivery = pointsPriceNotRounded + 100
+                binding.deliveryText.text = "With delivery: $pointsWithDelivery points"
+            }else{
+                binding.deliveryText.text = "With delivery: 0 zł"
+            }
+        }
     }
 
     @SuppressLint("SimpleDateFormat")
