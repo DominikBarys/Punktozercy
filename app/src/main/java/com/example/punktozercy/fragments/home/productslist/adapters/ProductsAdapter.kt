@@ -69,6 +69,7 @@ class ProductsAdapter(private var products:List<Product>,private val context: Co
                 SelectedProducts.amountOfProductsInBasket.value = SelectedProducts.amountOfProductsInBasket.value!! + 1
             }
             holder.productAmount.text = "1"
+           // SelectedProducts.cashbackTextView.value = (SelectedProducts.amountOfProductsInBasket.value!! * 0.1).toInt()
         }
     }
 

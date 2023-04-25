@@ -44,6 +44,7 @@ class BasketAdapter(private val products: List<Product>, private val context: Co
             SelectedProducts.amountOfProductsInBasket.value = SelectedProducts.amountOfProductsInBasket.value!! -1
             SelectedProducts.textMoneyPrice.value = tmpMoney
             SelectedProducts.textPointsPrice.value = tmpPoints
+           // SelectedProducts.cashbackTextView.value = (SelectedProducts.amountOfProductsInBasket.value!! * 0.1).toInt()
         }
     }
 
