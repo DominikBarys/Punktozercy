@@ -9,14 +9,40 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-
+/**
+ * abstract class responsible for creating a database using User, Product
+ * and ShoppingHistory Entities
+ * @property userDao
+ * @property productDao
+ * @property shoppingHistoryDao
+ * @property products
+ * @property INSTANCE
+ * @property DatabaseCallback
+ * @property getDatabase
+ */
 @Database(entities = [User::class,Product::class,ShoppingHistory::class], version = 1, exportSchema = false)
 abstract class ShopDatabase: RoomDatabase() {
 
+    /**
+     * function responsible for getting userDao object
+     * @return UserDao object
+     */
     abstract fun userDao():UserDao
+    /**
+     * function responsible for getting ProductDao object
+     * @return ProductDao object
+     */
     abstract fun productDao():ProductDao
+    /**
+     * function responsible for getting ShoppingHistoryDao object
+     * @return ShoppingHistoryDao object
+     */
     abstract fun shoppingHistoryDao():ShoppingHistoryDao
 
+
+    /**
+     * object responsible for initializing database with products
+     */
     companion object{
         private val products :List<Product> = listOf(
             Product(0, "Butter", 5.99, "Butter made from cow's milk", "dairy", 140, "butter.jpg"),
@@ -56,15 +82,21 @@ abstract class ShopDatabase: RoomDatabase() {
         )
 
         @Volatile
+        /**
+         * database object
+         */
         private var INSTANCE: ShopDatabase? = null
 
-        // Klasa Callback do zainicjalizowania tabeli danymi przed jej stworzeniem
+        /**
+         * class responsible for making a callback to initialize database at the very start
+         * @param context context of the application
+         * @param products list of the products that will be send to the database
+         */
         private class DatabaseCallback(private val context: Context, private val products: List<Product>) : RoomDatabase.Callback() {
             @OptIn(DelicateCoroutinesApi::class)
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
                 // Wykonywanie kodu przy tworzeniu bazy danych
-                // Można tutaj zainicjalizować tabelę danymi
                 val productDao = ShopDatabase.getDatabase(context).productDao()
                 GlobalScope.launch {
                     productDao.insertProducts(products)
@@ -73,6 +105,10 @@ abstract class ShopDatabase: RoomDatabase() {
             }
         }
 
+        /**
+         * function responsible for making that the database was created only once
+         * (Singleton)
+         */
         fun getDatabase(context:Context): ShopDatabase{
             val tempInstance = INSTANCE
             if(tempInstance !=null){

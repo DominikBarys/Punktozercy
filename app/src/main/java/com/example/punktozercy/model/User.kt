@@ -1,12 +1,21 @@
 package com.example.punktozercy.model
 
-import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
+
+/**
+ *class that represents user Entity
+ * @property userId id of the user
+ * @property userName username of the user
+ * @property password user password
+ * @property phoneNumber user phone number
+ * @property address user address
+ * @property email user email
+ * @property points number of user points
+ * @property googleToken google token needed for signing by google
+ */
 @Entity(tableName = "users")
 data class User(
     @PrimaryKey(autoGenerate = true)
@@ -24,9 +33,8 @@ data class User(
     val email:String,
     @ColumnInfo(name = "points")
     val points:Int,
-    //TESTING
     @ColumnInfo(name = "google_token")
     val googleToken:String?
 
 
-):Parcelable
+)

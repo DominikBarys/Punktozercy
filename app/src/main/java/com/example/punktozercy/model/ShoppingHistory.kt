@@ -3,9 +3,17 @@ package com.example.punktozercy.model
 import androidx.room.*
 
 
-
-
-
+/**
+ * class that represents shopping history entity. It have 2 foreign keys
+ * @property userid from User entity and productId from Product entity
+ * @property id shopping history entity
+ * @property date product buy date
+ * @property userid id of the user
+ * @property productId id of the product
+ * @property isBoughtByMoney when the value is equal 1 it means that
+ * user bought product by money, if value is equal 0 it means
+ * that user bought product using points
+ */
 @Entity(tableName = "shopping_histories",
     foreignKeys = [
         ForeignKey(entity = User::class, parentColumns = ["userId"], childColumns = ["userid"]),
@@ -25,6 +33,12 @@ data class ShoppingHistory(
     val isBoughtByMoney: Boolean
 
 )
+
+/**
+ * data class that represents the return type of the query from shopping history
+ * @property userShoppingHistory shopping history object
+ * @property product embedded object needed for getting product data
+ */
 
 data class UserShoppingHistoryWithProduct(
     @Embedded
