@@ -25,8 +25,12 @@ import kotlinx.coroutines.*
  * @property getUserById
  */
 class ShopViewModel(application: Application) : AndroidViewModel(application) {
+    /**
+     * variable that holds shop repository
+     */
    private val repository: ShopRepository
 
+   // initializing repository
    init {
        val userDao = ShopDatabase.getDatabase(application).userDao()
        val productDao = ShopDatabase.getDatabase(application).productDao()
