@@ -23,6 +23,9 @@ import com.example.punktozercy.model.User
 class UserViewModel:ViewModel() {
 
 
+    /**
+     * user object
+     */
     companion object{
         private lateinit var user: User
 

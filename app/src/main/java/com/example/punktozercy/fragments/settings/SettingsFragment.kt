@@ -39,7 +39,7 @@ class SettingsFragment : Fragment() {
      */
     private var _binding: FragmentSettingsBinding? = null
     /**
-     * user view model provider. Its getting user view model object from the application context
+     * variable responsible for managing user data
      */
     private lateinit var userViewModel: UserViewModel
     /**

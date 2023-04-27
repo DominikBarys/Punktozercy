@@ -65,7 +65,7 @@ class LoginFragment : Fragment() {
      */
     private lateinit var mShopViewModel: ShopViewModel
     /**
-     * user view model provider. Its getting user view model object from the application context
+     * variable responsible for managing user data
      */
     private lateinit var userViewModel: UserViewModel
     /**

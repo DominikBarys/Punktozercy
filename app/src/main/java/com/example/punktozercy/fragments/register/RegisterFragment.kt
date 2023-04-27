@@ -68,7 +68,7 @@ class RegisterFragment : Fragment() {
         _binding = FragmentRegisterBinding.inflate(inflater,container,false)
 
         /**
-         * shop view model provider. Its getting shop view model object from the application context
+         * variable responsible for managing database data
          */
         mShopViewModel = ViewModelProvider(this)[ShopViewModel::class.java]
 
