@@ -11,14 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.punktozercy.databinding.FragmentHomeBinding
 import com.example.punktozercy.fragments.home.adapters.Offer
 import com.example.punktozercy.fragments.home.adapters.HorizontalAdapter
-import com.example.punktozercy.mainscreen.MainScreenViewModel
 import com.example.punktozercy.viewModel.UserViewModel
 import com.example.punktozercy.R
 import com.example.punktozercy.fragments.home.productslist.ProductViewModel
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
-   private lateinit var mainScreenVm: MainScreenViewModel
     private lateinit var userViewModel: UserViewModel
     private  lateinit var homeViewModel: HomeViewModel
     private lateinit var productViewModel: ProductViewModel
@@ -36,14 +34,8 @@ class HomeFragment : Fragment() {
 
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         productViewModel = ViewModelProvider(requireActivity())[ProductViewModel::class.java]
-        mainScreenVm = ViewModelProvider(requireActivity())[MainScreenViewModel::class.java]
         userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
 
-//        val root: View = binding.root
-//
-//        binding.debugAddProductButton.setOnClickListener{
-//
-//        }
 
        val adapter = HorizontalAdapter(createOffers())
 

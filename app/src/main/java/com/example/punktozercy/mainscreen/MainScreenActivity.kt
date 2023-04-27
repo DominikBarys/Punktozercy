@@ -18,37 +18,81 @@ import com.example.punktozercy.fragments.settings.SettingsViewModel
 import com.example.punktozercy.viewModel.ShopViewModel
 import com.example.punktozercy.viewModel.UserViewModel
 
+/**
+ * class responsible for a single screen that the user can see and interact with. It is an parent
+ * of the settings, edit profile, send points, product list , home, basket fragments
+ * @property binding
+ * @property userViewModel
+ * @property mShopViewModel
+ * @property sharedPreferences
+ * @property settingsViewModel
+ * @property onCreate
+ */
 class MainScreenActivity : AppCompatActivity() {
 
+    /**
+     * variable to link main screen activity view
+     */
     private lateinit var binding: ActivityMain2Binding
+
+    /**
+     * variable responsible for managing user data
+     */
     private lateinit var userViewModel: UserViewModel
-    private lateinit var mainScreenViewModel: MainScreenViewModel
+    /**
+     * variable responsible for managing database data
+     */
     private lateinit var mShopViewModel: ShopViewModel
+    /**
+     * variable responsible for managing theme data
+     */
     private var sharedPreferences:SharedPreferences?=null
+    /**
+     * variable responsible for managing settings data
+     */
     private  var settingsViewModel: SettingsViewModel? =null
+
+    /**
+     * function that is called when a new instance of a main activity class is created
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val selectedProducts: SelectedProducts = SelectedProducts()
 
-        //user model provider
+        /**
+         * user view model provider. Its getting user view model object from the application context
+         */
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
-        //shop model provider
+        /**
+         * shop view model provider. Its getting shop view model object from the application context
+         */
         mShopViewModel = ViewModelProvider(this)[ShopViewModel::class.java]
 
-        //checking user Theme
+        /**
+         * settings view model provider. Its getting settings view model object from the application context
+         */
         settingsViewModel = ViewModelProvider(this)[SettingsViewModel::class.java]
+
+        /**
+         * checking theme
+         */
         sharedPreferences = applicationContext.getSharedPreferences("MODE", Context.MODE_PRIVATE)
         settingsViewModel!!.setThemeFlag(sharedPreferences?.getBoolean("night",false)!!)
         if(settingsViewModel!!.getThemeFlag()){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
-
-        mainScreenViewModel = ViewModelProvider(this)[MainScreenViewModel::class.java]
+        /**
+         * Inflate the layout for this activity
+         */
         binding = ActivityMain2Binding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+        /**
+         * setting up navbar
+         */
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_main2)
         // Passing each menu ID as a set of Ids because each
@@ -57,19 +101,10 @@ class MainScreenActivity : AppCompatActivity() {
         val basketBadge = navView.getOrCreateBadge(R.id.navigation_basket)
         basketBadge.setVisible(true)
         basketBadge.setNumber(SelectedProducts.amountOfProductsInBasket.value!!)
-        //basketBadge.backgroundColor = 23
 
         SelectedProducts.amountOfProductsInBasket.observe(this, Observer {
             basketBadge.setNumber(it)
         })
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home,
-                R.id.navigation_basket,
-                R.id.navigation_shopping_history,
-                R.id.navigation_settings
-            )
-        )
 
         navView.setupWithNavController(navController)
     }
