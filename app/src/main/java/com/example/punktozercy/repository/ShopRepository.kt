@@ -57,11 +57,12 @@ class ShopRepository(private val userDao: UserDao,private val productDao: Produc
 
     //----------------------------USER QUERY----------------------------------------------------------
     /**
-     * function responsible for adding a user to database
+     * function responsible for adding a user to database and returning he is actual id
      * @param user User object
+     * @return user id
      */
-    suspend fun addUser(user: User){
-        userDao.insertUser(user)
+    suspend fun addUser(user: User):Long{
+       return userDao.insertUser(user)
     }
     /**
      * function responsible for updating user points in database

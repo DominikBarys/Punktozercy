@@ -72,12 +72,13 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
 
     //---------------------------------------USER FUNCTIONS-----------------------------------------------------------
     /**
-     * function responsible for adding a user to shop repository
+     * function responsible for adding a user to shop repository and returning he is actual id
      * @param user User object
+     * @return user id
      */
-    fun addUser(user:User){
-        viewModelScope.launch (Dispatchers.IO){
-            repository.addUser(user)
+    suspend fun addUser(user:User):Long{
+        return withContext(Dispatchers.IO) {
+            return@withContext repository.addUser(user)
         }
     }
     /**

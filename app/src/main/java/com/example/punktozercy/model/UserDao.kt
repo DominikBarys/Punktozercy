@@ -25,11 +25,12 @@ import androidx.room.*
 interface UserDao {
 
     /**
-     * function responsible for adding a user to database
+     * function responsible for adding a user to database and returning he is actual id
      * @param user User object
+     * @return user id
      */
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    suspend fun insertUser(user:User)
+    suspend fun insertUser(user:User):Long
     /**
      * function responsible for adding users to database
      * @param users User objects
