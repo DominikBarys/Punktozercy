@@ -23,8 +23,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import java.lang.Runnable
 
 
 class LoginFragment : Fragment() {
@@ -85,7 +85,6 @@ class LoginFragment : Fragment() {
             lifecycleScope.launch {
                 if(checkUserLogin()){
                     val intent = Intent(activity,MainScreenActivity::class.java)
-                    intent.putExtra("user", userViewModel.getUser())
                     activity?.startActivity(intent)
                 }
             }
@@ -149,7 +148,6 @@ class LoginFragment : Fragment() {
 
             setGoogleUser(account,user)
 
-
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
@@ -186,13 +184,22 @@ class LoginFragment : Fragment() {
             }
             users =  job.await()
             if(users.isEmpty()){
+                val userId:Long
                 userViewModel.setUser(user)
-                mShopViewModel.addUser(user)
+                val job2 = lifecycleScope.async {
+                    return@async mShopViewModel.addUser(user)
+                }
+                userId = job2.await()
+
+                userViewModel.setUserId(userId)
+
             }else{
                 userViewModel.setUser(users[0])
             }
 
         }
+
+
     }
 
     private fun checkGoogleUser(account:GoogleSignInAccount){

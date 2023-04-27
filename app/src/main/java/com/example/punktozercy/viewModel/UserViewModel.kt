@@ -51,6 +51,14 @@ class UserViewModel:ViewModel() {
         return user.email
     }
     /**
+     * function that is responsible for setting actual user id. Its used for setting actual
+     * id of user in login fragment when user is signing by google
+     * @return user email
+     */
+    fun setUserId(id:Long){
+        user.userId = id
+    }
+    /**
      * function that is responsible for getting the username of the user object
      * @return username of the user
      */
