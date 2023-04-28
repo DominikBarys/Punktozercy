@@ -48,23 +48,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checked="true"
-        android:text="Buy with money"
+        android:text="@string/buy_with_money"
         android:textColor="#ffffff"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.915" />
+        app:layout_constraintVertical_bias="0.915"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <TextView
         android:id="@+id/moneyPriceTextView"
         android:layout_width="218dp"
         android:layout_height="39dp"
         android:gravity="center|left"
-        android:text="Price in zł: 0zł"
+        android:text="@string/price_in_z_0z"
         android:textColor="#ffffff"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -73,29 +74,31 @@
         app:layout_constraintHorizontal_bias="0.062"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.844" />
+        app:layout_constraintVertical_bias="0.844"
+        tools:ignore="RtlHardcoded" />
 
     <TextView
         android:id="@+id/deliveryText"
         android:layout_width="218dp"
         android:layout_height="39dp"
         android:gravity="center|left"
-        android:text="With delivery: + 200zl"
+        android:text="@string/with_delivery_200zl"
         android:textColor="#ffffff"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.062"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.914" />
+        app:layout_constraintVertical_bias="0.914"
+        tools:ignore="RtlHardcoded" />
 
     <TextView
         android:id="@+id/deliveryPrice"
         android:layout_width="193dp"
         android:layout_height="24dp"
-        android:text="Delivery price: 10zl"
+        android:text="@string/delivery_price_10zl"
         android:textColor="#ffffff"
         android:textSize="16sp"
         android:textStyle="bold"
