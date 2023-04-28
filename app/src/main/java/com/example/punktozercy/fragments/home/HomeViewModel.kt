@@ -4,9 +4,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.punktozercy.R
 
-
+/**
+ * class responsible for storing and managing the data associated with the home view
+ * @property offerArray
+ * @property _selectedCategory
+ * @property selectedCategory
+ * @property HELLO_USER
+ * @property POINTS_STRING_PREFIX
+ * @property POINTS_STRING_SUFIX
+ */
 class HomeViewModel : ViewModel() {
 
+    /**
+     * array of triples that each of them represents one offer
+     */
     val offerArray = arrayOf(
         Triple(R.drawable.offer_readymeals, "ready meals", "ready meals"),
         Triple(R.drawable.offer_beverages, "beverages", "beverages"),
@@ -22,16 +33,23 @@ class HomeViewModel : ViewModel() {
     )
 
 
+    /**
+     * variable storing information about the offer selected by the user
+     */
     var _selectedCategory = MutableLiveData<String>().apply{
         value = "None"
     }
 
+    /**
+     * variable that stores value from _selectedCategory
+     */
     var selectedCategory: MutableLiveData<String> = _selectedCategory
 
+    /**
+     * a set of constant variables used to display user information
+     */
     val HELLO_USER = "Hello, "
-
-    val POINTS_STRING = "You have "
-    val POINTS_STRING2 = " points!"
-
+    val POINTS_STRING_PREFIX = "You have "
+    val POINTS_STRING_SUFIX = " points!"
 
 }
