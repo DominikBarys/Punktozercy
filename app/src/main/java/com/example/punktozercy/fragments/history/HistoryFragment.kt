@@ -27,22 +27,27 @@ import kotlinx.coroutines.launch
  * @property onCreateView
  */
 class HistoryFragment : Fragment() {
+
     /**
      * variable responsible for managing database data
      */
     private lateinit var mShopViewModel: ShopViewModel
+
     /**
      * variable responsible for managing user data
      */
     private lateinit var userViewModel: UserViewModel
+
     /**
      * variable responsible for managing shopping history data
      */
     private lateinit var userShoppingHistoryViewModel: HistoryViewModel
+
     /**
      * binding object
      */
     private var _binding : FragmentHistoryBinding? = null
+
     /**
      * variable to link main screen activity view
      */
