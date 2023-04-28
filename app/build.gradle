@@ -1,15 +1,26 @@
+buildscript {
+    repositories {
+        // repozytoria
+    }
+    dependencies {
+        // inne zależności
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.7.20" // plugin Dokki
+    }
+}
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'org.jetbrains.dokka' version '1.7.20'
 }
+
 
 android {
     namespace 'com.example.punktozercy'
     compileSdk 33
-
     defaultConfig {
         applicationId "com.example.punktozercy"
         minSdk 24

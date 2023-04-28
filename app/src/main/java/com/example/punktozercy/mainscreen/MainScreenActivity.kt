@@ -2,7 +2,10 @@ package com.example.punktozercy.mainscreen
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -16,6 +19,10 @@ import com.example.punktozercy.databinding.ActivityMain2Binding
 import com.example.punktozercy.fragments.settings.SettingsViewModel
 import com.example.punktozercy.viewModel.ShopViewModel
 import com.example.punktozercy.viewModel.UserViewModel
+import java.io.BufferedInputStream
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 
 /**
  * class responsible for a single screen that the user can see and interact with. It is an parent
@@ -58,6 +65,8 @@ class MainScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // initialize images directory in internal phone storage
+        initImagesDirectory()
 
         /**
          * user view model provider. Its getting user view model object from the application context
@@ -108,4 +117,35 @@ class MainScreenActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
+
+    /**
+     * function that is responsible for initialize images directory in phone internal storage
+     */
+    private fun initImagesDirectory(){
+        val picturesDir = applicationContext.getDir("Pictures", Context.MODE_PRIVATE)
+        val files = applicationContext.assets.list("images")
+        if (picturesDir.listFiles()?.isEmpty() == true) {
+            for (file in files!!) {
+                if (file.endsWith(".jpg")) {
+                    val inputStream = applicationContext.assets.open("images/$file")
+                    val bitmap = BitmapFactory.decodeStream(inputStream)
+                    inputStream.close()
+
+
+                    // creating file in picturesDir directory
+                    val outFile = File(picturesDir, file)
+                    outFile.createNewFile()
+
+                    // Zapisywanie bitmapy do pliku
+                    val outputStream = FileOutputStream(outFile)
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                    outputStream.flush()
+                    outputStream.close()
+                }
+            }
+        }
+
+
+
+    }
 }
