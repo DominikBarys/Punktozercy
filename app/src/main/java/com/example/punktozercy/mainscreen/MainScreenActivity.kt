@@ -9,10 +9,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.punktozercy.R
-import com.example.punktozercy.SelectedProducts
+import com.example.punktozercy.SharedData
 import com.example.punktozercy.databinding.ActivityMain2Binding
 import com.example.punktozercy.fragments.settings.SettingsViewModel
 import com.example.punktozercy.viewModel.ShopViewModel
@@ -100,9 +99,9 @@ class MainScreenActivity : AppCompatActivity() {
 
         val basketBadge = navView.getOrCreateBadge(R.id.navigation_basket)
         basketBadge.setVisible(true)
-        basketBadge.setNumber(SelectedProducts.amountOfProductsInBasket.value!!)
+        basketBadge.setNumber(SharedData.amountOfProductsInBasket.value!!)
 
-        SelectedProducts.amountOfProductsInBasket.observe(this, Observer {
+        SharedData.amountOfProductsInBasket.observe(this, Observer {
             basketBadge.setNumber(it)
         })
 

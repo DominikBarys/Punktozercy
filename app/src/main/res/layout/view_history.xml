@@ -33,7 +33,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="50dp"
-        android:layout_marginRight="250dp">
+        android:layout_marginEnd="250dp">
 
         <ImageView
             android:id="@+id/productPicture"
@@ -55,9 +55,8 @@
         android:layout_height="27dp"
         android:layout_marginTop="35dp"
         android:gravity="center"
-        android:text="TextView"
         android:textColor="#ffffff"
-        android:textSize="16dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.705"
@@ -71,9 +70,8 @@
         android:layout_height="27dp"
         android:layout_marginBottom="15dp"
         android:gravity="center"
-        android:text="TextView"
         android:textColor="#ffffff"
-        android:textSize="16dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.697"

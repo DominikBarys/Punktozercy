@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.punktozercy.SelectedProducts
+import com.example.punktozercy.SharedData
 import com.example.punktozercy.databinding.ViewProductsBinding
 import com.example.punktozercy.model.Product
 
@@ -27,7 +27,7 @@ class ProductsAdapter(private var products:List<Product>,private val context: Co
     /**
      * variable for storing selected products by user
      */
-    private val selectedProducts: SelectedProducts = SelectedProducts()
+    private val sharedData: SharedData = SharedData()
 
     /**
      * class responsible for single element in products adapter
@@ -91,8 +91,8 @@ class ProductsAdapter(private var products:List<Product>,private val context: Co
          */
         holder.buyButton.setOnClickListener {
             for(i in 1..holder.productAmount.text.toString().toInt()) {
-                selectedProducts.addProduct(products[position])
-                SelectedProducts.amountOfProductsInBasket.value = SelectedProducts.amountOfProductsInBasket.value!! + 1
+                sharedData.addProduct(products[position])
+                SharedData.amountOfProductsInBasket.value = SharedData.amountOfProductsInBasket.value!! + 1
             }
             holder.productAmount.text = "1"
         }
