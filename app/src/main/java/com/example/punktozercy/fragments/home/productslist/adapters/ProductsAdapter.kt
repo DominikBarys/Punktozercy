@@ -41,6 +41,7 @@ class ProductsAdapter(private var products:List<Product>,private val context: Co
         val plusButton = binding.plusButton
         val minusButton = binding.minusButton
         val productAmount = binding.productAmount
+        val productDescription = binding.productDescription
 
     }
     /**
@@ -66,6 +67,7 @@ class ProductsAdapter(private var products:List<Product>,private val context: Co
         holder.productName.text = products[position].name
         holder.productPrice.text = "Price in zł: ${products[position].price.toString()}"
         holder.productPriceInPoints.text = "Price in points: ${products[position].pointsPrice.toString()}"
+        holder.productDescription.text = products[position].description
         showImage(holder.productPicture,products[position].imagePath!!)
         holder.productAmount.text = "1"
 
