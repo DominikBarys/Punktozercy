@@ -26,7 +26,7 @@ import java.io.FileOutputStream
 
 /**
  * class responsible for a single screen that the user can see and interact with. It is an parent
- * of the settings, edit profile, send points, product list , home, basket fragments
+ * of the settings, edit profile, send points, product list ,history, home, basket fragments
  * @property binding
  * @property userViewModel
  * @property mShopViewModel
