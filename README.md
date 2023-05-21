@@ -14,8 +14,11 @@ After launching the application, the user is presented with a login screen in wh
 <br/>
 ![image](https://github.com/rixis321/Punktozercy/assets/58139675/711144ea-055b-4417-a481-2d9e44178e5a)
 <br/>
+<br/>
+<br/>
 ![image](https://github.com/rixis321/Punktozercy/assets/58139675/e08faf33-97b7-4916-bc5e-d43bb231a317)
 <br />
+<br/>
 <br/>
 When registering and logging in, the data entered are strictly checked and if there is an error, the user will be notified
 <br />
