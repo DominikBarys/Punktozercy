@@ -9,6 +9,10 @@ Using the buttons, he will be able to edit his data or send points to another us
 - Coroutines
 - Android Studio
 
+# Creators
+- Konrad  - https://github.com/rixis321
+- Dominik - https://github.com/DominikBarys
+
 # External specification
 After launching the application, the user is presented with a login screen in which he can log into the application with his account and via Google login or, if he does not yet have an account, go to the registration panel 
 <br/>
