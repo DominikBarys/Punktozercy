@@ -41,7 +41,9 @@ Using the available icons, the user can filter the list of offers according to t
 <br />
 ![image](https://github.com/rixis321/Punktozercy/assets/58139675/19607e53-afca-48aa-914f-cd6a062d4ca1)
 <br/>
+<br/>
 After clicking on one of the offers, the user is shown a list of products related to the selected offer
+<br/>
 <br/>
 ![image](https://github.com/rixis321/Punktozercy/assets/58139675/67974b6a-4f99-43c6-bc1d-4f7f50e13a07)
 <br/>
