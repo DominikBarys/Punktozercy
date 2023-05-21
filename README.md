@@ -11,6 +11,6 @@ Using the buttons, he will be able to edit his data or send points to another us
 
 # External specification
 After launching the application, the user is presented with a login screen in which he can log into the application with his account and via Google login or, if he does not yet have an account, go to the registration panel 
-![image](https://github.com/rixis321/Punktozercy/assets/58139675/bd856561-7502-41ca-b37e-031f85ccc881) ![image](https://github.com/rixis321/Punktozercy/assets/58139675/cc05767c-a944-46b0-b3d8-9044f7d9172d)
+<img src="https://github.com/rixis321/Punktozercy/assets/58139675/bd856561-7502-41ca-b37e-031f85ccc881" width="425"/> <img src="https://github.com/rixis321/Punktozercy/assets/58139675/cc05767c-a944-46b0-b3d8-9044f7d9172d" width="425"/>
 
 
