@@ -13,18 +13,18 @@ Using the buttons, he will be able to edit his data or send points to another us
 <br />
 After launching the application, the user is presented with a login screen in which he can log into the application with his account and via Google login or, if he does not yet have an account, go to the registration panel 
 <br/>
-![image](https://github.com/rixis321/Punktozercy/assets/58139675/79608eb6-85e4-4495-b72a-26ab43e32618)
+![image](https://github.com/rixis321/Punktozercy/assets/58139675/711144ea-055b-4417-a481-2d9e44178e5a)
 <br/>
-![image](https://github.com/rixis321/Punktozercy/assets/58139675/0614e470-f19e-4418-9d9f-ef5f6be1f0c4)
+![image](https://github.com/rixis321/Punktozercy/assets/58139675/e08faf33-97b7-4916-bc5e-d43bb231a317)
 <br />
 <br/>
 When registering and logging in, the data entered are strictly checked and if there is an error, the user will be notified
 <br />
 <br/>
-![image](https://github.com/rixis321/Punktozercy/assets/58139675/2dad7813-31c7-4efb-a46b-75d58f433e67)
+![image](https://github.com/rixis321/Punktozercy/assets/58139675/cf4ccd72-d074-4bc3-a275-d228ee1ab878)
 <br/>
 <br />
-![image](https://github.com/rixis321/Punktozercy/assets/58139675/9e51f524-9a49-46bd-b890-486d854c0df3)
+![image](https://github.com/rixis321/Punktozercy/assets/58139675/211b220d-b9d2-4450-9b1c-1cb1f42bf508)
 <br/>
 <br />
 
