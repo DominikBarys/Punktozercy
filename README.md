@@ -10,7 +10,6 @@ Using the buttons, he will be able to edit his data or send points to another us
 - Android Studio
 
 # External specification
-<br />
 After launching the application, the user is presented with a login screen in which he can log into the application with his account and via Google login or, if he does not yet have an account, go to the registration panel 
 <br/>
 ![image](https://github.com/rixis321/Punktozercy/assets/58139675/711144ea-055b-4417-a481-2d9e44178e5a)
