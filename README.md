@@ -10,46 +10,66 @@ Using the buttons, he will be able to edit his data or send points to another us
 - Android Studio
 
 # External specification
+<br />
 After launching the application, the user is presented with a login screen in which he can log into the application with his account and via Google login or, if he does not yet have an account, go to the registration panel 
+<br />
 <br/>
 ![image](https://github.com/rixis321/Punktozercy/assets/58139675/79608eb6-85e4-4495-b72a-26ab43e32618)
+<br />
 <br/>
 ![image](https://github.com/rixis321/Punktozercy/assets/58139675/0614e470-f19e-4418-9d9f-ef5f6be1f0c4)
+<br />
 <br/>
-
+<br />
 When registering and logging in, the data entered are strictly checked and if there is an error, the user will be notified
+<br />
 <br/>
 ![image](https://github.com/rixis321/Punktozercy/assets/58139675/2dad7813-31c7-4efb-a46b-75d58f433e67)
 <br/>
+<br />
 ![image](https://github.com/rixis321/Punktozercy/assets/58139675/9e51f524-9a49-46bd-b890-486d854c0df3)
 <br/>
+<br />
 
 After successfully logging in, the user is redirected to the main panel, which shows him, among other things, his name, the number of points and a list of product offers
 <br/>
+<br />
 ![image](https://github.com/rixis321/Punktozercy/assets/58139675/cf105be0-eb10-4a72-bb35-c875a58c59c6)
 <br/>
+<br />
 Using the available icons, the user can filter the list of offers according to their categories
+<br />
+<br />
 ![image](https://github.com/rixis321/Punktozercy/assets/58139675/19607e53-afca-48aa-914f-cd6a062d4ca1)
 <br/>
 After clicking on one of the offers, the user is shown a list of products related to the selected offer
 <br/>
 ![image](https://github.com/rixis321/Punktozercy/assets/58139675/67974b6a-4f99-43c6-bc1d-4f7f50e13a07)
 <br/>
+<br />
 Using the available buttons, the user can select the quantity of a given product and add it to the shopping cart. The number of products currently in the shopping cart is continuously visible on the application navigation panel located at the bottom of the screen next to the shopping cart icon. The shopping cart panel contains previously selected products, information on their price, delivery price and total price with delivery as well as a button that allows changing the payment method and a button that allows the user to purchase the selected products
 <br/>
+<br />
 ![image](https://github.com/rixis321/Punktozercy/assets/58139675/14e1225f-7bbe-413d-bf51-5af4b7761b91)
+<br />
 <br/>
 After the successful purchase of products, information on when the product was purchased and with what currency goes into the user's purchase history, which he can view in the history panel
+<br />
 <br/>
 ![image](https://github.com/rixis321/Punktozercy/assets/58139675/39412d03-daa6-45ca-b1d2-8214ef5d51aa)
+<br />
 <br/>
 While using the application, the user can also use the settings panel which allows him, among other things, to modify his personal data, log out or send points to another user
+<br />
 <br/>
 ![image](https://github.com/rixis321/Punktozercy/assets/58139675/58167db4-7406-4582-91d1-5ed6214643b4)
+<br />
 <br/>
 ![image](https://github.com/rixis321/Punktozercy/assets/58139675/7d9df6f3-1802-462b-9cf8-8f5075a667a1)
+<br />
 <br/>
 The functionality of sending points is validated for the existence of an email address in the database and whether the user has enough points that he wants to send, an additional security feature is also that the possibility of sending points to himself is blocked.
+<br />
 <br/>
 # Testing
 The program was tested in the Andorid Studio environment, using the built-in emulator of the Pixel 6 phone in API versions 24 and 33 with Adnroid 7.0 (Nougat) and Android 13.0 (Tiramisu). The functions of the application work correctly after testing, the least testing was done in terms of different screen resolutions. The app looks correct on the resolution used by the Pixel 6 while on devices with other resolutions, such as tablets, the app may look different and not be readable.
