@@ -12,15 +12,12 @@ Using the buttons, he will be able to edit his data or send points to another us
 # External specification
 <br />
 After launching the application, the user is presented with a login screen in which he can log into the application with his account and via Google login or, if he does not yet have an account, go to the registration panel 
-<br />
 <br/>
 ![image](https://github.com/rixis321/Punktozercy/assets/58139675/79608eb6-85e4-4495-b72a-26ab43e32618)
-<br />
 <br/>
 ![image](https://github.com/rixis321/Punktozercy/assets/58139675/0614e470-f19e-4418-9d9f-ef5f6be1f0c4)
 <br />
 <br/>
-<br />
 When registering and logging in, the data entered are strictly checked and if there is an error, the user will be notified
 <br />
 <br/>
